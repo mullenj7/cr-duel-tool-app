@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Home = React.lazy(() => import('./components/screens/Home'));
-const Settings = React.lazy(() => import('./components/screens/Settings'));
+const Home = React.lazy(() => import('./screens/Home'));
+const Settings = React.lazy(() => import('./screens/Settings'));
 
 const routes = [
 {path: '/home', name: 'Home', component: Home},

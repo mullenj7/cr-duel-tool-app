@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter } from "react-router-dom";
-import { AppBar, Box } from '@mui/material';
+import { AppBar, Box, Toolbar,IconButton ,Typography,Button} from '@mui/material';
 
 function AppComponent({ children, ...props }) {
-	console.debug('in app component');
+
 	return (
 		<BrowserRouter>
-			<Box sx={{ display: 'flex', width: '100%', height: '100%' }}>
+
+			<Box sx={{  width: '100%', height: '100%' }}>
 				<AppLayout>
 					{children}
 				</AppLayout>
@@ -18,7 +19,7 @@ function AppComponent({ children, ...props }) {
 
 function AppLayout({ children }) {
 	return (
-		<Box sx={{ display: 'flex', width: '100%', height: '100%' }}>
+		<Box sx={{ display: 'flex', width: '100%', height: '100%', backgroundColor:'green' }}>
 			{/* <AppBar position='fixed' color='red' /> */}
 			{children}
 		</Box>
