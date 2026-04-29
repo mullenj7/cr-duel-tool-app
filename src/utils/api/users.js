@@ -25,18 +25,7 @@ export const getUser = async () => {
                 },
             },
         );
-        // const response = await fetch(
-        //     `${API_DOMAIN}/${ENDPOINT}`,
-        //     {
-        //         method: 'GET',
-        //         mode: 'cors',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             Authorization: token,
-        //         },
-        //     },
-        // );
-        console.log('response ' + response);
+       
         if (response.status === 200) {
 
             const parsedResponse = await response.json();

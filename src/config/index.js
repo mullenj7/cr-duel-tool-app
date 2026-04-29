@@ -19,27 +19,3 @@ const config = {
     ...dev
 }
 export default config;
-
-// const configs = {
-
-//     IdentityManager: {
-//         Default: { }
-//     },
-//     CredentialsProvider: {
-//         CognitoIdentity: {
-//             Default: {
-//                 PoolId: clientpoolId,
-//                 Region: 'eu-west-1'
-//             }
-//         }
-//     },
-//     CognitoUserPool: {
-//         Default: {
-//             PoolId: clientpoolId,
-//             AppClientId: clientpoolClientId,
-//             Region: 'eu-west-1'
-//         }
-//     }
-
-// }
-// export default configs;
