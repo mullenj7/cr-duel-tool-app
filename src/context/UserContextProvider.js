@@ -13,7 +13,7 @@ function UsersProvider(props) {
 
 
     useEffect(() => {
-        fetchUserDetails();
+        //fetchUserDetails();
     }, []);
 
     const fetchUserDetails = async () => {
