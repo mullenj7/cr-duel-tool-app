@@ -50,30 +50,30 @@ function Home() {
         <DndProvider backend={HTML5Backend}>
           <Grid container rowSpacing={1} columnSpacing={2} sx={{ p: 1 }}>
             <Grid >
-              <CardSlot value={slots[0]} handleDropCard={handleDropCard} index={0}></CardSlot>
+              <CardSlot value={slots[0]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={0}></CardSlot>
             </Grid>
             <Grid>
-              <CardSlot value={slots[1]} handleDropCard={handleDropCard} index={1}></CardSlot>
+              <CardSlot value={slots[1]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={1}></CardSlot>
             </Grid>
             <Grid >
-              <CardSlot value={slots[2]} handleDropCard={handleDropCard} index={2}></CardSlot>
+              <CardSlot value={slots[2]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={2}></CardSlot>
             </Grid>
             <Grid>
-              <CardSlot value={slots[3]} handleDropCard={handleDropCard} index={3}></CardSlot>
+              <CardSlot value={slots[3]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={3}></CardSlot>
             </Grid>
           </Grid>
           <Grid container rowSpacing={1} columnSpacing={2} sx={{ p: 1 }}>
             <Grid >
-              <CardSlot value={slots[4]} handleDropCard={handleDropCard} index={4}></CardSlot>
+              <CardSlot value={slots[4]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={4}></CardSlot>
             </Grid>
             <Grid>
-              <CardSlot value={slots[5]} handleDropCard={handleDropCard} index={5}></CardSlot>
+              <CardSlot value={slots[5]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={5}></CardSlot>
             </Grid>
             <Grid >
-              <CardSlot value={slots[6]} handleDropCard={handleDropCard} index={6}></CardSlot>
+              <CardSlot value={slots[6]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={6}></CardSlot>
             </Grid>
             <Grid>
-              <CardSlot value={slots[7]} handleDropCard={handleDropCard} index={7}></CardSlot>
+              <CardSlot value={slots[7]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={7}></CardSlot>
             </Grid>
           </Grid>
         </DndProvider>
