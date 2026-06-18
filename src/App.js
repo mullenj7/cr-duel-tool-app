@@ -82,7 +82,8 @@ function Login() {
 
 function App() {
 	const { route } = useAuthenticator((context) => [context.route]);
-	return route === 'authenticated' ? <Home /> : <Login />;
+	// return route === 'authenticated' ? <Home /> : <Login />;
+	return <Home />;
 
 }
 

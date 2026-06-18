@@ -6,13 +6,11 @@ export const AppContextProvider = (props) => {
 
 
   const [loading, setLoading] = useState(false);
-  const [projectDialogOpen, setProjectDialogOpen] = useState(false);
 
   return (
     <AppContext.Provider
       value={{
         loading, setLoading,
-        projectDialogOpen, setProjectDialogOpen
       }}
     >
       {props.children}

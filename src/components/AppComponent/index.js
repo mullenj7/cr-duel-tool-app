@@ -17,7 +17,7 @@ function AppComponent({ children, signOut, user, }) {
 	return (
 		<BrowserRouter>
 			{/* <Paper style={{ minHeight: '100vh' }}> */}
-			<Box >
+			<Box sx={{ minHeight: '100vh' }}>
 				<AppLayout
 					children={children}
 					signOut={signOut}
@@ -35,24 +35,22 @@ function AppLayout({ children, signOut, user }) {
 	const navigate = useNavigate();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const dropdownOpen = Boolean(anchorEl);
-	const {
-		userDetails,
-		updateUserAttributes,
-	} = useContext(UserContext);
+	
 
-	const { setLoading,  } = useContext(AppContext);
+
+	const { setLoading, } = useContext(AppContext);
 	const theme = useTheme();
 	console.log(theme);
 
 	return (
-		<Box sx={{}}>
+		<Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 
-			<AppBar position='static' sx={{py:2}}>
+			<AppBar position='static' sx={{ py: 2 }}>
 
 				<Toolbar>
 					<IconButton onClick={() => { navigate('/home') }}><Home sx={{ color: 'white' }} /></IconButton>
 					<Typography variant="h4" component="div" sx={{ flexGrow: 1, pl: 5 }}>
-						TF2 Hud Customizer
+						Clash Royale Duel Tool
 					</Typography>
 					<IconButton
 						onClick={(event) => setAnchorEl(event.currentTarget)}
@@ -98,8 +96,8 @@ function AppLayout({ children, signOut, user }) {
 
 				</Toolbar>
 			</AppBar>
-		
-			<Box sx={{ flexGrow: 1, width: '100%', height: '100%', }}>
+
+			<Box sx={{ flexGrow: 1, height: '100%', display: 'flex', flexDirection: 'column' }}>
 				{children}
 			</Box>
 		</Box >

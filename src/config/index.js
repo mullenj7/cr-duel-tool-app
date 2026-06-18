@@ -10,7 +10,6 @@ const configs = {
         // Amazon Cognito Web Client ID
         userPoolWebClientId: clientpoolClientId,
 
-             // loginWith: { }
     },
 }
 
