@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
 import { styled } from '@mui/material/styles';
-import { Box, Typography, Grid, Dialog, DialogTitle, Button, ButtonBase, Divider } from '@mui/material';
+import { Box, Typography, Grid, Dialog, DialogTitle, Button, ButtonBase, Divider,IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'

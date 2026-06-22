@@ -1,19 +1,24 @@
 import React, { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
-import { Box, Typography, Grid, } from '@mui/material';
+import { Box, Typography, Grid, ButtonBase,Button , IconButton,Card} from '@mui/material';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import CloseIcon from '@mui/icons-material/Close';
+
+
+
 import CardList from '../../components/Lists/CardList';
 import { CardDrag } from '../../components/Cards/Card';
 import { CardSlot } from '../../components/Cards/CardSlot';
 
 import { cards } from '../../static/cards';
 
-function DeckComponent({ slots, setSlots, isInteractive = false }) {
+function DeckComponent({ slots, setSlots, isInteractive = false, setDialogOpen, newSlotIndex,setSlotIndex}) {
 
     const theme = useTheme();
     const [swapCardType, setSwapCardType] = useState(false);
+    const [showButton, setShowButton] = useState(false);
 
 
     const handleDropCard = (fromIndex, toIndex) => {
@@ -44,39 +49,49 @@ function DeckComponent({ slots, setSlots, isInteractive = false }) {
         return;
     }
 
+    const Children = () => { return <Box>
+            <Grid container rowSpacing={isInteractive ? 1 : 0} columnSpacing={isInteractive ? 2 : 0} sx={{ p: isInteractive ? 1 : 0 }}>
+                <Grid >
+                    <CardSlot value={slots[0]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={0} isInteractive={isInteractive}></CardSlot>
+                </Grid>
+                <Grid>
+                    <CardSlot value={slots[1]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={1} isInteractive={isInteractive}></CardSlot>
+                </Grid>
+                <Grid >
+                    <CardSlot value={slots[2]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} handleSwitchType={handleSwitchType}
+                        swapCardType={swapCardType} index={2} isInteractive={isInteractive}></CardSlot>
+                </Grid>
+                <Grid>
+                    <CardSlot value={slots[3]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={3} isInteractive={isInteractive}></CardSlot>
+                </Grid>
+            </Grid>
+            <Grid container rowSpacing={isInteractive ? 1 : 0} columnSpacing={isInteractive ? 2 : 0} sx={{ p: isInteractive ? 1 : 0 }}>
+                <Grid >
+                    <CardSlot value={slots[4]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={4} isInteractive={isInteractive}></CardSlot>
+                </Grid>
+                <Grid>
+                    <CardSlot value={slots[5]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={5} isInteractive={isInteractive}></CardSlot>
+                </Grid>
+                <Grid >
+                    <CardSlot value={slots[6]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={6} isInteractive={isInteractive}></CardSlot>
+                </Grid>
+                <Grid>
+                    <CardSlot value={slots[7]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={7} isInteractive={isInteractive}></CardSlot>
+                </Grid>
+            </Grid>
+    </Box>}
+
     return (
         <Box sx={{ pt: isInteractive ? 25 : 8, pb: isInteractive ? 25 : 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
-            <DndProvider backend={HTML5Backend}>
-                <Grid container rowSpacing={isInteractive ? 1 : 0} columnSpacing={isInteractive ? 2 : 0} sx={{ p: isInteractive ? 1 : 0 }}>
-                    <Grid >
-                        <CardSlot value={slots[0]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={0} isInteractive={isInteractive}></CardSlot>
-                    </Grid>
-                    <Grid>
-                        <CardSlot value={slots[1]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={1} isInteractive={isInteractive}></CardSlot>
-                    </Grid>
-                    <Grid >
-                        <CardSlot value={slots[2]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} handleSwitchType={handleSwitchType}
-                            swapCardType={swapCardType} index={2} isInteractive={isInteractive}></CardSlot>
-                    </Grid>
-                    <Grid>
-                        <CardSlot value={slots[3]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={3} isInteractive={isInteractive}></CardSlot>
-                    </Grid>
-                </Grid>
-                <Grid container rowSpacing={isInteractive ? 1 : 0} columnSpacing={isInteractive ? 2 : 0} sx={{ p: isInteractive ? 1 : 0 }}>
-                    <Grid >
-                        <CardSlot value={slots[4]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={4} isInteractive={isInteractive}></CardSlot>
-                    </Grid>
-                    <Grid>
-                        <CardSlot value={slots[5]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={5} isInteractive={isInteractive}></CardSlot>
-                    </Grid>
-                    <Grid >
-                        <CardSlot value={slots[6]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={6} isInteractive={isInteractive}></CardSlot>
-                    </Grid>
-                    <Grid>
-                        <CardSlot value={slots[7]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={7} isInteractive={isInteractive}></CardSlot>
-                    </Grid>
-                </Grid>
-            </DndProvider>
+                    <DndProvider backend={HTML5Backend}>
+
+            {isInteractive ? <Children/> :
+            <Card elevation={0}>
+                <Button  onClick={() => { setDialogOpen(true); setSlotIndex(newSlotIndex) }}>
+                    <Children/>
+                </Button></Card>}
+                        </DndProvider>
+
         </Box>
 
     );

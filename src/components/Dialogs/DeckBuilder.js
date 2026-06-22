@@ -95,10 +95,10 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
 
 
     return (
-        <Dialog onClose={() => { handleCloseDialog() }} open={dialogOpen} fullWidth maxWidth='xl' >
+        <Dialog onClose={() => { setDialogOpen(false) }} open={dialogOpen} fullWidth maxWidth='xl' >
             <IconButton
                 aria-label="close"
-                onClick={() => { handleCloseDialog() }}
+                onClick={() => { setDialogOpen(false) }} //don't save changes
                 sx={(theme) => ({
                     position: 'absolute',
                     right: 8,
