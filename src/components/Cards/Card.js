@@ -2,7 +2,7 @@ import { useDrag } from 'react-dnd'
 import { Box, Button, Grid, Card } from '@mui/material';
 
 
-export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCardType }) {
+export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCardType, isInteractive = false }) {
 
     const getNewIMGString = (type) => {
         try {
@@ -17,7 +17,6 @@ export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCa
         try {
             if (index <= 2) {
                 if (index === 0) { // can only be evo or normal
-                    console.log(value);
                     if (value.hasEvo) {
                         return getNewIMGString('ev1');
                     }
@@ -64,8 +63,8 @@ export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCa
             handlerId: monitor.getHandlerId(),
         }),
     }), [value, handleDropCard])
-    const opacity = isDragging ? 0.4 : 1
+    const opacity = isInteractive ? (isDragging ? 0.4 : 1) : 1
     return (
-        <img ref={drag} style={{ opacity }} data-testid={`box`} src={value.img ? getIMG() : 'Images/Placeholder.png'} alt={value.id ? value.id : ''}></img>
+        <img ref={drag} style={{ opacity, height: isInteractive ? 150 : 100 }} data-testid={`box`} src={value.img ? getIMG() : 'Images/Placeholder.png'} alt={value.id ? value.id : ''}></img>
     )
 }

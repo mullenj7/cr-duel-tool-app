@@ -1,104 +1,100 @@
 import React, { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
-import { Box, Typography, Grid, } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { Box, Typography, Grid, Dialog, DialogTitle, Button, ButtonBase, Divider } from '@mui/material';
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+
+
+
 import CardList from '../../components/Lists/CardList';
 import { CardDrag } from '../../components/Cards/Card';
 import { CardSlot } from '../../components/Cards/CardSlot';
 
-import { cards } from '../../static/cards';
+import DeckBuilder from '../../components/Dialogs/DeckBuilder';
+import DeckComponent from '../../components/Cards/DeckComponent';
 
 function Home() {
 
   const theme = useTheme();
-  const [slots, setSlots] = useState([{}, {}, {}, {}, {}, {}, {}, {}]);
-  const [swapCardType, setSwapCardType] = useState(false);
+  const [slotArray, setSlotArray] = useState([]);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [slotIndex, setSlotIndex] = useState(0);
 
-  const handleSelect = (card) => {
-    const arr = [...slots];
+  const [slots1, setSlots1] = useState([{}, {}, {}, {}, {}, {}, {}, {}]);
+  const [slots2, setSlots2] = useState([{}, {}, {}, {}, {}, {}, {}, {}]);
+  const [slots3, setSlots3] = useState([{}, {}, {}, {}, {}, {}, {}, {}]);
 
-    for (let i = 0; i < arr.length; i++) {
-      if (Object.keys(arr[i]).length < 1) {
-        arr[i] = card;
-        break;
-      }
-    }
-    setSlots(arr);
-  };
 
-  const handleDropCard = (fromIndex, toIndex) => {
-    const arr = [...slots];
-    const temp = arr[fromIndex];
-    arr[fromIndex] = arr[toIndex]
-    arr[toIndex] = temp;
-    setSlots(arr);
-
-  }
-
-  const handleRemoveCard = (index) => {
-    const arr = [...slots];
-    arr[index] = {};
-    setSlots(arr);
-  };
-
-  const filterCards = (card) => {
-    for (let i = 0; i < slots.length; i++) {
-      if (slots[i].id && slots[i].id === card.id) {
-        return false;
-      }
-      else if (card.evo || card.hero) {
-        return false;
-      }
-    }
-    return true;
-  };
-
-  const handleSwitchType = (value) => {
-    if (value.hasEvo && value.hasHero) {
-      setSwapCardType(!swapCardType);
-    }
-    return;
-  }
+  const ImageButton = styled(ButtonBase)(({ theme }) => ({ // courtesy material UI
+    position: 'relative',
+    height: 200,
+    [theme.breakpoints.down('sm')]: {
+      width: '100% !important', // Overrides inline-style
+      height: 100,
+    },
+    '&:hover, &.Mui-focusVisible': {
+      zIndex: 1,
+      '& .MuiImageBackdrop-root': {
+        opacity: 0.15,
+      },
+      '& .MuiImageMarked-root': {
+        opacity: 0,
+      },
+      '& .MuiTypography-root': {
+        border: '4px solid currentColor',
+      },
+    },
+  }));
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', flexGrow: 1 }}>
-      <Box sx={{ p: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, backgroundColor: 'red' }}>
-        <DndProvider backend={HTML5Backend}>
-          <Grid container rowSpacing={1} columnSpacing={2} sx={{ p: 1 }}>
-            <Grid >
-              <CardSlot value={slots[0]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={0}></CardSlot>
-            </Grid>
-            <Grid>
-              <CardSlot value={slots[1]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={1}></CardSlot>
-            </Grid>
-            <Grid >
-              <CardSlot value={slots[2]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} handleSwitchType={handleSwitchType} swapCardType={swapCardType} index={2}></CardSlot>
-            </Grid>
-            <Grid>
-              <CardSlot value={slots[3]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={3}></CardSlot>
-            </Grid>
-          </Grid>
-          <Grid container rowSpacing={1} columnSpacing={2} sx={{ p: 1 }}>
-            <Grid >
-              <CardSlot value={slots[4]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={4}></CardSlot>
-            </Grid>
-            <Grid>
-              <CardSlot value={slots[5]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={5}></CardSlot>
-            </Grid>
-            <Grid >
-              <CardSlot value={slots[6]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={6}></CardSlot>
-            </Grid>
-            <Grid>
-              <CardSlot value={slots[7]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={7}></CardSlot>
-            </Grid>
-          </Grid>
-        </DndProvider>
+    <Box sx={{ width: '100%', height: '100%', bgcolor: 'red', flexGrow: 1, display: 'flex', justifyContent: 'space-evenly' }}>
+      <Box sx={{ width: '100%', height: '100%', bgcolor: 'green', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        {/* {slotArray.length > 0 && <Box onClick={() => { setDialogOpen(true) }}>
+          <DeckComponent slots={slotArray[0]} isInteractive={false} />
+        </Box>} */}
+        {slotArray.map((slot, i) => {
+          return <Box onClick={() => { setDialogOpen(true); setSlotIndex(i) }}>
+            <DeckComponent slots={slot} isInteractive={false} />
+          </Box>
+        })}
+
+        {slotArray.length > 0 && <Divider orientation="horizontal" variant="middle" sx={{ py: 2, width: '80%', }} />}
+        <ImageButton focusRipple
+          onClick={() => { setDialogOpen(true); setSlotIndex(slotArray.length) }}>
+          <Typography
+            component="span"
+            variant="subtitle1"
+            sx={[
+              {
+                color: 'inherit',
+              },
+              (theme) => ({
+                position: 'relative',
+                p: 4,
+                pt: 2,
+                pb: `calc(${theme.spacing(1)} + 6px)`,
+              }),
+            ]}
+          >
+            Add deck
+          </Typography>
+        </ImageButton>
       </Box>
-      <Box sx={{ height: '100%', width: '100%', bgcolor: 'yellow', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <CardList handleSelect={handleSelect} cards={cards} filterCards={filterCards} />
+      <Box sx={{ width: '50%', height: '100%', bgcolor: 'blue', flexGrow: 1, display: 'flex', }}>
+        <Button variant="outlined" onClick={() => { setDialogOpen(true) }}>
+          Open simple dialog
+        </Button>
       </Box>
+      <Box sx={{ width: '50%', height: '100%', bgcolor: 'black', flexGrow: 1, display: 'flex', }}>d</Box>
+      <Box sx={{ width: '100%', height: '100%', bgcolor: 'yellow', flexGrow: 1, display: 'flex', }}>a</Box>
+
+
+      {dialogOpen &&
+        <DeckBuilder slotArray={slotArray} setSlotArray={setSlotArray} slotIndex={slotIndex} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} />
+      }
     </Box>
   );
 }

@@ -9,7 +9,7 @@ import SwapHorizRoundedIcon from '@mui/icons-material/SwapHorizRounded';
 import { CardDrag } from './Card';
 
 
-export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handleSwitchType, swapCardType }) => {
+export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handleSwitchType, swapCardType, isInteractive = false }) => {
     const [showButton, setShowButton] = useState(false);
 
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
@@ -22,36 +22,45 @@ export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handl
     }))
     const isActive = canDrop && isOver
 
-    return (
-        <div ref={drop} style={{ position: 'relative' }} data-testid="dustbin">
-            <Card elevation={0} variant='outlined' onMouseEnter={() => { setShowButton(true) }}
-                onMouseLeave={() => { setShowButton(false) }}>
-                {index === 2 && value.id && showButton && value.hasEvo && value.hasHero ? <IconButton
-                    onClick={() => { handleSwitchType(value) }}
-                    sx={{
-                        color: swapCardType ? 'purple' : 'gold',
-                        bgcolor: 'white',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        m: 0, p: 0
-                    }}>
-                    <SwapHorizRoundedIcon />
-                </IconButton> : <></>}
+    const InteractiveSlot = <div ref={drop} style={{ position: 'relative' }} data-testid="dustbin">
+        <Card elevation={0} onMouseEnter={() => { setShowButton(true) }}
+            onMouseLeave={() => { setShowButton(false) }}>
+            {index === 2 && value.id && showButton && value.hasEvo && value.hasHero ? <IconButton
+                onClick={() => { handleSwitchType(value) }}
+                sx={{
+                    color: swapCardType ? 'purple' : 'gold',
+                    bgcolor: 'white',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    m: 0, p: 0
+                }}>
+                <SwapHorizRoundedIcon />
+            </IconButton> : <></>}
 
-                {value.id && showButton ? <IconButton
-                    onClick={() => { handleRemoveCard(index) }}
-                    sx={{
-                        color: 'red',
-                        bgcolor: 'white',
-                        position: 'absolute',
-                        top: 0,
-                        right: 0,
-                        m: 0, p: 0
-                    }}>
-                    <CancelIcon />
-                </IconButton> : <></>}
-                <CardDrag value={value} handleDropCard={handleDropCard} index={index} swapCardType={swapCardType} /></Card>
-        </div>
+            {value.id && showButton ? <IconButton
+                onClick={() => { handleRemoveCard(index) }}
+                sx={{
+                    color: 'red',
+                    bgcolor: 'white',
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    m: 0, p: 0
+                }}>
+                <CancelIcon />
+            </IconButton> : <></>}
+            <CardDrag value={value} handleDropCard={handleDropCard} index={index} swapCardType={swapCardType} isInteractive={isInteractive} />
+        </Card>
+    </div>;
+
+    const NonInteractiveSlot = <div style={{ position: 'relative' }}>
+        <Card elevation={0}>
+            <CardDrag value={value} index={index} swapCardType={swapCardType} isInteractive={isInteractive} />
+        </Card>
+    </div>;
+
+    return (
+        isInteractive ? InteractiveSlot : NonInteractiveSlot
     )
 }
