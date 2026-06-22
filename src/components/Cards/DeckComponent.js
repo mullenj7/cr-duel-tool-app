@@ -17,12 +17,18 @@ function DeckComponent({ slots, setSlots, isInteractive = false }) {
 
 
     const handleDropCard = (fromIndex, toIndex) => {
-        const arr = [...slots];
-        const temp = arr[fromIndex];
-        arr[fromIndex] = arr[toIndex]
-        arr[toIndex] = temp;
-        setSlots(arr);
-
+            if (Object.keys(slots[fromIndex]).length >= 1 && slots[fromIndex].rarity===4){ // champion cannot be moved from second slot
+                return;
+            }
+            else if (Object.keys(slots[toIndex]).length >= 1 && slots[toIndex].rarity===4){
+                return;
+            }
+            const arr = [...slots];
+            const temp = arr[fromIndex];
+            arr[fromIndex] = arr[toIndex]
+            arr[toIndex] = temp;
+            setSlots(arr);
+        
     }
 
     const handleRemoveCard = (index) => {

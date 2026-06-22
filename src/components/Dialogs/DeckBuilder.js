@@ -19,10 +19,19 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
 
     const handleSelect = (card) => {
         const arr = [...slots];
-
         for (let i = 0; i < arr.length; i++) {
+            if (card.rarity === 4 && Object.keys(arr[i]).length >= 1 && arr[i].rarity === 4) { // if there is already champion in deck can't add another
+                return;
+            }
             if (Object.keys(arr[i]).length < 1) {
-                arr[i] = card;
+                if (card.rarity === 4) { // if champion -- champions can only be in second slot
+                    const second = arr[1];
+                    arr[1] = card;
+                    arr[i] = second; // swap card in second slot with champion
+                }
+                else {
+                    arr[i] = card;
+                }
                 break;
             }
         }
@@ -30,12 +39,22 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
     };
 
     const filterCards = (card) => {
+        if (card.evo || card.hero) {
+            return false;
+        }
         for (let i = 0; i < slots.length; i++) {
             if (slots[i].id && slots[i].id === card.id) {
                 return false;
             }
-            else if (card.evo || card.hero) {
-                return false;
+        }
+
+        if (slotArray.length > 0) { // filter out cards from previous decks
+            for (let j = 0; j < slotArray.length; j++) {
+                for (let i = 0; i < slotArray[j].length; i++) {
+                    if (slotArray[j][i].id && slotArray[j][i].id === card.id) {
+                        return false;
+                    }
+                }
             }
         }
         return true;
