@@ -1,303 +1,184 @@
 
 export const cards = [
-    {
-        name: 'bandit',
-        id: 1,
-        img: 'Images/bandit.png'
-    },
-    {
-        name: 'arrows',
-        id: 2,
-        img: 'Images/arrows.png'
-    },
-    {
-        name: 'balloon',
-        id: 3,
-        img: 'Images/balloon.png'
-    },
-    {
-        name: 'berserker',
-        id: 4,
-        img: 'Images/berserker.png'
-    },
-    {
-        name: 'bomber',
-        id: 5,
-        img: 'Images/bomber.png'
-    },
-    {
-        name: 'bowler',
-        id: 6,
-        img: 'Images/bowler.png'
-    },
-    {
-        name: 'earthquake',
-        id: 7,
-        img: 'Images/earthquake.png'
-    },
-    {
-        name: 'fireball',
-        id: 8,
-        img: 'Images/fireball.png'
-    },
-    {
-        name: 'fire spirit',
-        id: 9,
-        img: 'Images/fire-spirit.png'
-    },
-    {
-        name: 'fisherman',
-        id: 10,
-        img: 'Images/fisherman.png'
-    },
-    {
-        name: 'bandit',
-        id: 1,
-        img: 'Images/bandit.png'
-    },
-    {
-        name: 'arrows',
-        id: 2,
-        img: 'Images/arrows.png'
-    },
-    {
-        name: 'balloon',
-        id: 3,
-        img: 'Images/balloon.png'
-    },
-    {
-        name: 'berserker',
-        id: 4,
-        img: 'Images/berserker.png'
-    },
-    {
-        name: 'bomber',
-        id: 5,
-        img: 'Images/bomber.png'
-    },
-    {
-        name: 'bowler',
-        id: 6,
-        img: 'Images/bowler.png'
-    },
-    {
-        name: 'earthquake',
-        id: 7,
-        img: 'Images/earthquake.png'
-    },
-    {
-        name: 'fireball',
-        id: 8,
-        img: 'Images/bandit.png'
-    },
-    {
-        name: 'fire spirit',
-        id: 9,
-        img: 'Images/fire-spirit.png'
-    },
-    {
-        name: 'fisherman',
-        id: 10,
-        img: 'Images/fisherman.png'
-    },
-    {
-        name: 'bandit',
-        id: 1,
-        img: 'Images/bandit.png'
-    },
-    {
-        name: 'arrows',
-        id: 2,
-        img: 'Images/arrows.png'
-    },
-    {
-        name: 'balloon',
-        id: 3,
-        img: 'Images/balloon.png'
-    },
-    {
-        name: 'berserker',
-        id: 4,
-        img: 'Images/berserker.png'
-    },
-    {
-        name: 'bomber',
-        id: 5,
-        img: 'Images/bomber.png'
-    },
-    {
-        name: 'bowler',
-        id: 6,
-        img: 'Images/bowler.png'
-    },
-    {
-        name: 'earthquake',
-        id: 7,
-        img: 'Images/earthquake.png'
-    },
-    {
-        name: 'fireball',
-        id: 8,
-        img: 'Images/fireball.png'
-    },
-    {
-        name: 'fire spirit',
-        id: 9,
-        img: 'Images/fire-spirit.png'
-    },
-    {
-        name: 'fisherman',
-        id: 10,
-        img: 'Images/fisherman.png'
-    },
-    {
-        name: 'bandit',
-        id: 1,
-        img: 'Images/bandit.png'
-    },
-    {
-        name: 'arrows',
-        id: 2,
-        img: 'Images/arrows.png'
-    },
-    {
-        name: 'balloon',
-        id: 3,
-        img: 'Images/balloon.png'
-    },
-    {
-        name: 'berserker',
-        id: 4,
-        img: 'Images/berserker.png'
-    },
-    {
-        name: 'bomber',
-        id: 5,
-        img: 'Images/bomber.png'
-    },
-    {
-        name: 'bowler',
-        id: 6,
-        img: 'Images/bowler.png'
-    },
-    {
-        name: 'earthquake',
-        id: 7,
-        img: 'Images/earthquake.png'
-    },
-    {
-        name: 'fireball',
-        id: 8,
-        img: 'Images/bandit.png'
-    },
-    {
-        name: 'fire spirit',
-        id: 9,
-        img: 'Images/fire-spirit.png'
-    },
-    {
-        name: 'fisherman',
-        id: 10,
-        img: 'Images/fisherman.png'
-    },
-    {
-        name: 'bandit',
-        id: 1,
-        img: 'Images/bandit.png'
-    },
-    {
-        name: 'arrows',
-        id: 2,
-        img: 'Images/arrows.png'
-    },
-    {
-        name: 'balloon',
-        id: 3,
-        img: 'Images/balloon.png'
-    },
-    {
-        name: 'berserker',
-        id: 4,
-        img: 'Images/berserker.png'
-    },
-    {
-        name: 'bomber',
-        id: 5,
-        img: 'Images/bomber.png'
-    },
-    {
-        name: 'bowler',
-        id: 6,
-        img: 'Images/bowler.png'
-    },
-    {
-        name: 'earthquake',
-        id: 7,
-        img: 'Images/earthquake.png'
-    },
-    {
-        name: 'fireball',
-        id: 8,
-        img: 'Images/fireball.png'
-    },
-    {
-        name: 'fire spirit',
-        id: 9,
-        img: 'Images/fire-spirit.png'
-    },
-    {
-        name: 'fisherman',
-        id: 10,
-        img: 'Images/fisherman.png'
-    },
-    {
-        name: 'bandit',
-        id: 1,
-        img: 'Images/bandit.png'
-    },
-    {
-        name: 'arrows',
-        id: 2,
-        img: 'Images/arrows.png'
-    },
-    {
-        name: 'balloon',
-        id: 3,
-        img: 'Images/balloon.png'
-    },
-    {
-        name: 'berserker',
-        id: 4,
-        img: 'Images/berserker.png'
-    },
-    {
-        name: 'bomber',
-        id: 5,
-        img: 'Images/bomber.png'
-    },
-    {
-        name: 'bowler',
-        id: 6,
-        img: 'Images/bowler.png'
-    },
-    {
-        name: 'earthquake',
-        id: 7,
-        img: 'Images/earthquake.png'
-    },
-    {
-        name: 'fireball',
-        id: 8,
-        img: 'Images/bandit.png'
-    },
-    {
-        name: 'fire spirit',
-        id: 9,
-        img: 'Images/fire-spirit.png'
-    },
-    {
-        name: 'fisherman',
-        id: 10,
-        img: 'Images/fisherman.png'
-    },
+    { id: 1, img: 'Images/archer-queen.png' },
+    { id: 2, img: 'Images/archers-ev1.png', evo: true },
+    { id: 3, img: 'Images/archers.png', hasEvo: true },
+    { id: 4, img: 'Images/arrows.png', spell: true },
+    { id: 5, img: 'Images/baby-dragon-ev1.png', evo: true },
+    { id: 6, img: 'Images/baby-dragon.png', hasEvo: true },
+    { id: 7, img: 'Images/balloon-hero.png', hero: true, },
+    { id: 8, img: 'Images/balloon.png', winCon: true, hasHero: true },
+    { id: 9, img: 'Images/bandit.png' },
+    { id: 10, img: 'Images/barbarian-barrel-hero.png', hero: true },
+    { id: 11, img: 'Images/barbarian-barrel.png', spell: true, hasHero: true },
+    { id: 12, img: 'Images/barbarian-hut.png', building: true },
+    { id: 13, img: 'Images/barbarians-ev1.png', evo: true },
+    { id: 14, img: 'Images/barbarians.png', hasEvo: true },
+    { id: 15, img: 'Images/bats-ev1.png', evo: true },
+    { id: 16, img: 'Images/bats.png', hasEvo: true },
+    { id: 17, img: 'Images/battle-healer.png' },
+    { id: 18, img: 'Images/battle-ram-ev1.png', evo: true },
+    { id: 19, img: 'Images/battle-ram.png', winCon: true, hasEvo: true },
+    { id: 20, img: 'Images/berserker.png' },
+    { id: 21, img: 'Images/bomb-tower.png', building: true },
+    { id: 22, img: 'Images/bomber-ev1.png', evo: true },
+    { id: 23, img: 'Images/bomber.png', hasEvo: true },
+    { id: 24, img: 'Images/boss-bandit.png' },
+    { id: 25, img: 'Images/bowler-hero.png', hero: true },
+    { id: 26, img: 'Images/bowler.png', hasHero: true },
+    { id: 27, img: 'Images/cannon-cart.png' },
+    { id: 28, img: 'Images/cannon-ev1.png', evo: true },
+    { id: 29, img: 'Images/cannon.png', building: true, hasEvo: true },
+    // { id: 30, img: 'Images/cannoneer.png' },
+    { id: 31, img: 'Images/clone.png', spell: true },
+    // { id: 32, img: 'Images/dagger-duchess.png' },
+    { id: 33, img: 'Images/dark-prince-hero.png', hero: true },
+    { id: 34, img: 'Images/dark-prince.png', hasHero: true },
+    { id: 35, img: 'Images/dart-goblin-ev1.png', evo: true },
+    { id: 36, img: 'Images/dart-goblin.png', hasEvo: true },
+    { id: 37, img: 'Images/earthquake.png', spell: true },
+    { id: 38, img: 'Images/electro-dragon-ev1.png', evo: true },
+    { id: 39, img: 'Images/electro-dragon.png', hasEvo: true },
+    { id: 40, img: 'Images/electro-giant.png', winCon: true },
+    { id: 41, img: 'Images/electro-spirit.png' },
+    { id: 42, img: 'Images/electro-wizard.png' },
+    { id: 43, img: 'Images/elite-barbarians.png' },
+    { id: 44, img: 'Images/elixir-collector.png', building: true },
+    { id: 45, img: 'Images/elixir-golem.png', winCon: true },
+    { id: 46, img: 'Images/executioner-ev1.png', evo: true },
+    { id: 47, img: 'Images/executioner.png', hasEvo: true },
+    { id: 48, img: 'Images/fire-spirit.png' },
+    { id: 49, img: 'Images/fireball.png', spell: true },
+    { id: 50, img: 'Images/firecracker-ev1.png', evo: true },
+    { id: 51, img: 'Images/firecracker.png', hasEvo: true },
+    { id: 52, img: 'Images/fisherman.png' },
+    { id: 53, img: 'Images/flying-machine.png' },
+    { id: 54, img: 'Images/freeze.png', spell: true },
+    { id: 55, img: 'Images/furnace-ev1.png', evo: true },
+    { id: 56, img: 'Images/furnace.png', hasEvo: true },
+    { id: 57, img: 'Images/giant-hero.png', hero: true },
+    { id: 58, img: 'Images/giant-skeleton.png', hasHero: true },
+    { id: 59, img: 'Images/giant-snowball-ev1.png', evo: true },
+    { id: 60, img: 'Images/giant-snowball.png', spell: true, hasEvo: true },
+    { id: 61, img: 'Images/giant.png', winCon: true },
+    { id: 62, img: 'Images/goblin-barrel-ev1.png', evo: true },
+    { id: 63, img: 'Images/goblin-barrel.png', winCon: true, hasEvo: true },
+    { id: 64, img: 'Images/goblin-cage-ev1.png', evo: true },
+    { id: 65, img: 'Images/goblin-cage.png', building: true, hasEvo: true },
+    { id: 66, img: 'Images/goblin-curse.png', spell: true },
+    { id: 67, img: 'Images/goblin-demolisher.png' },
+    { id: 68, img: 'Images/goblin-drill-ev1.png', evo: true },
+    { id: 69, img: 'Images/goblin-drill.png', winCon: true, hasEvo: true },
+    { id: 70, img: 'Images/goblin-gang.png' },
+    { id: 71, img: 'Images/goblin-giant-ev1.png', evo: true },
+    { id: 72, img: 'Images/goblin-giant.png', winCon: true, hasEvo: true },
+    { id: 73, img: 'Images/goblin-hut.png', building: true },
+    { id: 74, img: 'Images/goblin-machine.png' },
+    { id: 75, img: 'Images/goblins-hero.png', hero: true },
+    { id: 76, img: 'Images/goblins.png', hasHero: true },
+    { id: 77, img: 'Images/goblinstein.png', winCon: true },
+    { id: 78, img: 'Images/golden-knight.png' },
+    { id: 79, img: 'Images/golem.png', winCon: true },
+    { id: 80, img: 'Images/graveyard.png', winCon: true },
+    { id: 81, img: 'Images/guards.png' },
+    { id: 82, img: 'Images/heal-spirit.png' },
+    { id: 83, img: 'Images/hog-rider.png', winCon: true },
+    { id: 84, img: 'Images/hunter-ev1.png', evo: true },
+    { id: 85, img: 'Images/hunter.png', hasEvo: true },
+    { id: 86, img: 'Images/ice-golem-hero.png', hero: true },
+    { id: 87, img: 'Images/ice-golem.png', hasHero: true },
+    { id: 88, img: 'Images/ice-spirit-ev1.png', evo: true, hasEvo: true },
+    { id: 89, img: 'Images/ice-spirit.png' },
+    { id: 90, img: 'Images/ice-wizard.png' },
+    { id: 91, img: 'Images/inferno-dragon-ev1.png', evo: true },
+    { id: 92, img: 'Images/inferno-dragon.png', hasEvo: true },
+    { id: 93, img: 'Images/inferno-tower.png', building: true },
+    { id: 94, img: 'Images/knight-ev1.png', evo: true },
+    { id: 95, img: 'Images/knight-hero.png', hero: true, },
+    { id: 96, img: 'Images/knight.png', hasHero: true, hasEvo: true },
+    { id: 97, img: 'Images/lava-hound.png', winCon: true },
+    { id: 98, img: 'Images/lightning.png', spell: true },
+    { id: 99, img: 'Images/little-prince.png' },
+    { id: 100, img: 'Images/lumberjack-ev1.png', evo: true },
+    { id: 101, img: 'Images/lumberjack.png', hasEvo: true },
+    { id: 102, img: 'Images/magic-archer-hero.png', hero: true },
+    { id: 103, img: 'Images/magic-archer.png', hasHero: true },
+    { id: 104, img: 'Images/mega-knight-ev1.png', evo: true },
+    { id: 105, img: 'Images/mega-knight.png', hasEvo: true },
+    { id: 106, img: 'Images/mega-minion-hero.png', hero: true },
+    { id: 107, img: 'Images/mega-minion.png', hasHero: true },
+    { id: 108, img: 'Images/mighty-miner.png' },
+    { id: 109, img: 'Images/miner.png', winCon: true },
+    { id: 110, img: 'Images/mini-pekka-hero.png', hero: true },
+    { id: 111, img: 'Images/mini-pekka.png', hasHero: true },
+    { id: 112, img: 'Images/minion-horde-ev1.png', evo: true },
+    { id: 113, img: 'Images/minion-horde.png', hasEvo: true },
+    { id: 114, img: 'Images/minions.png' },
+    { id: 115, img: 'Images/mirror.png', spell: true },
+    { id: 116, img: 'Images/monk.png' },
+    { id: 117, img: 'Images/mortar-ev1.png', evo: true },
+    { id: 118, img: 'Images/mortar.png', winCon: true, hasEvo: true },
+    { id: 119, img: 'Images/mother-witch.png' },
+    { id: 120, img: 'Images/musketeer-ev1.png', evo: true },
+    { id: 121, img: 'Images/musketeer-hero.png', hero: true },
+    { id: 122, img: 'Images/musketeer.png', hasHero: true, hasEvo: true },
+    { id: 123, img: 'Images/night-witch.png' },
+    { id: 124, img: 'Images/pekka-ev1.png', evo: true },
+    { id: 125, img: 'Images/pekka.png', hasEvo: true },
+    { id: 126, img: 'Images/phoenix.png' },
+    // { id: 127, img: 'Images/placeholder.png' },
+    { id: 128, img: 'Images/poison.png', spell: true },
+    { id: 129, img: 'Images/prince.png' },
+    { id: 130, img: 'Images/princess-ev1.png', evo: true },
+    { id: 131, img: 'Images/princess.png', hasEvo: true },
+    { id: 132, img: 'Images/rage.png', spell: true },
+    { id: 133, img: 'Images/ram-rider.png', winCon: true },
+    { id: 134, img: 'Images/rascals.png' },
+    { id: 135, img: 'Images/rocket.png', spell: true },
+    // { id: 136, img: 'Images/royal-chef.png' },
+    { id: 137, img: 'Images/royal-delivery.png', spell: true },
+    { id: 138, img: 'Images/royal-ghost-ev1.png', evo: true },
+    { id: 139, img: 'Images/royal-ghost.png', hasEvo: true },
+    { id: 140, img: 'Images/royal-giant-ev1.png', evo: true },
+    { id: 141, img: 'Images/royal-giant.png', winCon: true, hasEvo: true },
+    { id: 142, img: 'Images/royal-hogs-ev1.png', evo: true },
+    { id: 143, img: 'Images/royal-hogs.png', winCon: true, hasEvo: true },
+    { id: 144, img: 'Images/royal-recruits-ev1.png', evo: true },
+    { id: 145, img: 'Images/royal-recruits.png', winCon: true, hasEvo: true },
+    { id: 146, img: 'Images/rune-giant.png', winCon: true },
+    { id: 147, img: 'Images/skeleton-army-ev1.png', evo: true },
+    { id: 148, img: 'Images/skeleton-army.png', hasEvo: true },
+    { id: 149, img: 'Images/skeleton-barrel-ev1.png', evo: true },
+    { id: 150, img: 'Images/skeleton-barrel.png', winCon: true, hasEvo: true },
+    { id: 151, img: 'Images/skeleton-dragons.png' },
+    { id: 152, img: 'Images/skeleton-king.png' },
+    { id: 153, img: 'Images/skeletons-ev1.png', evo: true },
+    { id: 154, img: 'Images/skeletons.png', hasEvo: true },
+    { id: 155, img: 'Images/sparky.png' },
+    { id: 156, img: 'Images/spear-goblins.png' },
+    { id: 157, img: 'Images/spirit-empress.png' },
+    { id: 158, img: 'Images/suspicious-bush.png', winCon: true },
+    { id: 159, img: 'Images/tesla-ev1.png', evo: true },
+    { id: 160, img: 'Images/tesla.png', building: true, hasEvo: true },
+    { id: 161, img: 'Images/the-log.png', spell: true },
+    { id: 162, img: 'Images/three-musketeers.png', winCon: true },
+    { id: 163, img: 'Images/tombstone-hero.png', hero: true },
+    { id: 164, img: 'Images/tombstone.png', building: true, hasHero: true },
+    { id: 165, img: 'Images/tornado.png', spell: true },
+    // { id: 166, img: 'Images/tower-princess.png' },
+    { id: 167, img: 'Images/valkyrie-ev1.png', evo: true },
+    { id: 168, img: 'Images/valkyrie.png', hasEvo: true },
+    { id: 169, img: 'Images/vines.png', spell: true },
+    { id: 170, img: 'Images/wall-breakers-ev1.png', evo: true },
+    { id: 171, img: 'Images/wall-breakers.png', winCon: true, hasEvo: true },
+    { id: 172, img: 'Images/witch-ev1.png', evo: true },
+    { id: 173, img: 'Images/witch.png', hasEvo: true },
+    { id: 174, img: 'Images/wizard-ev1.png', evo: true },
+    { id: 175, img: 'Images/wizard-hero.png', hero: true },
+    { id: 176, img: 'Images/wizard.png', hasEvo: true, hasHero: true },
+    { id: 177, img: 'Images/x-bow.png', winCon: true },
+    { id: 178, img: 'Images/zap-ev1.png', evo: true },
+    { id: 179, img: 'Images/zap.png', spell: true, hasEvo: true },
+    { id: 180, img: 'Images/zappies.png' },
+
 ];

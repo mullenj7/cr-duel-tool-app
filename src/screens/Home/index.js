@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
-import { Box, Typography, Grid, Card, ListItem, List, ListItemAvatar, Avatar, ListItemText, ListItemButton } from '@mui/material';
-import ImageIcon from '@mui/icons-material/Image';
+import { Box, Typography, Grid, } from '@mui/material';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-
 import CardList from '../../components/Lists/CardList';
 import { CardDrag } from '../../components/Cards/Card';
 import { CardSlot } from '../../components/Cards/CardSlot';
@@ -16,6 +14,7 @@ function Home() {
 
   const theme = useTheme();
   const [slots, setSlots] = useState([{}, {}, {}, {}, {}, {}, {}, {}]);
+  const [swapCardType, setSwapCardType] = useState(false);
 
   const handleSelect = (card) => {
     const arr = [...slots];
@@ -27,7 +26,6 @@ function Home() {
       }
     }
     setSlots(arr);
-
   };
 
   const handleDropCard = (fromIndex, toIndex) => {
@@ -35,14 +33,34 @@ function Home() {
     const temp = arr[fromIndex];
     arr[fromIndex] = arr[toIndex]
     arr[toIndex] = temp;
-    console.log(arr);
     setSlots(arr);
+
   }
 
-  const handleRemoveCard = ()=> {
-
-    
+  const handleRemoveCard = (index) => {
+    const arr = [...slots];
+    arr[index] = {};
+    setSlots(arr);
   };
+
+  const filterCards = (card) => {
+    for (let i = 0; i < slots.length; i++) {
+      if (slots[i].id && slots[i].id === card.id) {
+        return false;
+      }
+      else if (card.evo || card.hero) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const handleSwitchType = (value) => {
+    if (value.hasEvo && value.hasHero) {
+      setSwapCardType(!swapCardType);
+    }
+    return;
+  }
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', flexGrow: 1 }}>
@@ -56,7 +74,7 @@ function Home() {
               <CardSlot value={slots[1]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={1}></CardSlot>
             </Grid>
             <Grid >
-              <CardSlot value={slots[2]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={2}></CardSlot>
+              <CardSlot value={slots[2]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} handleSwitchType={handleSwitchType} swapCardType={swapCardType} index={2}></CardSlot>
             </Grid>
             <Grid>
               <CardSlot value={slots[3]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={3}></CardSlot>
@@ -79,7 +97,7 @@ function Home() {
         </DndProvider>
       </Box>
       <Box sx={{ height: '100%', width: '100%', bgcolor: 'yellow', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <CardList handleSelect={handleSelect} cards={cards}/>
+        <CardList handleSelect={handleSelect} cards={cards} filterCards={filterCards} />
       </Box>
     </Box>
   );

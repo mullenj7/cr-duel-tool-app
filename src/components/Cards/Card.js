@@ -2,9 +2,56 @@ import { useDrag } from 'react-dnd'
 import { Box, Button, Grid, Card } from '@mui/material';
 
 
-export const CardDrag = function CardDrag({ value, handleDropCard, index }) {
+export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCardType }) {
+
+    const getNewIMGString = (type) => {
+        try {
+            const split = (value.img).split(".");
+            const newImg = `${split[0]}-${type}.${split[1]}`
+            return newImg;
+        }
+        catch (e) { return 'Images/Placeholder.png'; }
+    }
+
+    const getIMG = () => {
+        try {
+            if (index <= 2) {
+                if (index === 0) { // can only be evo or normal
+                    console.log(value);
+                    if (value.hasEvo) {
+                        return getNewIMGString('ev1');
+                    }
+                    return value.img;
+                }
+                else if (index === 1) { // can be hero or champion or normal
+                    if (value.hasHero) {
+                        return getNewIMGString('hero');
+                    }
+                    return value.img;
+                }
+                else { // can be evo or hero or champion or normal
+                    if (value.hasEvo && value.hasHero) {
+                        return !swapCardType ? getNewIMGString('ev1') : getNewIMGString('hero');
+                    }
+                    else if (value.hasEvo) {
+                        return getNewIMGString('ev1');
+                    }
+                    else if (value.hasHero) {
+                        return getNewIMGString('hero');
+                    }
+                    else return value.img;
+                }
+            }
+            else return value.img;
+        }
+        catch (e) {
+            console.debug(e);
+            return 'Images/Placeholder.png';
+        }
+    }
+
     const [{ isDragging }, drag] = useDrag(() => ({
-        type: value.name ? 'card' : 'none',
+        type: value.id ? 'card' : 'none',
         item: value,
         end: (item, monitor) => {
             const dropResult = monitor.getDropResult();
@@ -19,6 +66,6 @@ export const CardDrag = function CardDrag({ value, handleDropCard, index }) {
     }), [value, handleDropCard])
     const opacity = isDragging ? 0.4 : 1
     return (
-        <img ref={drag} style={{ opacity }} data-testid={`box`} src={value.img ? value.img : 'Images/Placeholder.png'} alt={value.name ? value.name : ''}></img> 
+        <img ref={drag} style={{ opacity }} data-testid={`box`} src={value.img ? getIMG() : 'Images/Placeholder.png'} alt={value.id ? value.id : ''}></img>
     )
 }
