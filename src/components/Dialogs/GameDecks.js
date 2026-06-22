@@ -3,17 +3,8 @@ import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, Typography, Grid, Dialog, DialogTitle, Button, ButtonBase, Divider } from '@mui/material';
-import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import AddIcon from '@mui/icons-material/Add';
 
 
-import CardList from '../../components/Lists/CardList';
-import { CardDrag } from '../../components/Cards/Card';
-import { CardSlot } from '../../components/Cards/CardSlot';
-
-import DeckBuilder from '../../components/Dialogs/DeckBuilder';
 import DeckComponent from '../../components/Cards/DeckComponent';
 
 function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen }) {
@@ -25,12 +16,9 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen }) {
         position: 'relative',
 
         //width: 300,
-        width: '75%',
+        width: '100%',
         height: 150,
-        // [theme.breakpoints.down('sm')]: {
-        //   width: '100% !important', // Overrides inline-style
-        //   height: 100,
-        // },
+   
         '&:hover, &.Mui-focusVisible': {
             zIndex: 1,
             '& .MuiImageBackdrop-root': {
@@ -57,8 +45,9 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen }) {
                     </>)
                 })
             }
-
-            <Box sx={{ pt: 5, width: '40%', height: '50%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+{ slotArray.length<10 && // max of 9 decks can be added
+            <Box sx={{ py: 5, width: '60%', height: '50%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column',  }}>
+                <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border:2, borderRadius: '16px'}}>
                 <ImageButton focusRipple
                     onClick={() => { setDialogOpen(true); setSlotIndex(slotArray.length) }}>
                     <Typography
@@ -79,7 +68,9 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen }) {
                         Add Deck
                     </Typography>
                 </ImageButton>
+                </Box>
             </Box>
+}
         </>
     );
 }

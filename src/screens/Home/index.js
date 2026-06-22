@@ -13,6 +13,7 @@ import CardList from '../../components/Lists/CardList';
 import { CardDrag } from '../../components/Cards/Card';
 import { CardSlot } from '../../components/Cards/CardSlot';
 import GameDecks from '../../components/Dialogs/GameDecks';
+import AvailableCards from '../../components/Lists/AvailableCards';
 
 import DeckBuilder from '../../components/Dialogs/DeckBuilder';
 import DeckComponent from '../../components/Cards/DeckComponent';
@@ -24,7 +25,7 @@ function Home() {
   const [slotArrayBlue, setSlotArrayBlue] = useState([]);
 
   const [dialogOpenRed, setDialogOpenRed] = useState(false);
-    const [dialogOpenBlue, setDialogOpenBlue] = useState(false);
+  const [dialogOpenBlue, setDialogOpenBlue] = useState(false);
 
   const [slotIndexRed, setSlotIndexRed] = useState(0);
   const [slotIndexBlue, setSlotIndexBlue] = useState(0);
@@ -36,10 +37,17 @@ function Home() {
       <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <GameDecks slotArray={slotArrayRed} setSlotArray={setSlotArrayRed} slotIndex={slotIndexRed} setSlotIndex={setSlotIndexRed} setDialogOpen={setDialogOpenRed} />
       </Box>
-      <Box sx={{ width: '50%', height: '100%', bgcolor: 'blue', flexGrow: 1, display: 'flex', }}>
-        h
+      <Box sx={{width: '100%', height: '100%', flexGrow: 1, display:'flex', flexDirection:'column'}}>
+        <Typography variant='h4' align='center' sx={{py:2}}>Available Cards</Typography>
+        <Box sx={{width: '100%', height: '100%', flexGrow: 1, display:'flex'}}>
+      <Box sx={{ width: '50%', height: '100%', bgcolor: 'blue', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <AvailableCards slotArray={slotArrayRed} />
       </Box>
-      <Box sx={{ width: '50%', height: '100%', bgcolor: 'black', flexGrow: 1, display: 'flex', }}>d</Box>
+      <Box sx={{ width: '50%', height: '100%', bgcolor: 'black', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <AvailableCards slotArray={slotArrayBlue} align={'right'} />
+      </Box>
+      </Box>
+      </Box>
       <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <GameDecks slotArray={slotArrayBlue} setSlotArray={setSlotArrayBlue} slotIndex={slotIndexBlue} setSlotIndex={setSlotIndexBlue} setDialogOpen={setDialogOpenBlue} />
       </Box>

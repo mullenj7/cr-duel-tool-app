@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
-import { Box, Typography, Grid, Dialog } from '@mui/material';
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import CardList from '../../components/Lists/CardList';
-import { CardDrag } from '../../components/Cards/Card';
-import { CardSlot } from '../../components/Cards/CardSlot';
+import { Box, Typography, Grid, Dialog, IconButton, DialogActions, Button, DialogTitle } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
+import CardList from '../../components/Lists/CardList';
 import { cards } from '../../static/cards';
 import DeckComponent from '../Cards/DeckComponent';
 
@@ -15,24 +14,44 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
 
     const theme = useTheme();
     const [slots, setSlots] = useState(slotArray.length - 1 < slotIndex ? [{}, {}, {}, {}, {}, {}, {}, {}] : slotArray[slotIndex]); // if deck exists then load cards else initialize
+    const [sortDirection, setSortDirection] = useState(true);
 
 
     const handleSelect = (card) => {
         const arr = [...slots];
-        for (let i = 0; i < arr.length; i++) {
-            if (card.rarity === 4 && Object.keys(arr[i]).length >= 1 && arr[i].rarity === 4) { // if there is already champion in deck can't add another
+        if (card.rarity === 4) { // if card is champion -- champions can only be in 2nd or 3rd slot
+            if (Object.keys(arr[1]).length >= 1 && arr[1].rarity === 4 && Object.keys(arr[2]).length >= 1 && arr[2].rarity === 4) {// there can only be two champions in a deck
                 return;
             }
+            else if (Object.keys(arr[1]).length < 1) {
+                arr[1] = card;
+                setSlots(arr);
+                return;
+            }
+            else if (Object.keys(arr[2]).length < 1) {
+                arr[2] = card;
+                setSlots(arr);
+                return;
+            }
+        }
+        for (let i = 0; i < arr.length; i++) {
             if (Object.keys(arr[i]).length < 1) {
-                if (card.rarity === 4) { // if champion -- champions can only be in second slot
+                if (card.rarity === 4) { // if champion -- champions can only be in 2nd or 3rd slot
                     const second = arr[1];
-                    arr[1] = card;
-                    arr[i] = second; // swap card in second slot with champion
+                    if (arr[1].rarity !== 4) {
+                        arr[1] = card;
+                        arr[i] = second; // swap card in second slot with champion
+                    }
+                    else if (arr[2].rarity !== 4) {
+                        arr[2] = card;
+                        arr[i] = second; // swap card in third slot with champion
+                    }
                 }
                 else {
                     arr[i] = card;
                 }
                 break;
+
             }
         }
         setSlots(arr);
@@ -60,13 +79,13 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
         return true;
     };
 
-    const handleCloseDialog = () => {
-        for (let i = 0; i < slots.length; i++) { // all slots must be full to save changes
-            if (Object.keys(slots[i]).length < 1) { // if slot empty return
-                setDialogOpen(false);
-                return;
-            }
-        }
+    const handleCloseDialog = () => { // let incomplete decks be saved for now
+        // for (let i = 0; i < slots.length; i++) { // all slots must be full to save changes
+        //     if (Object.keys(slots[i]).length < 1) { // if slot empty return
+        //         setDialogOpen(false);
+        //         return;
+        //     }
+        // }
         const t = [...slotArray]
         // const p = [...slots]
         t[slotIndex] = slots;
@@ -76,13 +95,32 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
 
 
     return (
-        <Dialog onClose={() => { handleCloseDialog() }} open={dialogOpen} fullWidth maxWidth='xl'>
+        <Dialog onClose={() => { handleCloseDialog() }} open={dialogOpen} fullWidth maxWidth='xl' >
+            <IconButton
+                aria-label="close"
+                onClick={() => { handleCloseDialog() }}
+                sx={(theme) => ({
+                    position: 'absolute',
+                    right: 8,
+                    top: 8,
+                    // color: theme.palette.grey[500],
+                })}
+            >
+                <CloseIcon />
+            </IconButton>
+
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1 }}>
                 <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} />
-                <Box sx={{ height: '100%', width: '100%', bgcolor: 'yellow', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <CardList handleSelect={handleSelect} cards={cards} filterCards={filterCards} />
+                <Box sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '80%', pb: 2 }}>
+                        <IconButton style={{ borderRadius: '5%' }} onClick={() => { setSortDirection(!sortDirection); }}><Typography variant='h5' sx={{ pr: 1 }}>Sort By</Typography>
+                            {sortDirection ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />}</IconButton></Box>
+                    <CardList handleSelect={handleSelect} cards={cards} filterCards={filterCards} sortDirection={sortDirection} />
                 </Box>
             </Box>
+            <DialogActions sx={{ pb: 0, m: 0 }}>
+                <Button size='large' variant='contained' disableElevation={true} sx={{ m: 2 }} onClick={() => { handleCloseDialog() }}>Save</Button>
+            </DialogActions>
         </Dialog>
     );
 }

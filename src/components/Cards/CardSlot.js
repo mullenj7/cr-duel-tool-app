@@ -35,7 +35,7 @@ export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handl
                     left: 0,
                     m: 0, p: 0
                 }}>
-                <SwapHorizRoundedIcon />
+                <SwapHorizRoundedIcon fontSize='medium' sx={{border:2, borderRadius: '50%'}} />
             </IconButton> : <></>}
 
             {value.id && showButton ? <IconButton
