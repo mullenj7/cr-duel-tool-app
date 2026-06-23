@@ -15,7 +15,14 @@ import AppContextProvider from './context/AppContextProvider';
 import theme from './utils/theme/theme';
 
 function Home() {
-	const loading = () => <CircularProgress />
+	const loading = () => <div style={{
+		position: 'absolute',
+		height: '100vh',
+		width: '100vw',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center'
+	}}><CircularProgress /></div>
 	const { user, signOut } = useAuthenticator((context) => [context.user]);
 	const muiTheme = createTheme({
 		...theme
@@ -25,28 +32,28 @@ function Home() {
 
 		<AppContextProvider>
 			<UsersProvider>
-				<ThemeProvider  theme={muiTheme}>
-					      <CssBaseline />
-				<AppComponent signOut={signOut} user={user}>
-					<Suspense fallback={loading()} >
-						<Routes>
-							{routes.map((route, id) => (route.component ? (
-								<Route
-									key={id}
-									name={route.name}
-									path={route.path}
-									exact={route.exact}
-									element={<ErrorBoundary
-										onError={() => { <Navigate replace to='/error' /> }} // doesn't have to navigate to display fallbackcomponent
-										FallbackComponent={DefaultError}
+				<ThemeProvider theme={muiTheme}>
+					<CssBaseline />
+					<AppComponent signOut={signOut} user={user}>
+						<Suspense fallback={loading()} >
+							<Routes>
+								{routes.map((route, id) => (route.component ? (
+									<Route
+										key={id}
+										name={route.name}
+										path={route.path}
+										exact={route.exact}
+										element={<ErrorBoundary
+											onError={() => { <Navigate replace to='/error' /> }} // doesn't have to navigate to display fallbackcomponent
+											FallbackComponent={DefaultError}
 
-									><route.component /></ErrorBoundary>}
-								/>
-							) : (null)))}
-							<Route path='/' element={<Navigate replace to='/home' />} />
-						</Routes>
-					</Suspense>
-				</AppComponent>
+										><route.component /></ErrorBoundary>}
+									/>
+								) : (null)))}
+								<Route path='/' element={<Navigate replace to='/home' />} />
+							</Routes>
+						</Suspense>
+					</AppComponent>
 				</ThemeProvider>
 			</UsersProvider>
 		</AppContextProvider>
@@ -55,7 +62,14 @@ function Home() {
 }
 
 function Login() {
-	const loading = () => <CircularProgress />;
+	const loading = () => <div style={{
+		position: 'absolute',
+		height: '100vh',
+		width: '100vw',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center'
+	}}><CircularProgress /></div>
 	return (
 		<Suspense fallback={loading()}>
 			<Grid container spacing={0} height="100vh">

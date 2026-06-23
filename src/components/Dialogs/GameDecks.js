@@ -7,9 +7,16 @@ import { Box, Typography, Grid, Dialog, DialogTitle, Button, ButtonBase, Divider
 
 import DeckComponent from '../../components/Cards/DeckComponent';
 
-function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen }) {
+function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotArray }) {
 
     const theme = useTheme();
+
+    const handleClear = (index) => {
+        const arr = []
+        setSlotArray(
+            slotArray.filter((a, i) => { return i !== index })
+        );
+    };
 
 
     const ImageButton = styled(ButtonBase)(({ theme }) => ({ // courtesy material UI
@@ -39,7 +46,8 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen }) {
             {
                 slotArray.map((slot, i) => {
                     return (<>
-                        <DeckComponent slots={slot} isInteractive={false} setDialogOpen={setDialogOpen} newSlotIndex={i} setSlotIndex={setSlotIndex} />
+                        <DeckComponent slots={slot} isInteractive={false} setDialogOpen={setDialogOpen} 
+                        newSlotIndex={i} setSlotIndex={setSlotIndex} handleClear={handleClear} canDelete={i===slotArray.length-1} />
                         {i <= slotArray.length - 1 && <Divider orientation="horizontal" variant="middle" sx={{ py: 2, width: '80%', }} />}
                     </>)
                 })

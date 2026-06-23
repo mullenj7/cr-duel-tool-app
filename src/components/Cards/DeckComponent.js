@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
-import { Box, Typography, Grid, ButtonBase,Button , IconButton,Card} from '@mui/material';
+import { Box, Typography, Grid, ButtonBase, Button, IconButton, Card, Tooltip } from '@mui/material';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import CloseIcon from '@mui/icons-material/Close';
 
+import DeleteIcon from '@mui/icons-material/Delete';
+import FolderIcon from '@mui/icons-material/Folder';
 
 
 import CardList from '../../components/Lists/CardList';
@@ -14,7 +16,7 @@ import { CardSlot } from '../../components/Cards/CardSlot';
 
 import { cards } from '../../static/cards';
 
-function DeckComponent({ slots, setSlots, isInteractive = false, setDialogOpen, newSlotIndex,setSlotIndex}) {
+function DeckComponent({ slots, setSlots, isInteractive = false, setDialogOpen, newSlotIndex, setSlotIndex, handleClear, canDelete }) {
 
     const theme = useTheme();
     const [swapCardType, setSwapCardType] = useState(false);
@@ -49,7 +51,13 @@ function DeckComponent({ slots, setSlots, isInteractive = false, setDialogOpen, 
         return;
     }
 
-    const Children = () => { return <Box>
+    const handleClearDeck = () => {
+        setSlots([{}, {}, {}, {}, {}, {}, {}, {}]);
+    }
+
+
+    const Children = () => {
+        return <Box sx={{}}>
             <Grid container rowSpacing={isInteractive ? 1 : 0} columnSpacing={isInteractive ? 2 : 0} sx={{ p: isInteractive ? 1 : 0 }}>
                 <Grid >
                     <CardSlot value={slots[0]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={0} isInteractive={isInteractive}></CardSlot>
@@ -79,18 +87,43 @@ function DeckComponent({ slots, setSlots, isInteractive = false, setDialogOpen, 
                     <CardSlot value={slots[7]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={7} isInteractive={isInteractive}></CardSlot>
                 </Grid>
             </Grid>
-    </Box>}
+            {isInteractive &&
+                <Box sx={{ width: '100%', height: '100%', mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
+                    <Tooltip title={'Save'}><IconButton size='medium' color='primary' sx={{ border: 2 }} onClick={() => { }}><FolderIcon /></IconButton></Tooltip>
+                    <Tooltip title={'Clear'}><IconButton size='medium' color='error' sx={{ border: 2, ml: 2 }} onClick={() => { handleClearDeck() }}><DeleteIcon /></IconButton></Tooltip>
+                </Box>
+            }
+        </Box>
+    }
 
     return (
-        <Box sx={{ pt: isInteractive ? 25 : 8, pb: isInteractive ? 25 : 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
-                    <DndProvider backend={HTML5Backend}>
+        <Box sx={{ pt: isInteractive ? 8 : 8, pb: isInteractive ? 0 : 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
+            <DndProvider backend={HTML5Backend}>
 
-            {isInteractive ? <Children/> :
-            <Card elevation={0}>
-                <Button  onClick={() => { setDialogOpen(true); setSlotIndex(newSlotIndex) }}>
-                    <Children/>
-                </Button></Card>}
-                        </DndProvider>
+                {isInteractive ? <Children /> :
+                    <Card elevation={0}>
+                        <Tooltip slotProps={{
+                            tooltip: {
+                                sx: {
+                                    //   color: "#5a4cd8",
+                                    backgroundColor: "#b12c2c",
+                                    borderRadius: '50%',
+                                    py: 1, px: 1, m: 0
+                                },
+                            },
+                        }} leaveDelay={250} title={canDelete &&
+                            <Tooltip title={'Delete'}>
+                                <IconButton size='small' sx={{ bgColor: 'white', color: 'white', m: 0, p: 0 }}
+                                    onClick={() => { handleClear(newSlotIndex); }}><DeleteIcon />
+                                </IconButton>
+                            </Tooltip>
+                        } placement="top-end">
+                            <Button onClick={() => { setDialogOpen(true); setSlotIndex(newSlotIndex) }}>
+                                <Children />
+                            </Button>
+                        </Tooltip>
+                    </Card>}
+            </DndProvider>
 
         </Box>
 

@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
-import { Box, Typography, Grid, Dialog, IconButton, DialogActions, Button, DialogTitle } from '@mui/material';
+import { Box, Typography, Grid, Dialog, IconButton, DialogActions, Button, DialogTitle, Tooltip } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import DeleteIcon from '@mui/icons-material/Delete';
+import FolderIcon from '@mui/icons-material/Folder';
+
+
 
 import CardList from '../../components/Lists/CardList';
 import { cards } from '../../static/cards';
@@ -109,9 +113,11 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                 <CloseIcon />
             </IconButton>
 
-            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1 }}>
-                <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} />
-                <Box sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, py: 8 }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
+                    <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} />
+                </Box>
+                <Box sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '80%', pb: 2 }}>
                         <IconButton style={{ borderRadius: '5%' }} onClick={() => { setSortDirection(!sortDirection); }}><Typography variant='h5' sx={{ pr: 1 }}>Sort By</Typography>
                             {sortDirection ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />}</IconButton></Box>
