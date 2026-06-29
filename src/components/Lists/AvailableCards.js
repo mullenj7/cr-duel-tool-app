@@ -68,22 +68,20 @@ function AvailableCards({ slotArray, align = 'left' }) {
 
 
 
-
-
-
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>{filteredCards.map((filtered, index) => {
-            return (<><Typography sx={{ pb: 2 }}> {categories[index]}</Typography><Stack direction="row" spacing={1}
-                useFlexGap
-                sx={{ flexWrap: 'wrap', width: '100%', bgcolor: 'white', m: 0, p: 0, display: 'flex', justifyContent: align === 'left' ? 'flex-start' : 'flex-end' }}
-            >
-                {
-                    filtered.sort((a, b) => b.rarity - a.rarity).map((c, i) => {
-                        return (
-                            <img src={c.img} alt={c.id} style={{ height: 40 }}></img>
-                        );
-                    })
-                }</Stack></>);
+            return (<div key={`category-${align}-${index}`}><Typography sx={{ pb: 2 }} align='center'> {categories[index]}</Typography>
+                <Stack direction="row" spacing={1}
+                    useFlexGap
+                    sx={{ flexWrap: 'wrap', width: '100%', bgcolor: 'white', m: 0, p: 0, display: 'flex', justifyContent: align === 'left' ? 'flex-start' : 'flex-end' }}
+                >
+                    {
+                        filtered.sort((a, b) => b.rarity - a.rarity).map((c, i) => {
+                            return (
+                                <img src={c.img} alt={c.id} key={`av-cards-${align}-${i}`} style={{ height: 40 }}></img>
+                            );
+                        })
+                    }</Stack></div>);
         })}
         </Box>
     );

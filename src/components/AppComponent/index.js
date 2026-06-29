@@ -40,7 +40,6 @@ function AppLayout({ children, signOut, user }) {
 
 	const { setLoading, } = useContext(AppContext);
 	const theme = useTheme();
-	console.log(theme);
 
 	return (
 		<Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>

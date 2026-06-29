@@ -18,7 +18,7 @@ function CardList({ handleSelect, cards, filterCards, sortDirection }) {
             {
                 cards.filter((card) => { return filterCards(card) }).sort((a, b) => sortDirection ? (b.rarity - a.rarity) : (a.rarity - b.rarity)).map((c, i) => {
                     return (
-                        <Button onClick={() => handleSelect(c, i)}>
+                        <Button onClick={() => handleSelect(c, i)} key={`card-list-item-${i}`}>
                             <img src={c.img} alt={c.id} style={{ height: 60 }}></img>
                         </Button>
                     );

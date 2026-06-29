@@ -7,15 +7,12 @@ import { Box, Typography, Grid, Dialog, DialogTitle, Button, ButtonBase, Divider
 
 import DeckComponent from '../../components/Cards/DeckComponent';
 
-function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotArray }) {
+function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotArray, align='left', decks, setDecks }) {
 
     const theme = useTheme();
 
     const handleClear = (index) => {
-        const arr = []
-        setSlotArray(
-            slotArray.filter((a, i) => { return i !== index })
-        );
+        setSlotArray(slotArray.filter((a, i) => { return i !== index }));
     };
 
 
@@ -41,15 +38,14 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotA
     }));
 
     return (
-
         <>
             {
                 slotArray.map((slot, i) => {
-                    return (<>
-                        <DeckComponent slots={slot} isInteractive={false} setDialogOpen={setDialogOpen} 
-                        newSlotIndex={i} setSlotIndex={setSlotIndex} handleClear={handleClear} canDelete={i===slotArray.length-1} />
+                    return (<div key={`slotarray-${i}`}>
+                        <DeckComponent slots={slot} isInteractive={false} isClickable={true} setDialogOpen={setDialogOpen} key={`game-deck-${align}-${i}`}
+                            newSlotIndex={i} setSlotIndex={setSlotIndex} handleClear={handleClear} canDelete={i === slotArray.length - 1}/>
                         {i <= slotArray.length - 1 && <Divider orientation="horizontal" variant="middle" sx={{ py: 2, width: '80%', }} />}
-                    </>)
+                    </div>)
                 })
             }
             {slotArray.length < 10 && // max of 9 decks can be added

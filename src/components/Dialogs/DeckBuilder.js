@@ -14,11 +14,13 @@ import CardList from '../../components/Lists/CardList';
 import { cards } from '../../static/cards';
 import DeckComponent from '../Cards/DeckComponent';
 
-function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialogOpen }) {
+function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialogOpen, decks, setDecks }) {
 
     const theme = useTheme();
     const [slots, setSlots] = useState(slotArray.length - 1 < slotIndex ? [{}, {}, {}, {}, {}, {}, {}, {}] : slotArray[slotIndex]); // if deck exists then load cards else initialize
     const [sortDirection, setSortDirection] = useState(true);
+    const [savedDecksDialogOpen, setSavedDecksDialogOpen] = useState(false);
+
 
 
     const handleSelect = (card) => {
@@ -97,6 +99,21 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
         setDialogOpen(false)
     };
 
+    const handleClearDeck = () => {
+        setSlots([{}, {}, {}, {}, {}, {}, {}, {}]);
+    }
+
+    const handleLoadDeck = (deck) => {
+        setSlots(deck);
+    }
+
+    const DeckButtons = () => {
+        return <Box sx={{ width: '100%', mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
+            <Tooltip title={'Save'}><IconButton size={'medium'} color='primary' sx={{ border: 2 }} onClick={() => { setSavedDecksDialogOpen(true); }}><FolderIcon /></IconButton></Tooltip>
+            <Tooltip title={'Clear'}><IconButton size={'medium'} color='error' sx={{ border: 2, ml: 2 }} onClick={() => { handleClearDeck() }}><DeleteIcon /></IconButton></Tooltip>
+        </Box>
+    }
+
 
     return (
         <Dialog onClose={() => { setDialogOpen(false) }} open={dialogOpen} fullWidth maxWidth='xl' >
@@ -115,11 +132,12 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
 
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, py: 8 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
-                    <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} />
+                    <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} setSavedDecksDialogOpen={setSavedDecksDialogOpen}
+                        savedDecksDialogOpen={savedDecksDialogOpen} DeckButtons={DeckButtons} handleLoadDeck={handleLoadDeck} decks={decks} setDecks={setDecks} />
                 </Box>
                 <Box sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '80%', pb: 2 }}>
-                        <IconButton style={{ borderRadius: '5%' }} onClick={() => { setSortDirection(!sortDirection); }}><Typography variant='h5' sx={{ pr: 1 }}>Sort By</Typography>
+                        <IconButton style={{ borderRadius: '5%' }} onClick={() => { setSortDirection(!sortDirection); }}><Typography variant='h5' sx={{ pr: 1 }}>Sort</Typography>
                             {sortDirection ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />}</IconButton></Box>
                     <CardList handleSelect={handleSelect} cards={cards} filterCards={filterCards} sortDirection={sortDirection} />
                 </Box>
