@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
-import { Box, Typography, Grid, Dialog, IconButton, DialogActions, Button, DialogTitle, Tooltip } from '@mui/material';
+import { Box, Typography, Card, CardActions, Dialog, IconButton, DialogActions, Button, DialogTitle, Tooltip } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import CheckIcon from '@mui/icons-material/Check';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FolderIcon from '@mui/icons-material/Folder';
 
 
-
+import SavedDecks from './SavedDecks';
 import CardList from '../../components/Lists/CardList';
 import { cards } from '../../static/cards';
 import DeckComponent from '../Cards/DeckComponent';
@@ -20,7 +21,15 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
     const [slots, setSlots] = useState(slotArray.length - 1 < slotIndex ? [{}, {}, {}, {}, {}, {}, {}, {}] : slotArray[slotIndex]); // if deck exists then load cards else initialize
     const [sortDirection, setSortDirection] = useState(true);
     const [savedDecksDialogOpen, setSavedDecksDialogOpen] = useState(false);
+    const [currentDeck, setCurrentDeck] = useState({});
+    const [selectedIndex, setSelectedIndex] = useState(0);
 
+    useEffect(() => {
+        if (decks && decks.length >= 1) {
+            setCurrentDeck(decks[0]);
+        }
+        console.log(decks);
+    }, [decks]);
 
 
     const handleSelect = (card) => {
@@ -107,6 +116,11 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
         setSlots(deck);
     }
 
+    const handleSelectLoadDeck = () => {
+        handleLoadDeck(currentDeck);
+        setSavedDecksDialogOpen(false);
+    }
+
     const DeckButtons = () => {
         return <Box sx={{ width: '100%', mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
             <Tooltip title={'Save'}><IconButton size={'medium'} color='primary' sx={{ border: 2 }} onClick={() => { setSavedDecksDialogOpen(true); }}><FolderIcon /></IconButton></Tooltip>
@@ -132,8 +146,10 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
 
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, py: 8 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
-                    <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} setSavedDecksDialogOpen={setSavedDecksDialogOpen}
-                        savedDecksDialogOpen={savedDecksDialogOpen} DeckButtons={DeckButtons} handleLoadDeck={handleLoadDeck} decks={decks} setDecks={setDecks} />
+                    <Box sx={{ pt: 8, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
+                        <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} setSavedDecksDialogOpen={setSavedDecksDialogOpen}
+                            savedDecksDialogOpen={savedDecksDialogOpen} DeckButtons={DeckButtons} handleLoadDeck={handleLoadDeck} decks={decks} setDecks={setDecks} />
+                    </Box>
                 </Box>
                 <Box sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '80%', pb: 2 }}>
@@ -145,6 +161,38 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
             <DialogActions sx={{ pb: 0, m: 0 }}>
                 <Button size='large' variant='contained' disableElevation={true} sx={{ m: 2 }} onClick={() => { handleCloseDialog() }}>Save</Button>
             </DialogActions>
+            {savedDecksDialogOpen &&
+                <Dialog onClose={() => { setSavedDecksDialogOpen(false) }} open={savedDecksDialogOpen} fullWidth maxWidth='md' >
+                    <DialogTitle>My Decks</DialogTitle>
+                    <Card sx={{ p: 0 }}>
+                        <IconButton
+                            aria-label="close"
+                            onClick={() => { setSavedDecksDialogOpen(false) }} //don't save changes
+                            sx={(theme) => ({
+                                position: 'absolute',
+                                right: 8,
+                                top: 8,
+                                // color: theme.palette.grey[500],
+                            })}
+                        >
+                            <CloseIcon />
+                        </IconButton>
+                        <SavedDecks isDialog={true} decks={decks} setDecks={setDecks}
+                            currentDeck={currentDeck} setCurrentDeck={setCurrentDeck} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+                        <CardActions sx={{ justifyContent: 'flex-end' }}>
+
+                            <IconButton size='medium' sx={{ border: 2, color: 'green', m: 2 }}
+                                onClick={() => { handleSelectLoadDeck() }}
+                            >
+                                <CheckIcon />
+                            </IconButton>
+                        </CardActions>
+                    </Card>
+                    {/* <DialogActions sx={{ pb: 0, m: 0 }}>
+                        <Button size='large' variant='contained' disableElevation={true} sx={{ m: 2 }} onClick={() => { setSavedDecksDialogOpen(false) }}>Save</Button>
+                    </DialogActions> */}
+                </Dialog>
+            }
         </Dialog>
     );
 }

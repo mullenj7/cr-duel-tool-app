@@ -54,7 +54,9 @@ function SavedDecks({ isDialog, decks, setDecks, currentDeck, setCurrentDeck, se
                 </List>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '65%', flexGrow: 1, }}>
-                <DeckComponent slots={currentDeck} setSlots={setCurrentDeck} isInteractive={false} DeckButtons={DeckButtons} isClickable={false} />
+                <Box sx={{ pt: 0, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
+                    <DeckComponent slots={currentDeck} setSlots={setCurrentDeck} isInteractive={false} DeckButtons={DeckButtons} isClickable={false} />
+                </Box>
             </Box>
         </Box>
 
