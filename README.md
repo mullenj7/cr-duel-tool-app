@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+TODO:  button tooltips// cardlist search + clarity (rare color bg)// move deck buttons to separate component// 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
