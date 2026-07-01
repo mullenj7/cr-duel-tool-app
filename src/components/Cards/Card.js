@@ -2,7 +2,7 @@ import { useDrag } from 'react-dnd'
 import { Box, Button, Grid, Card } from '@mui/material';
 
 
-export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCardType, isInteractive = false }) {
+export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCardType, isInteractive = false, isLarge =false}) {
 
     const getNewIMGString = (type) => {
         try {
@@ -65,6 +65,6 @@ export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCa
     }), [value, handleDropCard])
     const opacity = isInteractive ? (isDragging ? 0.4 : 1) : 1
     return (
-        <img ref={drag} style={{ opacity, height: isInteractive ? 150 : 100 }} data-testid={`box`} src={value.img ? getIMG() : 'Images/Placeholder.png'} alt={value.id ? value.id : ''}></img>
+        <img ref={drag} style={{ opacity, height: isLarge ? 150 : 100 }} data-testid={`box`} src={value.img ? getIMG() : 'Images/Placeholder.png'} alt={value.id ? value.id : ''}></img>
     )
 }

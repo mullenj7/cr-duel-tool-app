@@ -5,17 +5,17 @@ const theme = {
   palette: {
     primary: {
       main: green[500],
-      contrastText: '#ffffff',
+      contrastText: '#27d6cd',
 
     },
     secondary: {
       main: '#f50057',
-      contrastText: '#ffffff',
+      contrastText: '#3dddf5',
 
     },
     text: {
       primary: 'rgba(201,17,17,0.87)',
-      secondary: 'rgba(255,255,255,0.6)',
+      secondary: 'rgba(26, 219, 36, 0.6)',
       disabled: 'rgba(29,222,215,0.38)',
       hint: '#2a00ff',
 

@@ -68,12 +68,12 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotA
                                 </Tooltip>
                             </Card>
 
-                            {i <= slotArray.length - 1 && <Divider orientation="horizontal" variant="middle" sx={{ py: 2, width: '80%', }} />}
+                            {i <= slotArray.length - 1 && <Divider orientation="horizontal" variant="middle" sx={{ py: 2, width: '80%', }} >Game {i + 1}</Divider>}
                         </Box>)
                 })
             }
             {slotArray.length < 10 && // max of 9 decks can be added per side
-                <Box sx={{ py: 5, width: '60%', height: '50%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
+                <Box sx={{ pt: 8, pb: 5, width: '60%', height: '50%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
                     <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: 2, borderRadius: '16px' }}>
                         <ImageButton focusRipple
                             onClick={() => { setDialogOpen(true); setSlotIndex(slotArray.length) }}>

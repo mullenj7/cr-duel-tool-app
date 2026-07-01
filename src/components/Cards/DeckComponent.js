@@ -10,7 +10,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { CardSlot } from '../../components/Cards/CardSlot';
 import { cards } from '../../static/cards';
 
-function DeckComponent({ slots, setSlots,isInteractive, isClickable,DeckButtons }) {
+function DeckComponent({ slots, setSlots,isInteractive, isClickable,DeckButtons, isLarge=false }) {
 
     const theme = useTheme();
     const [swapCardType, setSwapCardType] = useState(false);
@@ -44,36 +44,36 @@ function DeckComponent({ slots, setSlots,isInteractive, isClickable,DeckButtons 
         return;
     }
 
-    return (<>
+    return (
         <DndProvider backend={HTML5Backend}>
            <Box sx={{}}>
-            <Grid container rowSpacing={isInteractive ? 1 : 0} columnSpacing={isInteractive ? 2 : 0} sx={{ p: isInteractive ? 1 : 0 }}>
+            <Grid container rowSpacing={isLarge ? 1 : 0} columnSpacing={isLarge ? 2 : 0} sx={{ p: isLarge ? 1 : 0 }}>
                 <Grid >
-                    <CardSlot value={slots[0]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={0} isInteractive={isInteractive}></CardSlot>
+                    <CardSlot value={slots[0]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={0} isInteractive={isInteractive} isLarge={isLarge}></CardSlot>
                 </Grid>
                 <Grid>
-                    <CardSlot value={slots[1]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={1} isInteractive={isInteractive}></CardSlot>
+                    <CardSlot value={slots[1]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={1} isInteractive={isInteractive} isLarge={isLarge}></CardSlot>
                 </Grid>
                 <Grid >
                     <CardSlot value={slots[2]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} handleSwitchType={handleSwitchType}
-                        swapCardType={swapCardType} index={2} isInteractive={isInteractive}></CardSlot>
+                        swapCardType={swapCardType} index={2} isInteractive={isInteractive} isLarge={isLarge}></CardSlot>
                 </Grid>
                 <Grid>
-                    <CardSlot value={slots[3]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={3} isInteractive={isInteractive}></CardSlot>
+                    <CardSlot value={slots[3]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={3} isInteractive={isInteractive} isLarge={isLarge}></CardSlot>
                 </Grid>
             </Grid>
-            <Grid container rowSpacing={isInteractive ? 1 : 0} columnSpacing={isInteractive ? 2 : 0} sx={{ p: isInteractive ? 1 : 0 }}>
+            <Grid container rowSpacing={isLarge ? 1 : 0} columnSpacing={isLarge ? 2 : 0} sx={{ p: isLarge ? 1 : 0 }}>
                 <Grid >
-                    <CardSlot value={slots[4]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={4} isInteractive={isInteractive}></CardSlot>
+                    <CardSlot value={slots[4]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={4} isInteractive={isInteractive} isLarge={isLarge}></CardSlot>
                 </Grid>
                 <Grid>
-                    <CardSlot value={slots[5]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={5} isInteractive={isInteractive}></CardSlot>
+                    <CardSlot value={slots[5]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={5} isInteractive={isInteractive} isLarge={isLarge}></CardSlot>
                 </Grid>
                 <Grid >
-                    <CardSlot value={slots[6]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={6} isInteractive={isInteractive}></CardSlot>
+                    <CardSlot value={slots[6]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={6} isInteractive={isInteractive} isLarge={isLarge}></CardSlot>
                 </Grid>
                 <Grid>
-                    <CardSlot value={slots[7]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={7} isInteractive={isInteractive}></CardSlot>
+                    <CardSlot value={slots[7]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={7} isInteractive={isInteractive} isLarge={isLarge}></CardSlot>
                 </Grid>
             </Grid>
             {(isInteractive || !isClickable) &&
@@ -81,9 +81,6 @@ function DeckComponent({ slots, setSlots,isInteractive, isClickable,DeckButtons 
             }
         </Box>
         </DndProvider>
-
-    </>
-
     );
 }
 

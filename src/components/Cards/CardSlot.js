@@ -9,7 +9,7 @@ import SwapHorizRoundedIcon from '@mui/icons-material/SwapHorizRounded';
 import { CardDrag } from './Card';
 
 
-export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handleSwitchType, swapCardType, isInteractive = false }) => {
+export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handleSwitchType, swapCardType, isInteractive = false, isLarge=false }) => {
     const [showButton, setShowButton] = useState(false);
 
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
@@ -50,13 +50,13 @@ export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handl
                 }}>
                 <CancelIcon />
             </IconButton> : <></>}
-            <CardDrag value={value} handleDropCard={handleDropCard} index={index} swapCardType={swapCardType} isInteractive={isInteractive} />
+            <CardDrag value={value} handleDropCard={handleDropCard} index={index} swapCardType={swapCardType} isInteractive={isInteractive} isLarge={isLarge} />
         </Card>
     </div>;
 
     const NonInteractiveSlot = <div style={{ position: 'relative' }}>
         <Card elevation={0}>
-            <CardDrag value={value} index={index} swapCardType={swapCardType} isInteractive={isInteractive} />
+            <CardDrag value={value} index={index} swapCardType={swapCardType} isInteractive={isInteractive} isLarge={isLarge}/>
         </Card>
     </div>;
 
