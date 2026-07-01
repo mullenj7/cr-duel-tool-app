@@ -99,7 +99,7 @@ function Settings() {
 
   return (
     <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'space-evenly', p: 10 }}>
-      <Card elevation={1} sx={{ width: '70%', height: '100%', display: 'flex', justifyContent: 'center', p: 4, minHeight: 400 }}>
+      <Card elevation={1} sx={{ width: '70%', height: '100%', display: 'flex', justifyContent: 'center', p: 8, minHeight: 400 }}>
         {decks.length > 0 ?
           <>
             <Box sx={{ display: 'flex', border: 1, borderBottom: 1, borderColor: 'divider', width: '10%', height: '100%', bgcolor: 'yellow', flexDirection: 'column', flexGrow: 1, justifyContent: 'flex-start' }}>
@@ -136,7 +136,8 @@ function Settings() {
             </Box>
           </>
           :
-          <Box sx={{ p: 4, minHeight: 400, display: 'flex', justifyContent: 'center' }}>
+          <Box sx={{ p: 4, minHeight: 400, display: 'flex', justifyContent: 'center', flexDirection:'column' }}>
+          <Typography variant='h4'>You currently have no saved decks</Typography>
             <ImageButton focusRipple
               onClick={() => { handleChange(0) }}>
               <Typography

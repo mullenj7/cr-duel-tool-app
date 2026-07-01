@@ -169,7 +169,8 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
             {savedDecksDialogOpen &&
                 <Dialog onClose={() => { setSavedDecksDialogOpen(false) }} open={savedDecksDialogOpen} fullWidth maxWidth='md' >
                     <DialogTitle>My Decks</DialogTitle>
-                    {decks.length > 0 ? <Card sx={{ p: 0, m: 0 }}>
+                    {decks.length > 0 ? 
+                    <Card sx={{ p: 0, m: 0, }}>
                         <IconButton
                             aria-label="close"
                             onClick={() => { setSavedDecksDialogOpen(false) }} //don't save changes
