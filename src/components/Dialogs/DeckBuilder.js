@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
-import { Box, Typography, Card, CardActions, Dialog, IconButton, DialogActions, Button, DialogTitle, Tooltip } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { Box, Typography, Card, CardActions, Dialog, IconButton, DialogActions, Button, DialogTitle, Tooltip, ButtonBase } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import CheckIcon from '@mui/icons-material/Check';
@@ -15,7 +18,7 @@ import CardList from '../../components/Lists/CardList';
 import { cards } from '../../static/cards';
 import DeckComponent from '../Cards/DeckComponent';
 
-function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialogOpen, decks, setDecks, loadDeck = true, filterUsedCards = true }) {
+function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialogOpen, decks, setDecks, loadDeck = true, filterUsedCards = true, saveDeck = false, handleSaveDeck }) {
 
     const theme = useTheme();
     const [slots, setSlots] = useState(slotArray.length - 1 < slotIndex ? [{}, {}, {}, {}, {}, {}, {}, {}] : slotArray[slotIndex]); // if deck exists then load cards else initialize
@@ -23,6 +26,26 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
     const [savedDecksDialogOpen, setSavedDecksDialogOpen] = useState(false);
     const [currentDeck, setCurrentDeck] = useState({});
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const navigate = useNavigate();
+
+
+    const ImageButton = styled(ButtonBase)(({ theme }) => ({ // courtesy material UI
+        position: 'relative',
+        width: '100%',
+        height: 150,
+        '&:hover, &.Mui-focusVisible': {
+            zIndex: 1,
+            '& .MuiImageBackdrop-root': {
+                opacity: 0.15,
+            },
+            '& .MuiImageMarked-root': {
+                opacity: 0,
+            },
+            '& .MuiTypography-root': {
+                border: '4px solid currentColor',
+            },
+        },
+    }));
 
     useEffect(() => {
         if (decks && decks.length >= 1) {
@@ -34,7 +57,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
     const handleSelect = (card) => {
         const arr = [...slots];
         if (card.rarity === 4) { // if card is champion -- champions can only be in 2nd or 3rd slot
-            if (Object.keys(arr[1]).length >= 1 && arr[1].rarity === 4 && Object.keys(arr[2]).length >= 1 && arr[2].rarity === 4) {// there can only be two champions in a deck
+            if (Object.keys(arr[1]).length >= 1 && arr[1].rarity === 4 && Object.keys(arr[2]).length >= 1 && arr[2].rarity === 4) {// both slots full - do nothing there can only be two champions in a deck
                 return;
             }
             else if (Object.keys(arr[1]).length < 1) { //put in 2nd or 3rd slot if free
@@ -50,7 +73,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
         }
         for (let i = 0; i < arr.length; i++) {
             if (Object.keys(arr[i]).length < 1) {
-                if (card.rarity === 4) { // if champion -- champions can only be in 2nd or 3rd slot
+                if (card.rarity === 4) { // if champion and there is a free slot in deck swap 2nd or 3rd card -- champions can only be in 2nd or 3rd slot
                     const second = arr[1];
                     if (arr[1].rarity !== 4) {
                         arr[1] = card;
@@ -75,23 +98,24 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
         if (card.evo || card.hero) { // don't show hero or evo images
             return false;
         }
-        if (filterUsedCards) {
-            for (let i = 0; i < slots.length; i++) { // filter out cards from current deck
-                if (slots[i].id && slots[i].id === card.id) {
-                    return false;
-                }
-            }
 
-            if (slotArray.length > 0) { // filter out cards from previous decks
-                for (let j = 0; j < slotArray.length; j++) {
-                    for (let i = 0; i < slotArray[j].length; i++) {
-                        if (slotArray[j][i].id && slotArray[j][i].id === card.id) {
-                            return false;
-                        }
+        for (let i = 0; i < slots.length; i++) { // filter out cards from current deck
+            if (slots[i].id && slots[i].id === card.id) {
+                return false;
+            }
+        }
+
+
+        if (filterUsedCards && slotArray.length > 0) { // filter out cards from previous decks
+            for (let j = 0; j < slotArray.length; j++) {
+                for (let i = 0; i < slotArray[j].length; i++) {
+                    if (slotArray[j][i].id && slotArray[j][i].id === card.id) {
+                        return false;
                     }
                 }
             }
         }
+
         return true;
     };
 
@@ -105,6 +129,9 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
         const t = [...slotArray]
         t[slotIndex] = slots;
         setSlotArray(t);
+        if (saveDeck) {
+            handleSaveDeck(slotIndex, t);
+        }
         setDialogOpen(false)
     };
 
@@ -166,10 +193,9 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
             <DialogActions sx={{ pb: 0, m: 0 }}>
                 <Button size='large' variant='contained' disableElevation={true} sx={{ m: 2 }} onClick={() => { handleCloseDialog() }}>Save</Button>
             </DialogActions>
-            {savedDecksDialogOpen &&
+            {savedDecksDialogOpen && decks.length > 0 &&
                 <Dialog onClose={() => { setSavedDecksDialogOpen(false) }} open={savedDecksDialogOpen} fullWidth maxWidth='md' >
                     <DialogTitle>My Decks</DialogTitle>
-                    {decks.length > 0 ? 
                     <Card sx={{ p: 0, m: 0, }}>
                         <IconButton
                             aria-label="close"
@@ -195,12 +221,39 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                             </Tooltip>
                         </CardActions>
                     </Card>
-                        :
-                        <Card sx={{ p: 0, m: 0 }}>
-                            No decks
-                        </Card>}
+
+
 
                 </Dialog>
+            }
+            {savedDecksDialogOpen && decks.length <= 0 &&
+                <Dialog onClose={() => { setSavedDecksDialogOpen(false) }} open={savedDecksDialogOpen} fullWidth maxWidth='md' >
+
+                    <Card sx={{ p: 10, m: 0, minHeight: 450, display: 'flex', flexDirection:'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <Typography>You currently have no saved decks</Typography>
+                        <ImageButton focusRipple
+                            onClick={() => {
+                                navigate('/settings', { replace: true });
+                            }}>
+                            <Typography
+                                component="span"
+                                variant="subtitle1"
+                                sx={[
+                                    {
+                                        color: 'inherit',
+                                    },
+                                    (theme) => ({
+                                        position: 'relative',
+                                        p: 4,
+                                        pt: 2,
+                                        pb: `calc(${theme.spacing(1)} + 6px)`,
+                                    }),
+                                ]}
+                            >
+                                Add Decks
+                            </Typography>
+                        </ImageButton>
+                    </Card></Dialog>
             }
         </Dialog>
     );

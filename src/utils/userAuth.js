@@ -21,7 +21,7 @@ async function getIdTokenPayload() {
 }
 
 async function getUserId() {
-    const session = await fetchAuthSession();
+  const session = await fetchAuthSession();
 
   return session.tokens.idToken.payload.sub;
 }

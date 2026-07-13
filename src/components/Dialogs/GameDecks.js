@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import DeckComponent from '../../components/Cards/DeckComponent';
 
-function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotArray, align = 'left', decks, setDecks }) {
+function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotArray, align = 'left' }) {
 
     const theme = useTheme();
 

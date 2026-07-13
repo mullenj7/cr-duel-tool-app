@@ -57,7 +57,6 @@ export const updateUser = async (body) => {
                 body: JSON.stringify(body),
             },
         );
-
         if (response.status === 200) {
             const parsedResponse = await response.json();
             return parsedResponse;

@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
-TODO:  button tooltips// cardlist search + clarity (rare color bg)// move deck buttons to separate component// 
+TODO:  button tooltips// cardlist search + clarity (rare color bg)// move deck buttons to separate component// add copy paste decks // fix available card centering issue // game number on main screen
+// navigate to last path after sign in // clean up getUser id tokens usage with fetchauthsession
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

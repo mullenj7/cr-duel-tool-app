@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { BrowserRouter } from "react-router-dom";
 import {
 	AppBar, Box, Toolbar, IconButton, Button,
@@ -11,6 +11,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import Home from '@mui/icons-material/Home';
 import { UserContext } from '../../context/UserContext';
 import { AppContext } from '../../context/AppContext';
+import { setUpTOTP } from '@aws-amplify/auth';
 
 function AppComponent({ children, signOut, user, }) {
 
@@ -35,11 +36,23 @@ function AppLayout({ children, signOut, user }) {
 	const navigate = useNavigate();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const dropdownOpen = Boolean(anchorEl);
-	
-
 
 	const { setLoading, } = useContext(AppContext);
+	const { setUserSignedIn } = useContext(UserContext);
 	const theme = useTheme();
+
+	const handleSignIn = () => {
+		setAnchorEl(false);
+
+		navigate('/login');
+	}
+	const handleSignOut = () => {
+		setUserSignedIn(false);
+		signOut();
+		setAnchorEl(false);
+		navigate('/home', { replace: true });
+
+	}
 
 	return (
 		<Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -67,13 +80,13 @@ function AppLayout({ children, signOut, user }) {
 						open={dropdownOpen}
 						onClose={() => setAnchorEl(null)}
 					>
+						{user && user.signInDetails && user.signInDetails.loginId &&
+							<>
+								<Typography align="left" sx={{ px: 2 }}>{user.signInDetails.loginId}</Typography>
 
-						<Typography variant='h6' align="left" sx={{ pl: 2 }}>Name here</Typography>
-						<Box sx={{ display: 'flex', pl: 2, pb: 2, justifyContent: 'flex-start' }}>
-							<Typography align="left" >{'none selected'}</Typography>
-							<Button onClick={() => { console.log('hi') }} sx={{ p: 0, m: 0, ml: 1 }}><Typography variant='subtitle2'>change</Typography></Button>
-						</Box>
-						<Divider variant="middle" />
+								<Divider variant="middle" />
+							</>
+						}
 						<MenuItem
 						>
 							<Button
@@ -85,9 +98,9 @@ function AppLayout({ children, signOut, user }) {
 									color: 'black',
 									textTransform: 'none',
 								}}
-								onClick={signOut}>
+								onClick={user ? handleSignOut : handleSignIn}>
 								<Typography align="left">
-									Log Out
+									{user ? 'Log Out' : 'Log In'}
 								</Typography>
 							</Button>
 						</MenuItem>

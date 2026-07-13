@@ -46,7 +46,6 @@ function Home() {
 										element={<ErrorBoundary
 											onError={() => { <Navigate replace to='/error' /> }} // doesn't have to navigate to display fallbackcomponent
 											FallbackComponent={DefaultError}
-
 										><route.component /></ErrorBoundary>}
 									/>
 								) : (null)))}
@@ -95,7 +94,7 @@ function Login() {
 }
 
 function App() {
-	const { route } = useAuthenticator((context) => [context.route]);
+	// const { route } = useAuthenticator((context) => [context.route]);
 	// return route === 'authenticated' ? <Home /> : <Login />;
 	return <Home />;
 
