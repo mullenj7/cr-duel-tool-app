@@ -11,6 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ConfirmationDialog from '../../components/Dialogs/ConfirmationDialog';
 import DeckComponent from '../../components/Cards/DeckComponent';
 import DeckBuilder from '../../components/Dialogs/DeckBuilder';
+import { GeneralButton } from '../../components/Buttons/GeneralButton';
 import { UserContext } from '../../context/UserContext';
 import { AppContext } from '../../context/AppContext';
 
@@ -36,23 +37,7 @@ function Settings() {
   const { loading, setLoading } = useContext(AppContext);
 
 
-  const ImageButton = styled(ButtonBase)(({ theme }) => ({ // courtesy material UI
-    position: 'relative',
-    width: '100%',
-    height: 150,
-    '&:hover, &.Mui-focusVisible': {
-      zIndex: 1,
-      '& .MuiImageBackdrop-root': {
-        opacity: 0.15,
-      },
-      '& .MuiImageMarked-root': {
-        opacity: 0,
-      },
-      '& .MuiTypography-root': {
-        border: '4px solid currentColor',
-      },
-    },
-  }));
+  
 
 
   const handleChange = (newValue) => {
@@ -115,7 +100,7 @@ function Settings() {
   return (
     <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'space-evenly', p: 10 }}>
       {userSignedIn && !loading ? <>
-        <Card elevation={1} sx={{ width: '70%', height: '100%', display: 'flex', justifyContent: 'center', p: 8, minHeight: 400 }}>
+        <Card elevation={1} sx={{ width: '70%', height: '100%', display: 'flex', justifyContent: 'center', p: 8, minHeight: 600 }}>
           {decks && decks.length > 0 && currentDeck && currentDeck.length > 0 ?
             <>
               <Box sx={{ display: 'flex', border: 1, borderBottom: 1, borderColor: 'divider', width: '10%', height: '100%', bgcolor: 'yellow', flexDirection: 'column', flexGrow: 1, justifyContent: 'flex-start' }}>
@@ -154,7 +139,7 @@ function Settings() {
             :
             <Box sx={{ p: 4, minHeight: 400, display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
               <Typography variant='h4'>You currently have no saved decks</Typography>
-              <ImageButton focusRipple
+              <GeneralButton focusRipple
                 onClick={() => { handleChange(0) }}>
                 <Typography
                   component="span"
@@ -173,7 +158,7 @@ function Settings() {
                 >
                   Add Deck
                 </Typography>
-              </ImageButton>
+              </GeneralButton>
             </Box>
           }
         </Card>
@@ -189,7 +174,7 @@ function Settings() {
       </> : <>{userSignedIn ?
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><CircularProgress /></Box>
         : <Box sx={{ p: 4, minHeight: 400, display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-          <Typography variant='h4'>You must be signed in to saved dekcs</Typography></Box>}</>}
+          <Typography variant='h4'>You must be signed in to save decks</Typography></Box>}</>}
     </Box>
 
   );

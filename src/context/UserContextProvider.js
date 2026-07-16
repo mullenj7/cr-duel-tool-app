@@ -19,13 +19,11 @@ function UsersProvider(props) {
     }, []);
 
     const checkUserDetails = async () => {
-        console.log('ceck');
         const session = await fetchAuthSession();
         if (session.tokens) {// if user is signed in
-            console.log('setting t');
             setUserSignedIn(true);
             fetchUserDetails();
-        } else setUserSignedIn(false);             console.log('setting f');
+        } else setUserSignedIn(false);
 
     };
 

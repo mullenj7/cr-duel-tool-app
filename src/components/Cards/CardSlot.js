@@ -28,7 +28,7 @@ export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handl
             {index === 2 && value.id && showButton && value.hasEvo && value.hasHero ? <IconButton
                 onClick={() => { handleSwitchType(value) }}
                 sx={{
-                    color: swapCardType ? 'purple' : 'gold',
+                    color: swapCardType ? 'rgba(187, 78, 255, 0.87)' : 'rgb(255, 208, 0)',
                     bgcolor: 'white',
                     position: 'absolute',
                     top: 0,

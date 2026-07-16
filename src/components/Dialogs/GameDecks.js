@@ -6,6 +6,7 @@ import { Box, Typography, Grid, Dialog, Tooltip, IconButton, Card, Button, Butto
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
+import { GeneralButton } from '../Buttons/GeneralButton';
 import DeckComponent from '../../components/Cards/DeckComponent';
 
 function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotArray, align = 'left' }) {
@@ -17,26 +18,6 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotA
     };
 
 
-    const ImageButton = styled(ButtonBase)(({ theme }) => ({ // courtesy material UI
-        position: 'relative',
-
-        //width: 300,
-        width: '100%',
-        height: 150,
-
-        '&:hover, &.Mui-focusVisible': {
-            zIndex: 1,
-            '& .MuiImageBackdrop-root': {
-                opacity: 0.15,
-            },
-            '& .MuiImageMarked-root': {
-                opacity: 0,
-            },
-            '& .MuiTypography-root': {
-                border: '4px solid currentColor',
-            },
-        },
-    }));
 
     return (
         <>
@@ -68,14 +49,14 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotA
                                 </Tooltip>
                             </Card>
 
-                            {i <= slotArray.length - 1 && <Divider orientation="horizontal" variant="middle" sx={{ py: 2, width: '80%', }} >Game {i + 1}</Divider>}
+                            {i <= slotArray.length -1 && <Divider orientation="horizontal" variant="middle" sx={{ py: 2, width: '80%', }} >Game {i + 1}</Divider>}
                         </Box>)
                 })
             }
             {slotArray.length < 10 && // max of 9 decks can be added per side
                 <Box sx={{ pt: 8, pb: 5, width: '60%', height: '50%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
                     <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: 2, borderRadius: '16px' }}>
-                        <ImageButton focusRipple
+                        <GeneralButton focusRipple
                             onClick={() => { setDialogOpen(true); setSlotIndex(slotArray.length) }}>
                             <Typography
                                 component="span"
@@ -92,9 +73,9 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotA
                                     }),
                                 ]}
                             >
-                                Add Deck
+                                {`Game ${slotArray.length+1}`}
                             </Typography>
-                        </ImageButton>
+                        </GeneralButton>
                     </Box>
                 </Box>
             }

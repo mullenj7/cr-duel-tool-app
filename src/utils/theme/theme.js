@@ -14,7 +14,7 @@ const theme = {
 
     },
     text: {
-      primary: 'rgba(201,17,17,0.87)',
+      primary: 'rgba(82, 82, 82, 0.87)',
       secondary: 'rgba(26, 219, 36, 0.6)',
       disabled: 'rgba(29,222,215,0.38)',
       hint: '#2a00ff',

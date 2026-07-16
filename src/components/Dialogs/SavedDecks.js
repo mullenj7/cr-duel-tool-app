@@ -16,12 +16,25 @@ import DeckComponent from '../Cards/DeckComponent';
 
 function SavedDecks({ isDialog, decks, setDecks, currentDeck, setCurrentDeck, selectedIndex, setSelectedIndex }) {
 
+    const [disabledItems, setDisabledItems] = useState([]);
+
+    // useEffect(()=>{
+    //     if (decks.length<10){
+    //         for (let i =0; i<
+    //     }
+    // },[decks]);
+
 
     const handleListItemClick = (index, deck) => {
         setSelectedIndex(index);
         setCurrentDeck(deck)
     };
 
+    const DisabledListItems = () => {
+        for (let i = decks.length - 1; i < 10; i++) {
+            return <Typography>hi</Typography>
+        }
+    }
 
 
     const DeckButtons = () => {
@@ -41,15 +54,22 @@ function SavedDecks({ isDialog, decks, setDecks, currentDeck, setCurrentDeck, se
         <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 350, width: '100%', flexGrow: 1, py: 0, }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '80%', width: '30%', flexGrow: 1, }}>
 
-                <List sx={{ m: 0, p: 0, overflow: 'auto', width: '100%' }}>
+                <List sx={{ m: 0, p: 0, overflow: 'auto', width: '100%', }}>
                     {decks.map((d, i) => {
                         return <ListItem component="div" disablePadding key={`deck-item-${i}`}>
                             <ListItemButton onClick={() => handleListItemClick(i, d)} selected={selectedIndex === i}>
                                 <ListItemText align='center' primary={`Deck ${i + 1}`} />
                             </ListItemButton>
                         </ListItem>
+                    })} {[...Array(10 - decks.length)].map((d, i) => { // fill rest of list with empty decks
+                        return <Tooltip title={'No Deck In This Slot'} key={`deck-item-${i + decks.length}`}><ListItem component="div" disablePadding >
+                            <ListItemButton disabled>
+                                <ListItemText align='center' primary={`Deck ${i + 1 + decks.length}`} />
+                            </ListItemButton>
+                        </ListItem></Tooltip>
                     })}
                 </List>
+
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '70%', flexGrow: 1, }}>
                 <Box sx={{ pt: 0, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>

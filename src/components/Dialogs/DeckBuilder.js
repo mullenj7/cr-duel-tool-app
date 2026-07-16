@@ -17,6 +17,7 @@ import SavedDecks from './SavedDecks';
 import CardList from '../../components/Lists/CardList';
 import { cards } from '../../static/cards';
 import DeckComponent from '../Cards/DeckComponent';
+import { GeneralButton } from '../Buttons/GeneralButton';
 
 function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialogOpen, decks, setDecks, loadDeck = true, filterUsedCards = true, saveDeck = false, handleSaveDeck }) {
 
@@ -26,29 +27,23 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
     const [savedDecksDialogOpen, setSavedDecksDialogOpen] = useState(false);
     const [currentDeck, setCurrentDeck] = useState({});
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const [swapCardType, setSwapCardType] = useState(false);
+
+
     const navigate = useNavigate();
 
+    useEffect(() => { // init swap card type
+        if (slotIndex <= slotArray.length - 1) {
+            const arr = slotArray[slotIndex];
+            if (arr.length > 0 && Object.keys(arr[2]).length > 0 && arr[2].hasOwnProperty('swapCardType')) {
+                setSwapCardType(arr[2].swapCardType);
+            }
+        }
+    }, [slotArray]);
 
-    const ImageButton = styled(ButtonBase)(({ theme }) => ({ // courtesy material UI
-        position: 'relative',
-        width: '100%',
-        height: 150,
-        '&:hover, &.Mui-focusVisible': {
-            zIndex: 1,
-            '& .MuiImageBackdrop-root': {
-                opacity: 0.15,
-            },
-            '& .MuiImageMarked-root': {
-                opacity: 0,
-            },
-            '& .MuiTypography-root': {
-                border: '4px solid currentColor',
-            },
-        },
-    }));
 
     useEffect(() => {
-        if (decks && decks.length >= 1) {
+        if (decks && decks.length >= 1) { //for user decks list
             setCurrentDeck(decks[0]);
         }
     }, [decks]);
@@ -98,7 +93,6 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
         if (card.evo || card.hero) { // don't show hero or evo images
             return false;
         }
-
         for (let i = 0; i < slots.length; i++) { // filter out cards from current deck
             if (slots[i].id && slots[i].id === card.id) {
                 return false;
@@ -108,9 +102,11 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
 
         if (filterUsedCards && slotArray.length > 0) { // filter out cards from previous decks
             for (let j = 0; j < slotArray.length; j++) {
-                for (let i = 0; i < slotArray[j].length; i++) {
-                    if (slotArray[j][i].id && slotArray[j][i].id === card.id) {
-                        return false;
+                if (j !== slotIndex) { // don't do current deck as it has been edited in slots state - handled in previous for loop
+                    for (let i = 0; i < slotArray[j].length; i++) {
+                        if (slotArray[j][i].id && slotArray[j][i].id === card.id) {
+                            return false;
+                        }
                     }
                 }
             }
@@ -127,7 +123,17 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
         //     }
         // }
         const t = [...slotArray]
-        t[slotIndex] = slots;
+        const newSlots = slots.map((s, i) => { // if 3rd card has swap option need to set property
+            if (i === 2) {
+                if (s.hasEvo && s.hasHero) { // if has swap option
+                    return { ...s, swapCardType: swapCardType }
+                }
+                else return s;
+            } else {
+                return s;
+            }
+        });
+        t[slotIndex] = newSlots;
         setSlotArray(t);
         if (saveDeck) {
             handleSaveDeck(slotIndex, t);
@@ -151,7 +157,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
     const DeckButtons = () => {
         return <Box sx={{ width: '100%', mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
             {loadDeck &&
-                <Tooltip title={'Load Deck'}><IconButton size={'medium'} color='primary' sx={{ border: 2 }} onClick={() => { setSavedDecksDialogOpen(true); }}><FolderIcon /></IconButton></Tooltip>
+                <Tooltip title={'Load Saved Deck'}><IconButton size={'medium'} color='primary' sx={{ border: 2 }} onClick={() => { setSavedDecksDialogOpen(true); }}><FolderIcon /></IconButton></Tooltip>
             }
             <Tooltip title={'Clear'}><IconButton size={'medium'} color='error' sx={{ border: 2, ml: 2 }} onClick={() => { handleClearDeck() }}><DeleteIcon /></IconButton></Tooltip>
         </Box>
@@ -177,7 +183,8 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
                     <Box sx={{ pt: 8, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
                         <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} setSavedDecksDialogOpen={setSavedDecksDialogOpen} isLarge={true}
-                            savedDecksDialogOpen={savedDecksDialogOpen} DeckButtons={DeckButtons} handleLoadDeck={handleLoadDeck} decks={decks} setDecks={setDecks} />
+                            savedDecksDialogOpen={savedDecksDialogOpen} DeckButtons={DeckButtons} handleLoadDeck={handleLoadDeck} decks={decks} setDecks={setDecks}
+                            swapCardType={swapCardType} setSwapCardType={setSwapCardType} />
                     </Box>
                 </Box>
                 <Box sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
@@ -213,7 +220,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                             currentDeck={currentDeck} setCurrentDeck={setCurrentDeck} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
                         <CardActions sx={{ justifyContent: 'flex-end', p: 0, m: 0, }}>
                             <Tooltip title={'Load Deck'}>
-                                <IconButton size='medium' sx={{ border: 2, color: 'green', m: 2 }}
+                                <IconButton size='small' sx={{ border: 2, color: 'green', m: 2 }}
                                     onClick={() => { handleSelectLoadDeck() }}
                                 >
                                     <CheckIcon />
@@ -229,9 +236,9 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
             {savedDecksDialogOpen && decks.length <= 0 &&
                 <Dialog onClose={() => { setSavedDecksDialogOpen(false) }} open={savedDecksDialogOpen} fullWidth maxWidth='md' >
 
-                    <Card sx={{ p: 10, m: 0, minHeight: 450, display: 'flex', flexDirection:'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <Card sx={{ p: 10, m: 0, minHeight: 450, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <Typography>You currently have no saved decks</Typography>
-                        <ImageButton focusRipple
+                        <GeneralButton focusRipple
                             onClick={() => {
                                 navigate('/settings', { replace: true });
                             }}>
@@ -252,7 +259,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                             >
                                 Add Decks
                             </Typography>
-                        </ImageButton>
+                        </GeneralButton>
                     </Card></Dialog>
             }
         </Dialog>

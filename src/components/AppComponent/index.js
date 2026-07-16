@@ -57,7 +57,7 @@ function AppLayout({ children, signOut, user }) {
 	return (
 		<Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 
-			<AppBar position='static' sx={{ py: 2 }}>
+			<AppBar position='static' elevation={3} sx={{ py: 2 }}>
 
 				<Toolbar>
 					<IconButton onClick={() => { navigate('/home') }}><Home sx={{ color: 'white' }} /></IconButton>
@@ -82,20 +82,20 @@ function AppLayout({ children, signOut, user }) {
 					>
 						{user && user.signInDetails && user.signInDetails.loginId &&
 							<>
-								<Typography align="left" sx={{ px: 2 }}>{user.signInDetails.loginId}</Typography>
+								<Typography align="left" sx={{ p: 2 }}>{user.signInDetails.loginId}</Typography>
 
 								<Divider variant="middle" />
 							</>
 						}
-						<MenuItem
+						<MenuItem 
 						>
 							<Button
 								sx={{
 									width: 200,
 									display: 'flex',
 									justifyContent: 'space-between',
-									padding: 0,
-									color: 'black',
+									p:0,
+									m:0,
 									textTransform: 'none',
 								}}
 								onClick={user ? handleSignOut : handleSignIn}>
