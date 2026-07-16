@@ -240,7 +240,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                         <Typography>You currently have no saved decks</Typography>
                         <GeneralButton focusRipple
                             onClick={() => {
-                                navigate('/settings', { replace: true });
+                                navigate('/decks', { replace: true });
                             }}>
                             <Typography
                                 component="span"

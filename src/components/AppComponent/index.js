@@ -78,24 +78,43 @@ function AppLayout({ children, signOut, user }) {
 						keepMounted
 						sx={{ p: 0, m: 0 }}
 						open={dropdownOpen}
-						onClose={() => setAnchorEl(null)}
+						onClose={() => setAnchorEl(false)}
 					>
 						{user && user.signInDetails && user.signInDetails.loginId &&
 							<>
 								<Typography align="left" sx={{ p: 2 }}>{user.signInDetails.loginId}</Typography>
 
 								<Divider variant="middle" />
+								<MenuItem
+								>
+									<Button
+										sx={{
+											width: 200,
+											display: 'flex',
+											justifyContent: 'space-between',
+											p: 0,
+											m: 0,
+											textTransform: 'none',
+										}}
+										onClick={()=>{navigate('/decks', { replace: true });setAnchorEl(false);
+ }}>
+										<Typography align="left">
+											My Decks
+										</Typography>
+									</Button>
+								</MenuItem>
 							</>
 						}
-						<MenuItem 
+
+						<MenuItem
 						>
 							<Button
 								sx={{
 									width: 200,
 									display: 'flex',
 									justifyContent: 'space-between',
-									p:0,
-									m:0,
+									p: 0,
+									m: 0,
 									textTransform: 'none',
 								}}
 								onClick={user ? handleSignOut : handleSignIn}>
