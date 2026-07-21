@@ -181,5 +181,7 @@ export const cards = [ // rarity: common: 0, rare: 1, epic: 2, legendary: 3, cha
     { id: 179, img: 'Images/zap.png', spell: true, hasEvo: true, rarity: 0 },
     { id: 180, img: 'Images/zappies.png', rarity: 1 },
     { id: 181, img: 'Images/void.png', rarity: 2 },
+    { id: 182, img: 'Images/ronin.png', rarity: 3 },
+
 
 ];
