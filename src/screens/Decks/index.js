@@ -92,10 +92,10 @@ function Decks() {
             {userSignedIn && !loading ? <>
                 <Box elevation={1} sx={{ width: '70%', display: 'flex', justifyContent: 'center', p: 8, minHeight: 670, }}>
                     {decks && decks.length > 0 && currentDeck && currentDeck.length > 0 ?
-                        <Box sx={{ display: 'flex', width: '100%', height: '100%', }}>
+                        <Box sx={{ display: 'flex', width: '100%', height: '100%', justifyContent: 'center' }}>
                             <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                                 <Card>
-                                    <Tabs component={'card'} value={value} onChange={(event, val) => { handleChange(val) }} orientation="vertical" indicatorColor="secondary" sx={{ }}>
+                                    <Tabs component={'card'} value={value} onChange={(event, val) => { handleChange(val) }} orientation="vertical" indicatorColor="secondary" sx={{}}>
                                         {decks.map((d, i) => {
                                             return <Tab label={'Deck ' + (i + 1)} key={`saved-deck-tab-${i}`} />
                                         })}
@@ -106,20 +106,21 @@ function Decks() {
                                     </Tabs>
                                 </Card>
                             </Box>
-                            <Card sx={{ width: '90%', display: 'flex', flexDirection: 'column', }}>
+                            <Card sx={{ width: '80%', display: 'flex', flexDirection: 'column', }}>
                                 <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', p: 0, m: 0, height: '100%', }}>
                                     {decks.map((d, i) => {
                                         return <Box value={value} index={i} hidden={value !== i} key={`saved-deck-${i}`}>
                                             <Button onClick={() => { setDialogOpen(true); }}>
-                                                <DeckComponent slots={currentDeck} setSlots={setCurrentDeck} isInteractive={false} DeckButtons={DeckButtons} isClickable={true} isLarge={true} />
-                                            </Button>
+                                                <Card elevation={0}>
+                                                    <DeckComponent slots={currentDeck} setSlots={setCurrentDeck} isInteractive={false} DeckButtons={DeckButtons} isClickable={true} isLarge={true} />
+                                                </Card>   </Button>
                                         </Box>
                                     })}
 
                                 </CardContent>
-                                <CardActions sx={{ justifyContent: 'flex-end', alignItems: 'end',  }} disableSpacing>
+                                <CardActions sx={{ justifyContent: 'flex-end', alignItems: 'end', }} disableSpacing>
                                     <Tooltip title={'Delete Deck'}>
-                                        <IconButton size='medium' sx={{ border: 2, color: 'red', m:1}}
+                                        <IconButton size='medium' sx={{ border: 2, color: 'red', mb: 1, mr: 1 }}
                                             onClick={() => { setDeleteDialogOpen(true); }}
                                         >
                                             <DeleteIcon />
@@ -155,7 +156,8 @@ function Decks() {
                     }
                 </Box>
                 {dialogOpen &&
-                    <DeckBuilder slotArray={decks} setSlotArray={setDecks} slotIndex={value} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} decks={decks} setDecks={setDecks} loadDeck={false} filterUsedCards={false}
+                    <DeckBuilder slotArray={decks} setSlotArray={setDecks} slotIndex={value} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} decks={decks}
+                        setDecks={setDecks} loadDeck={false} filterUsedCards={false}
                         saveDeck={true} handleSaveDeck={handleSaveDeck} />
                 }
                 {

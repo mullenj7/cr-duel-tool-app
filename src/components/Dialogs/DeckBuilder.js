@@ -19,7 +19,8 @@ import { cards } from '../../static/cards';
 import DeckComponent from '../Cards/DeckComponent';
 import { GeneralButton } from '../Buttons/GeneralButton';
 
-function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialogOpen, decks, setDecks, loadDeck = true, filterUsedCards = true, saveDeck = false, handleSaveDeck }) {
+function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialogOpen, decks, setDecks, loadDeck = true, filterUsedCards = true, saveDeck = false,
+    handleSaveDeck }) {
 
     const theme = useTheme();
     const [slots, setSlots] = useState(slotArray.length - 1 < slotIndex ? [{}, {}, {}, {}, {}, {}, {}, {}] : slotArray[slotIndex]); // if deck exists then load cards else initialize
@@ -157,7 +158,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
     const DeckButtons = () => {
         return <Box sx={{ width: '100%', mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
             {loadDeck &&
-                <Tooltip title={'Load Saved Deck'}><IconButton size={'medium'} color='primary' sx={{ border: 2 }} onClick={() => { setSavedDecksDialogOpen(true); }}><FolderIcon /></IconButton></Tooltip>
+                <Tooltip title={'Load Deck'}><IconButton size={'medium'} color='primary' sx={{ border: 2 }} onClick={() => { setSavedDecksDialogOpen(true); }}><FolderIcon /></IconButton></Tooltip>
             }
             <Tooltip title={'Clear'}><IconButton size={'medium'} color='error' sx={{ border: 2, ml: 2 }} onClick={() => { handleClearDeck() }}><DeleteIcon /></IconButton></Tooltip>
         </Box>
@@ -216,11 +217,11 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                         >
                             <CloseIcon />
                         </IconButton>
-                        <SavedDecks isDialog={true} decks={decks} setDecks={setDecks}
+                        <SavedDecks isDialog={true} decks={decks} setDecks={setDecks} handleSelectLoadDeck={handleSelectLoadDeck}
                             currentDeck={currentDeck} setCurrentDeck={setCurrentDeck} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
                         <CardActions sx={{ justifyContent: 'flex-end', p: 0, m: 0, }}>
                             <Tooltip title={'Load Deck'}>
-                                <IconButton size='small' sx={{ border: 2, color: 'green', m: 2 }}
+                                <IconButton size='small' sx={{ border: 2, color: 'green', mb: 2, mr: 2 }}
                                     onClick={() => { handleSelectLoadDeck() }}
                                 >
                                     <CheckIcon />

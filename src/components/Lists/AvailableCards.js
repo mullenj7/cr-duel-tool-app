@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
-import { ListItem, List, ListItemAvatar, Avatar, ListItemText, ListItemButton, Box, Stack, Item, Button, Typography, } from '@mui/material';
+import { Divider, Box, Stack, Paper, Button, Typography, Grid } from '@mui/material';
 import ImageIcon from '@mui/icons-material/Image';
 
 import { cards } from '../../static/cards';
@@ -13,6 +13,7 @@ function AvailableCards({ slotArray, align = 'left' }) {
 
     const categories = ['Win Conditions', 'Spells', 'Buildings', 'Troops'];
     const [filteredCards, setFilteredCards] = useState([]);
+
 
     const checkCard = (card) => {
         try {
@@ -69,21 +70,37 @@ function AvailableCards({ slotArray, align = 'left' }) {
 
 
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', width:'100%' }}>{filteredCards.map((filtered, index) => {
-            return (<Box key={`category-${align}-${index}`} sx={{width:'100%',  }}>
-                <Typography sx={{ pb: 2 }} align='center'> {categories[index]}</Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', width: '100%', ml: align === 'left' ? 0 : 1.5, mr: align === 'right' ? 0 : 1.5 }}>{filteredCards.map((filtered, index) => {
+            return (<Box key={`category-${align}-${index}`} sx={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', }}>
+                <Box sx={{ pb: 2 }}>
+                    <Divider orientation="horizontal" variant="middle"><Typography sx={{}} > {categories[index]}</Typography></Divider>
+                </Box>
                 <Stack direction="row" spacing={1}
                     useFlexGap
-                    sx={{ flexWrap: 'wrap', width: '100%', bgcolor: 'white', m: 0, pb:2, display: 'flex', justifyContent: align === 'left' ? 'flex-start' : 'flex-end', }}
+                    sx={{ flexWrap: 'wrap', pb: 2, display: 'flex', justifyContent: align === 'left' ? 'flex-start' : 'flex-end', }}
                 >
                     {
                         filtered.sort((a, b) => b.rarity - a.rarity).map((c, i) => {
                             return (
-                                <img src={c.img} alt={c.id} key={`av-cards-${align}-${i}`} style={{ height: 42 }}></img>
+                                <img src={c.img} alt={c.id} key={`av-cards-${align}-${i}`} style={{ height: 42, }}></img>
                             );
                         })
                     }
                 </Stack>
+
+                {/* <div style={{
+                    justifyContent: 'center', alignItems: 'center', alignContent: 'center', 
+                    textAlign: align === 'left' ? 'left' : 'right', paddingRight: 5, paddingLeft: 5,
+                }}>
+                    {
+                        filtered.sort((a, b) => b.rarity - a.rarity).map((c, i) => {
+                            return (<div style={{ display: 'inline-block', marginLeft: 2, marginRight: 2 }}>
+                                <img src={c.img} alt={c.id} key={`av-cards-${align}-${i}`} style={{ height: 42, }}></img>
+                            </div>
+                            );
+                        })
+                    }
+                </div> */}
             </Box>);
         })}
         </Box>

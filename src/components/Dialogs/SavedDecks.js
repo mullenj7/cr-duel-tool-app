@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
-import { Box, Typography, Card, Dialog, IconButton, Tooltip, ListItem, List, ListItemButton, ListItemText } from '@mui/material';
+import { Box, Typography, Card, Button, IconButton, Tooltip, ListItem, List, ListItemButton, ListItemText } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
@@ -14,27 +14,13 @@ import CheckIcon from '@mui/icons-material/Check';
 import DeckComponent from '../Cards/DeckComponent';
 
 
-function SavedDecks({ isDialog, decks, setDecks, currentDeck, setCurrentDeck, selectedIndex, setSelectedIndex }) {
-
-    const [disabledItems, setDisabledItems] = useState([]);
-
-    // useEffect(()=>{
-    //     if (decks.length<10){
-    //         for (let i =0; i<
-    //     }
-    // },[decks]);
+function SavedDecks({ isDialog, decks, setDecks, currentDeck, setCurrentDeck, selectedIndex, setSelectedIndex,handleSelectLoadDeck }) {
 
 
     const handleListItemClick = (index, deck) => {
         setSelectedIndex(index);
         setCurrentDeck(deck)
     };
-
-    const DisabledListItems = () => {
-        for (let i = decks.length - 1; i < 10; i++) {
-            return <Typography>hi</Typography>
-        }
-    }
 
 
     const DeckButtons = () => {
@@ -52,7 +38,7 @@ function SavedDecks({ isDialog, decks, setDecks, currentDeck, setCurrentDeck, se
     return (
 
         <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 350, width: '100%', flexGrow: 1, py: 0, }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '80%', width: '30%', flexGrow: 1, }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '90%', width: '30%', flexGrow: 1, }}>
 
                 <List sx={{ m: 0, p: 0, overflow: 'auto', width: '100%', }}>
                     {decks.map((d, i) => {
@@ -73,7 +59,9 @@ function SavedDecks({ isDialog, decks, setDecks, currentDeck, setCurrentDeck, se
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '70%', flexGrow: 1, }}>
                 <Box sx={{ pt: 0, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
+                    <Button onClick={()=>{handleSelectLoadDeck()}}>
                     <DeckComponent isLarge={false} slots={currentDeck} setSlots={setCurrentDeck} isInteractive={false} DeckButtons={DeckButtons} isClickable={false} />
+                    </Button>
                 </Box>
             </Box>
         </Box>

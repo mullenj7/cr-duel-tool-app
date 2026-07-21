@@ -48,10 +48,11 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotA
                                     </Button>
                                 </Tooltip>
                             </Card>
+                            {i <= slotArray.length - 1 && <Divider orientation="horizontal" variant="middle" sx={{ py: 2, width: '80%', }} >Game {i + 1}</Divider>}
 
-                            {i <= slotArray.length -1 && <Divider orientation="horizontal" variant="middle" sx={{ py: 2, width: '80%', }} >Game {i + 1}</Divider>}
                         </Box>)
                 })
+
             }
             {slotArray.length < 10 && // max of 9 decks can be added per side
                 <Box sx={{ pt: 8, pb: 5, width: '60%', height: '50%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
