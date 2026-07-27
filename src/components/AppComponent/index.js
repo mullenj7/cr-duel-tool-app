@@ -3,15 +3,21 @@ import { BrowserRouter } from "react-router-dom";
 import {
 	AppBar, Box, Toolbar, IconButton, Button,
 	Typography, MenuItem, Menu, Divider, Dialog,
-	List, ListItem, DialogTitle
+	
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
+import BoltIcon from '@mui/icons-material/Bolt';
 import Home from '@mui/icons-material/Home';
 import { UserContext } from '../../context/UserContext';
 import { AppContext } from '../../context/AppContext';
 import { setUpTOTP } from '@aws-amplify/auth';
+
+
+
+import template from '../../template.svg'
+
 
 function AppComponent({ children, signOut, user, }) {
 
@@ -46,29 +52,26 @@ function AppLayout({ children, signOut, user }) {
 
 		navigate('/login');
 	}
-	const handleSignOut = () => {
+	const handleSignOut =  () => {
 		setUserSignedIn(false);
-		signOut();
+		 signOut();
 		setAnchorEl(false);
 		navigate('/home', { replace: true });
 
 	}
 
 	return (
-		<Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-
-			<AppBar position='static' elevation={3} sx={{ py: 2 }}>
-
+		<Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' ,}}>
+			<AppBar position='static' elevation={3} sx={{ py: 1.5, backgroundImage: `url(${template})`, backgroundSize: 'content',}}>
 				<Toolbar>
-					<IconButton onClick={() => { navigate('/home') }}><Home sx={{ color: 'white' }} /></IconButton>
-					<Typography variant="h4" component="div" sx={{ flexGrow: 1, pl: 5 }}>
+					<IconButton onClick={() => { navigate('/home') }}><BoltIcon fontSize='large' sx={{ color: 'gold', }} /></IconButton>
+					<Typography variant="h3" component="div" color='primary' sx={{ flexGrow: 1, pl: 5, color: 'white' }}>
 						Clash Royale Duel Tool
 					</Typography>
 					<IconButton
 						onClick={(event) => setAnchorEl(event.currentTarget)}
 					>
 						<PersonIcon sx={{ color: 'white' }} />
-
 					</IconButton>
 					<Menu
 						id="client-settings"
@@ -83,7 +86,6 @@ function AppLayout({ children, signOut, user }) {
 						{user && user.signInDetails && user.signInDetails.loginId &&
 							<>
 								<Typography align="left" sx={{ p: 2 }}>{user.signInDetails.loginId}</Typography>
-
 								<Divider variant="middle" />
 								<MenuItem
 								>
@@ -96,8 +98,9 @@ function AppLayout({ children, signOut, user }) {
 											m: 0,
 											textTransform: 'none',
 										}}
-										onClick={()=>{navigate('/decks', { replace: true });setAnchorEl(false);
- }}>
+										onClick={() => {
+											navigate('/decks', { replace: true }); setAnchorEl(false);
+										}}>
 										<Typography align="left">
 											My Decks
 										</Typography>
@@ -105,7 +108,6 @@ function AppLayout({ children, signOut, user }) {
 								</MenuItem>
 							</>
 						}
-
 						<MenuItem
 						>
 							<Button
@@ -124,10 +126,8 @@ function AppLayout({ children, signOut, user }) {
 							</Button>
 						</MenuItem>
 					</Menu>
-
 				</Toolbar>
 			</AppBar>
-
 			<Box sx={{ flexGrow: 1, height: '100%', display: 'flex', flexDirection: 'column' }}>
 				{children}
 			</Box>

@@ -13,7 +13,7 @@ function CardList({ handleSelect, cards, filterCards, sortDirection }) {
     return (
         <Stack direction="row"
             useFlexGap
-            sx={{ flexWrap: 'wrap', width: '80%', bgcolor: 'white', maxHeight: 500, m: 0, p: 0, overflow: 'auto', }}
+            sx={{ flexWrap: 'wrap', width: '80%', maxHeight: 500, m: 0, p: 0, overflow: 'auto',  }}
         >
             {
                 cards.filter((card) => { return filterCards(card) }).sort((a, b) => sortDirection ? (b.rarity - a.rarity) : (a.rarity - b.rarity)).map((c, i) => {

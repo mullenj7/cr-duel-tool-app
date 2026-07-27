@@ -7,6 +7,7 @@ import {
 } from 'aws-amplify/auth'; import { UserContext } from './UserContext';
 import { AppContext } from './AppContext';
 import { getUser, updateUser } from '../utils/api/users'
+import { SliderTrack } from '@mui/material';
 
 function UsersProvider(props) {
     const { loading, setLoading } = useContext(AppContext);
@@ -18,30 +19,40 @@ function UsersProvider(props) {
         checkUserDetails();
     }, []);
 
-    const checkUserDetails = async () => {
-        const session = await fetchAuthSession();
-        if (session.tokens) {// if user is signed in
-            setUserSignedIn(true);
+    useEffect(() => {
+        if (userSignedIn === true) {
+            setLoading(true);
             fetchUserDetails();
-        } else setUserSignedIn(false);
+            setLoading(false);
+        }
+        else setUserDetails({});
+    }, [userSignedIn]);
+
+    const checkUserDetails = async () => {
+        try {
+            const session = await fetchAuthSession({ forceRefresh: true });
+            if (session.tokens) {// if user is signed in
+                setUserSignedIn(true);
+                //fetchUserDetails();
+            } else setUserSignedIn(false);
+        }
+        catch (e) {
+            console.log(e);
+            setUserSignedIn(false);
+        }
 
     };
 
     const fetchUserDetails = async () => {
         try {
-            setLoading(true);
             const response = await getUser();
             if (response.errorMessage) {
-                setLoading(false);
-
                 throw new Error(response.errorMessage);
             }
             setUserDetails(response);
-            setLoading(false);
 
         } catch (error) {
             console.error(error);
-            setLoading(false);
 
             throw new Error(error);
         }
@@ -51,12 +62,14 @@ function UsersProvider(props) {
     const updateUserAttributes = async (attributes) => {
         try {
             const response = await updateUser(attributes);
+            console.log(response);
             if (response.errorMessage) {
                 throw new Error(response.errorMessage);
             }
             // await getCurrentUser();
             // await fetchAuthSession();
-            // fetchUserDetails();
+            fetchUserDetails();
+            return response;
         } catch (error) {
             console.error(error);
         }
@@ -67,8 +80,8 @@ function UsersProvider(props) {
     return (
         <UserContext.Provider
             value={{
-                userDetails, setUserDetails, fetchUserDetails,checkUserDetails,
-                updateUserAttributes,userSignedIn, setUserSignedIn
+                userDetails, setUserDetails, fetchUserDetails, checkUserDetails,
+                updateUserAttributes, userSignedIn, setUserSignedIn
             }}
         >
             {props.children}

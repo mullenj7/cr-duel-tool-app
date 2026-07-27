@@ -25,7 +25,6 @@ export const getUser = async () => {
                 },
             },
         );
-       
         if (response.status === 200) {
 
             const parsedResponse = await response.json();

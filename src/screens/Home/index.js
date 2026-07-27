@@ -25,12 +25,12 @@ function Home() {
   return (
     <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <Card sx={{ height: 200, width: 300, display: 'flex', justifyContent: 'center', alignItems: 'center', mx: 2 }}>
-        <Button onClick={() => { navigate('/play', { replace: true }); }} sx={{ height: '100%', width: '100%' }}>
+        <Button onClick={() => { navigate('/play',); }} sx={{ height: '100%', width: '100%' }}>
           Play Match
         </Button>
       </Card>
       <Card sx={{ height: 200, width: 300, display: 'flex', justifyContent: 'center', alignItems: 'center', mx: 2 }}>
-        <Button onClick={() => { navigate('/decks', { replace: true }); }} sx={{ height: '100%', width: '100%' }}>
+        <Button onClick={() => { navigate('/decks',); }} sx={{ height: '100%', width: '100%' }}>
           My Decks
         </Button>
       </Card>

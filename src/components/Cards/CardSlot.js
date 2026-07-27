@@ -9,7 +9,7 @@ import SwapHorizRoundedIcon from '@mui/icons-material/SwapHorizRounded';
 import { CardDrag } from './Card';
 
 
-export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handleSwitchType, swapCardType, isInteractive = false, isLarge = false }) => {
+export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handleSwitchType, swapCardType, isInteractive = false, isLarge, size }) => {
     const [showButton, setShowButton] = useState(false);
 
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
@@ -35,19 +35,19 @@ export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handl
                     left: 0,
                     m: 0, p: 0
                 }}
-                  style={{
+                style={{
                     outline: 'none',
-                   // borderColor: swapCardType ? 'rgba(187, 78, 255, 0.87)' : 'rgb(255, 208, 0)',
+                    // borderColor: swapCardType ? 'rgba(187, 78, 255, 0.87)' : 'rgb(255, 208, 0)',
                     boxShadow: swapCardType ? '0 0 10px #c68cff' : '0 0 10px #feec83'
                 }}>
-              
+
                 <SwapHorizRoundedIcon fontSize='medium' sx={{ border: 2, borderRadius: '50%' }} />
             </IconButton> : <></>}
 
             {value.id && showButton ? <IconButton
+                color='error'
                 onClick={() => { handleRemoveCard(index) }}
                 sx={{
-                    color: 'red',
                     bgcolor: 'white',
                     position: 'absolute',
                     top: 0,
@@ -56,13 +56,13 @@ export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handl
                 }}>
                 <CancelIcon />
             </IconButton> : <></>}
-            <CardDrag value={value} handleDropCard={handleDropCard} index={index} swapCardType={swapCardType} isInteractive={isInteractive} isLarge={isLarge} />
+            <CardDrag value={value} handleDropCard={handleDropCard} index={index} swapCardType={swapCardType} isInteractive={isInteractive} isLarge={isLarge} size={size} />
         </Card>
     </div>;
 
     const NonInteractiveSlot = <div style={{ position: 'relative' }}>
         <Card elevation={0}>
-            <CardDrag value={value} index={index} swapCardType={swapCardType} isInteractive={isInteractive} isLarge={isLarge} />
+            <CardDrag value={value} index={index} swapCardType={swapCardType} isInteractive={isInteractive} isLarge={isLarge} size={size} />
         </Card>
     </div>;
 

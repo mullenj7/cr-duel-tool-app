@@ -24,27 +24,27 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotA
             {
                 slotArray.map((slot, i) => {
                     return (
-                        <Box key={`slotArray=${i}`} sx={{ pt: 8, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
-                            <Card elevation={0}>
-                                <Tooltip slotProps={{
+                        <Box key={`slotArray=${i}`} sx={{ pt: 6, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
+                            <Card elevation={0} sx={{}}>
+                                <Tooltip leaveDelay={100} slotProps={{
                                     tooltip: {
                                         sx: {
-                                            //   color: "#5a4cd8",
-                                            backgroundColor: "#b12c2c",
+                                            backgroundColor: theme.palette.error.main,
                                             borderRadius: '50%',
-                                            py: 1, px: 1, m: 0
+                                            p:0, m: 0
                                         },
                                     },
+                                    popper:{sx:{zIndex:1000}}
                                 }} title={(i === slotArray.length - 1) &&
                                     <Tooltip title={'Delete'}>
-                                        <IconButton size='small' sx={{ bgColor: 'white', color: 'white', m: 0, p: 0 }}
+                                        <IconButton size='small' sx={{ bgColor: 'white', color: 'white', m: 0, p: 1 }}
                                             onClick={() => { handleClear(i); }}><DeleteIcon />
                                         </IconButton>
                                     </Tooltip>
                                 } placement="top-end">
                                     <Button onClick={() => { setDialogOpen(true); setSlotIndex(i) }}>
                                         <DeckComponent slots={slot} isInteractive={false} isClickable={true} setDialogOpen={setDialogOpen} key={`game-deck-${align}-${i}`}
-                                            newSlotIndex={i} setSlotIndex={setSlotIndex} handleClear={handleClear} canDelete={i === slotArray.length - 1} />
+                                            newSlotIndex={i} setSlotIndex={setSlotIndex} handleClear={handleClear} canDelete={i === slotArray.length - 1} isLarge={false} size={105}/>
                                     </Button>
                                 </Tooltip>
                             </Card>

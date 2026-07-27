@@ -137,7 +137,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
         t[slotIndex] = newSlots;
         setSlotArray(t);
         if (saveDeck) {
-            handleSaveDeck(slotIndex, t);
+            handleSaveDeck(t);
         }
         setDialogOpen(false)
     };
@@ -166,7 +166,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
 
 
     return (
-        <Dialog onClose={() => { setDialogOpen(false) }} open={dialogOpen} fullWidth maxWidth='xl' >
+        <Dialog onClose={() => { setDialogOpen(false) }} open={dialogOpen} fullWidth maxWidth='xl'  >
             <IconButton
                 aria-label="close"
                 onClick={() => { setDialogOpen(false) }} //don't save changes
@@ -180,16 +180,16 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                 <CloseIcon />
             </IconButton>
 
-            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, py: 8 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, py: 8, }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
                     <Box sx={{ pt: 8, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
-                        <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} setSavedDecksDialogOpen={setSavedDecksDialogOpen} isLarge={true}
+                        <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} setSavedDecksDialogOpen={setSavedDecksDialogOpen} isLarge={true} size={150}
                             savedDecksDialogOpen={savedDecksDialogOpen} DeckButtons={DeckButtons} handleLoadDeck={handleLoadDeck} decks={decks} setDecks={setDecks}
                             swapCardType={swapCardType} setSwapCardType={setSwapCardType} />
                     </Box>
                 </Box>
-                <Box sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '80%', pb: 2 }}>
+                <Box sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column',}}>
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '80%', pb: 2, }}>
                         <IconButton style={{ borderRadius: '5%' }} onClick={() => { setSortDirection(!sortDirection); }}>
                             <Typography variant='h5' sx={{ pr: 1 }}>Sort</Typography>
                             {sortDirection ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />}
@@ -202,7 +202,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                 <Button size='large' variant='contained' disableElevation={true} sx={{ m: 2 }} onClick={() => { handleCloseDialog() }}>Save</Button>
             </DialogActions>
             {savedDecksDialogOpen && decks.length > 0 &&
-                <Dialog onClose={() => { setSavedDecksDialogOpen(false) }} open={savedDecksDialogOpen} fullWidth maxWidth='md' >
+                <Dialog onClose={() => { setSavedDecksDialogOpen(false) }} open={savedDecksDialogOpen} fullWidth maxWidth='md'>
                     <DialogTitle>My Decks</DialogTitle>
                     <Card sx={{ p: 0, m: 0, }}>
                         <IconButton
@@ -220,7 +220,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                         <SavedDecks isDialog={true} decks={decks} setDecks={setDecks} handleSelectLoadDeck={handleSelectLoadDeck}
                             currentDeck={currentDeck} setCurrentDeck={setCurrentDeck} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
                         <CardActions sx={{ justifyContent: 'flex-end', p: 0, m: 0, }}>
-                            <Tooltip title={'Load Deck'}>
+                            <Tooltip title={'Load Deck'} >
                                 <IconButton size='small' sx={{ border: 2, color: 'green', mb: 2, mr: 2 }}
                                     onClick={() => { handleSelectLoadDeck() }}
                                 >
@@ -229,19 +229,15 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                             </Tooltip>
                         </CardActions>
                     </Card>
-
-
-
                 </Dialog>
             }
             {savedDecksDialogOpen && decks.length <= 0 &&
                 <Dialog onClose={() => { setSavedDecksDialogOpen(false) }} open={savedDecksDialogOpen} fullWidth maxWidth='md' >
-
                     <Card sx={{ p: 10, m: 0, minHeight: 450, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <Typography>You currently have no saved decks</Typography>
                         <GeneralButton focusRipple
                             onClick={() => {
-                                navigate('/decks', { replace: true });
+                                navigate('/decks', );
                             }}>
                             <Typography
                                 component="span"
