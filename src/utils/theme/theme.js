@@ -30,11 +30,12 @@ const theme = {
   },
   "palette": {
     "primary": {
-      "main": "#cbcdce"
+      "main": "#9e740b"
     },
     "background": {
-      "default": "#fffef6",
-      "paper": "#ffffff"
+      "default": "#faf9f4",
+      "paper": "#ffffff",
+      "dark":"#1e1e1e",
     },
     "secondary": {
       "main": "#3792ff"
@@ -43,7 +44,8 @@ const theme = {
       "main": "#aa1212"
     },
     "text": {
-      "secondary": "#00000099"
+      "secondary": "#00000099",
+      "gray":"#b8b8b899",
     }
   },
   "shape": {

@@ -2,8 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { BrowserRouter } from "react-router-dom";
 import {
 	AppBar, Box, Toolbar, IconButton, Button,
-	Typography, MenuItem, Menu, Divider, Dialog,
-	
+	Typography, MenuItem, Menu, Divider, Link, ButtonBase
+
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
@@ -20,20 +20,27 @@ import template from '../../template.svg'
 
 
 function AppComponent({ children, signOut, user, }) {
+	const theme = useTheme();
 
 	return (
 		<BrowserRouter>
-			{/* <Paper style={{ minHeight: '100vh' }}> */}
 			<Box sx={{ minHeight: '100vh' }}>
 				<AppLayout
 					children={children}
 					signOut={signOut}
 					user={user}
 				>
-					{/* {children} */}
 				</AppLayout>
+				<Box sx={{ bgcolor: theme.palette.background.dark, minHeight: 150, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', pb: 4 }}>
+					<Typography variant='subtitle2' sx={{ color: theme.palette.text.gray }}>
+						This material is unofficial and is not endorsed by Supercell. For more information see
+						<Link target="_blank" href="https://supercell.com/en/fan-content-policy/"> Supercell's Fan Content Policy.
+						</Link>
+					</Typography>
+
+				</Box>
+
 			</Box>
-			{/* </Paper> */}
 		</BrowserRouter>
 	);
 }
@@ -52,20 +59,20 @@ function AppLayout({ children, signOut, user }) {
 
 		navigate('/login');
 	}
-	const handleSignOut =  () => {
+	const handleSignOut = () => {
 		setUserSignedIn(false);
-		 signOut();
+		signOut();
 		setAnchorEl(false);
 		navigate('/home', { replace: true });
 
 	}
 
 	return (
-		<Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' ,}}>
-			<AppBar position='static' elevation={3} sx={{ py: 1.5, backgroundImage: `url(${template})`, backgroundSize: 'content',}}>
+		<Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', }}>
+			<AppBar position='static' elevation={3} sx={{ py: 1, backgroundImage: `url(${template})`, backgroundSize: 'content', }}>
 				<Toolbar>
-					<IconButton onClick={() => { navigate('/home') }}><BoltIcon fontSize='large' sx={{ color: 'gold', }} /></IconButton>
-					<Typography variant="h3" component="div" color='primary' sx={{ flexGrow: 1, pl: 5, color: 'white' }}>
+					<IconButton onClick={() => { navigate('/home') }} sx={{}} ><BoltIcon sx={{ color: 'gold', fontSize: 48 }} /></IconButton>
+					<Typography variant="h3" color='primary' sx={{ flexGrow: 1, pl: 5, color: 'white' }} >
 						Clash Royale Duel Tool
 					</Typography>
 					<IconButton

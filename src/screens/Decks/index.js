@@ -160,13 +160,9 @@ function Decks() {
     }
 
     return (
-        // <Box sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', p: 15, }}>
         <Box sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', pt: 5, flexGrow: 1, }}>
-
             {userSignedIn && !loading ? <>
-                {/* <Box elevation={1} sx={{ width: '70%', display: 'flex', justifyContent: 'center', p: 8,minHeight:600 }}> */}
                 <Box elevation={1} sx={{ width: '90%', display: 'flex', justifyContent: 'center', p: 8, }}>
-
                     {decks && decks.length > 0 && currentDeck && currentDeck.length > 0 ?
                         <Box sx={{ display: 'flex', width: '80%', height: '80%', justifyContent: 'center', }}>
                             <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
@@ -201,7 +197,6 @@ function Decks() {
                                             </Button>
                                         </Box>
                                     })}
-
                                 </CardContent>
                                 <CardActions sx={{ justifyContent: 'flex-end', alignItems: 'end', }} disableSpacing>
                                     <Tooltip title={'Delete Deck'}>

@@ -1,8 +1,8 @@
 # Getting Started with Create React App
 
-TODO:  button tooltips// cardlist search// move deck buttons to separate component// add copy paste decks // game number on main screen
-// navigate to last path after sign in // clean up getUser id tokens usage with fetchauthsession // 
-// fix delete button on play page // 
+TODO: cardlist search// move deck buttons to separate component// 
+// navigate to last path after sign in // clean up getUser id tokens usage with fetchauthsession //
+add snackbars // fix api authorizer
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -35,9 +35,9 @@ function Play() {
 
 
   return (
-    <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'space-evenly', pb: 5, mt: 2 }}>
-      <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <Typography variant='h4' align='center' sx={{ py: 2 }}>You</Typography>
+    <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'space-evenly', pb: 20, pt: 2,  }}>
+      <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', }}>
+        <Typography variant='h4' align='center' sx={{ py: 2, }}>You</Typography>
         <GameDecks slotArray={slotArrayRed} setSlotArray={setSlotArrayRed} slotIndex={slotIndexRed} setSlotIndex={setSlotIndexRed} setDialogOpen={setDialogOpenRed}
         />
       </Box>

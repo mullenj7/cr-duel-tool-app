@@ -14,18 +14,24 @@ function UsersProvider(props) {
     const [userDetails, setUserDetails] = useState({});
     const [userSignedIn, setUserSignedIn] = useState(false);
 
+    const handleSignInChange = async () => {
+        if (userSignedIn === true) {
+            await fetchUserDetails();
+        }
+        else { setUserDetails({}); }
+        setLoading(false);
+    };
+
 
     useEffect(() => {
+        setLoading(true);
+
         checkUserDetails();
     }, []);
 
+
     useEffect(() => {
-        if (userSignedIn === true) {
-            setLoading(true);
-            fetchUserDetails();
-            setLoading(false);
-        }
-        else setUserDetails({});
+        handleSignInChange();
     }, [userSignedIn]);
 
     const checkUserDetails = async () => {
@@ -39,6 +45,7 @@ function UsersProvider(props) {
         catch (e) {
             console.log(e);
             setUserSignedIn(false);
+            setLoading(false);
         }
 
     };

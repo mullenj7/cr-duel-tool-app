@@ -199,7 +199,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                 </Box>
             </Box>
             <DialogActions sx={{ pb: 0, m: 0 }}>
-                <Button size='large' variant='contained' disableElevation={true} sx={{ m: 2 }} onClick={() => { handleCloseDialog() }}>Save</Button>
+                <Button size='large' variant='contained' disableElevation={true} sx={{m:2 }} onClick={() => { handleCloseDialog() }}>Save</Button>
             </DialogActions>
             {savedDecksDialogOpen && decks.length > 0 &&
                 <Dialog onClose={() => { setSavedDecksDialogOpen(false) }} open={savedDecksDialogOpen} fullWidth maxWidth='md'>
@@ -220,7 +220,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                         <SavedDecks isDialog={true} decks={decks} setDecks={setDecks} handleSelectLoadDeck={handleSelectLoadDeck}
                             currentDeck={currentDeck} setCurrentDeck={setCurrentDeck} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
                         <CardActions sx={{ justifyContent: 'flex-end', p: 0, m: 0, }}>
-                            <Tooltip title={'Load Deck'} >
+                            <Tooltip title={'Select'} >
                                 <IconButton size='small' sx={{ border: 2, color: 'green', mb: 2, mr: 2 }}
                                     onClick={() => { handleSelectLoadDeck() }}
                                 >
