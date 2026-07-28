@@ -3,7 +3,7 @@ import { emphasize, useTheme } from '@mui/material/styles';
 import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import {
-    Box, Typography, Card, Dialog, CardActions, Button, Tab, Tabs, IconButton, Tooltip, Paper, CircularProgress, CardContent, CardHeader,
+    Box, Typography, Card, Dialog, CardActions, Button, Tab, Tabs, IconButton, Tooltip, Paper, Link, CardContent, CardHeader,
     Menu, MenuItem
 } from '@mui/material';
 import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
@@ -120,7 +120,6 @@ function Decks() {
             open={deckDropdownOpen}
             onClose={() => setAnchorEl(false)}
         >
-
             <MenuItem
             >
                 <Button
@@ -160,58 +159,63 @@ function Decks() {
     }
 
     return (
-        <Box sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', pt: 5, flexGrow: 1, }}>
+        <Box sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', pt: 0, flexGrow: 1, }}>
             {userSignedIn && !loading ? <>
-                <Box elevation={1} sx={{ width: '90%', display: 'flex', justifyContent: 'center', p: 8, }}>
+                <Box elevation={1} sx={{ width: '90%', display: 'flex', justifyContent: 'center', p: 8 }}>
                     {decks && decks.length > 0 && currentDeck && currentDeck.length > 0 ?
-                        <Box sx={{ display: 'flex', width: '80%', height: '80%', justifyContent: 'center', }}>
-                            <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                                <Paper elevation={0} sx={{ border: 1, py: 1, borderRight: 0 }}>
-                                    <Tabs value={value} onChange={(event, val) => { handleChange(val) }} orientation="vertical" indicatorColor='secondary' sx={{}}>
-                                        {decks.map((d, i) => {
-                                            return <Tab label={'Deck ' + (i + 1)} key={`saved-deck-tab-${i}`} sx={{ width: '100%', mr: 2, my: 0.4 }} />
-                                        })}
-                                        {
-                                            decks.length < 10 && // max 10 decks
-                                            <Tooltip title={'Add New Deck'}><Tab label={<AddRoundedIcon />}></Tab></Tooltip>
-                                        }
-                                    </Tabs>
-                                </Paper>
-                            </Box>
-                            <Card sx={{ width: '65%', height: '95%', display: 'flex', flexDirection: 'column', border: 1, }} elevation={0}>
-                                <Box sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0.5, pr: 0.5 }}>
-                                    <IconButton size='medium' sx={{}}
-                                        onClick={(event) => setAnchorEl(event.currentTarget)}
-                                    >
-                                        <MoreVertIcon sx={{}} />
-                                    </IconButton>
-                                    <DeckMenu />
-                                </Box>
-                                <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', p: 0, m: 0, height: '100%', }}>
-                                    {decks.map((d, i) => {
-                                        return <Box value={value} index={i} hidden={value !== i} key={`saved-deck-${i}`} sx={{}}>
-                                            <Button onClick={() => { setDialogOpen(true); }}>
-                                                <Card elevation={0}>
-                                                    <DeckComponent slots={currentDeck} setSlots={setCurrentDeck} isInteractive={false} DeckButtons={DeckButtons} isClickable={true} isLarge={true} size={150} />
-                                                </Card>
-                                            </Button>
-                                        </Box>
-                                    })}
-                                </CardContent>
-                                <CardActions sx={{ justifyContent: 'flex-end', alignItems: 'end', }} disableSpacing>
-                                    <Tooltip title={'Delete Deck'}>
-                                        <IconButton size='medium' color='error' sx={{ border: 2, mb: 1, mr: 1 }}
-                                            onClick={() => { setDeleteDialogOpen(true); }}
-                                        >
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    </Tooltip>
-                                </CardActions>
+                        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
+                            <Card elevation={0} sx={{ border: 1, borderBottom: 1, py: 4, mb: 3, width: '35%' }}>
+                                <Typography align='center' variant='h3' sx={{ fontWeight: 400 }}>My Decks</Typography>
                             </Card>
+                            <Box sx={{ display: 'flex', width: '80%', height: '70%', justifyContent: 'center', }}>
+                                <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                                    <Paper elevation={0} sx={{ border: 1, py: 1, borderRight: 0 }}>
+                                        <Tabs value={value} onChange={(event, val) => { handleChange(val) }} orientation="vertical" indicatorColor='secondary' sx={{}}>
+                                            {decks.map((d, i) => {
+                                                return <Tab label={'Deck ' + (i + 1)} key={`saved-deck-tab-${i}`} sx={{ width: '100%', mr: 2, my: 0.4 }} />
+                                            })}
+                                            {
+                                                decks.length < 10 && // max 10 decks
+                                                <Tooltip title={'Add New Deck'}><Tab label={<AddRoundedIcon />}></Tab></Tooltip>
+                                            }
+                                        </Tabs>
+                                    </Paper>
+                                </Box>
+                                <Card sx={{ width: '65%', height: '95%', display: 'flex', flexDirection: 'column', border: 1, }} elevation={0}>
+                                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0.5, pr: 0.5 }}>
+                                        <IconButton size='medium' sx={{}}
+                                            onClick={(event) => setAnchorEl(event.currentTarget)}
+                                        >
+                                            <MoreVertIcon sx={{}} />
+                                        </IconButton>
+                                        <DeckMenu />
+                                    </Box>
+                                    <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', p: 0, m: 0, height: '100%', }}>
+                                        {decks.map((d, i) => {
+                                            return <Box value={value} index={i} hidden={value !== i} key={`saved-deck-${i}`} sx={{}}>
+                                                <Button onClick={() => { setDialogOpen(true); }}>
+                                                    <Card elevation={0}>
+                                                        <DeckComponent slots={currentDeck} setSlots={setCurrentDeck} isInteractive={false} DeckButtons={DeckButtons} isClickable={true} isLarge={true} size={150} />
+                                                    </Card>
+                                                </Button>
+                                            </Box>
+                                        })}
+                                    </CardContent>
+                                    <CardActions sx={{ justifyContent: 'flex-end', alignItems: 'end', }} disableSpacing>
+                                        <Tooltip title={'Delete Deck'}>
+                                            <IconButton size='medium' color='error' sx={{ border: 2, mb: 1, mr: 1 }}
+                                                onClick={() => { setDeleteDialogOpen(true); }}
+                                            >
+                                                <DeleteIcon />
+                                            </IconButton>
+                                        </Tooltip>
+                                    </CardActions>
+                                </Card>
+                            </Box>
                         </Box>
                         :
-                        <Box sx={{ p: 4, minHeight: 400, display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-                            <Typography variant='h4'>You currently have no saved decks</Typography>
+                        <Card sx={{ mt: 7, height: 400, width: '40%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                            <Typography variant='h4' align='center'>You currently have no saved decks</Typography>
                             <GeneralButton focusRipple
                                 onClick={() => { handleChange(0) }}>
                                 <Typography
@@ -232,7 +236,7 @@ function Decks() {
                                     Add Deck
                                 </Typography>
                             </GeneralButton>
-                        </Box>
+                        </Card>
                     }
                 </Box>
                 {dialogOpen &&
@@ -246,9 +250,12 @@ function Decks() {
                         closeText={'Cancel'} submitText={'Delete'} dialogOpen={deleteDialogOpen} />
                 }
             </> : <>{userSignedIn ?
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><CircularProgress /></Box>
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <img src='Blue Crown Animated 2.gif' alt='Blue Crown Animated 2.gif' style={{ height: 150 }}></img></Box>
                 : <Box sx={{ p: 4, minHeight: 400, display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-                    <Typography variant='h4'>You must be signed in to save decks</Typography></Box>}</>}
+                    <Typography variant='h4'>
+                        You must be <Link href="http://localhost:3000/login">signed in</Link> to save decks
+                    </Typography>
+                </Box>}</>}
         </Box>
 
     );

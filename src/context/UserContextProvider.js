@@ -25,7 +25,6 @@ function UsersProvider(props) {
 
     useEffect(() => {
         setLoading(true);
-
         checkUserDetails();
     }, []);
 

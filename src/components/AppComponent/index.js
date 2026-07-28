@@ -31,12 +31,20 @@ function AppComponent({ children, signOut, user, }) {
 					user={user}
 				>
 				</AppLayout>
-				<Box sx={{ bgcolor: theme.palette.background.dark, minHeight: 150, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', pb: 4 }}>
+				<Box sx={{ bgcolor: theme.palette.background.dark, minHeight: 150, display: 'flex', justifyContent: 'space-evenly', alignItems: 'flex-end', pb: 4 }}>
 					<Typography variant='subtitle2' sx={{ color: theme.palette.text.gray }}>
 						This material is unofficial and is not endorsed by Supercell. For more information see
 						<Link target="_blank" href="https://supercell.com/en/fan-content-policy/"> Supercell's Fan Content Policy.
 						</Link>
 					</Typography>
+					<Box sx={{ }}>
+						<Typography variant='subtitle2' sx={{ color: 'white' }}>
+							{`Contact: `}
+						</Typography>
+						<Typography variant='subtitle2' sx={{ color: theme.palette.text.gray }}>
+							{` jasonmullen189@gmail.com`}
+						</Typography>
+					</Box>
 
 				</Box>
 

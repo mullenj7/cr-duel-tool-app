@@ -2,7 +2,7 @@
 
 TODO: cardlist search// move deck buttons to separate component// 
 // navigate to last path after sign in // clean up getUser id tokens usage with fetchauthsession //
-add snackbars // fix api authorizer
+add snackbars // fix api authorizer // fix deck page loading flow
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

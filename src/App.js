@@ -22,7 +22,7 @@ function Home() {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center'
-	}}><CircularProgress /></div>
+	}}> <img src='Blue Crown Animated 2.gif' alt='Blue Crown Animated 2.gif' style={{ height: 150 }}></img></div>
 	const { user, signOut } = useAuthenticator((context) => [context.user]);
 	const muiTheme = createTheme({
 		...theme
@@ -43,10 +43,12 @@ function Home() {
 										name={route.name}
 										path={route.path}
 										exact={route.exact}
-										element={<ErrorBoundary
-											onError={() => { <Navigate replace to='/error' /> }} // doesn't have to navigate to display fallbackcomponent
-											FallbackComponent={DefaultError}
-										><route.component /></ErrorBoundary>}
+										element={
+											<ErrorBoundary
+												onError={() => { <Navigate replace to='/error' /> }} // doesn't have to navigate to display fallbackcomponent
+												FallbackComponent={DefaultError}
+											><route.component />
+											</ErrorBoundary>}
 									/>
 								) : (null)))}
 								<Route path='/' element={<Navigate replace to='/home' />} />
@@ -58,39 +60,6 @@ function Home() {
 		</AppContextProvider>
 
 	);
-}
-
-function Login() {
-	const loading = () => <div style={{
-		position: 'absolute',
-		height: '100vh',
-		width: '100vw',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center'
-	}}><CircularProgress /></div>
-	return (
-		<Suspense fallback={loading()}>
-			<Grid container spacing={0} height="100vh">
-				<Grid item sm={4} md={7} sx={{
-					backgroundColor: 'rgb(2,125,149)'
-				}}>
-				</Grid>
-				<Grid item xs={12} sm={8} md={5} padding={0}>
-					<Paper elevation={18} sx={{
-						minHeight: '100vh',
-						padding: '1.5rem',
-						marginTop: 0,
-					}}>
-						<Box sx={{ height: '100px' }} />
-						<Authenticator hideSignUp={false} initialState={'signIn'} />
-					</Paper>
-				</Grid>
-			</Grid>
-
-		</Suspense>
-	)
-
 }
 
 function App() {

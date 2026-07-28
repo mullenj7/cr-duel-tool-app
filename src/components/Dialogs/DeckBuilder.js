@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
 import { styled } from '@mui/material/styles';
-import { Box, Typography, Card, CardActions, Dialog, IconButton, DialogActions, Button, DialogTitle, Tooltip, ButtonBase } from '@mui/material';
+import { Box, Typography, Card, CardActions, Dialog, IconButton, DialogActions, Button, DialogTitle, Tooltip, ButtonBase, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import CheckIcon from '@mui/icons-material/Check';
@@ -29,6 +29,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
     const [currentDeck, setCurrentDeck] = useState({});
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [swapCardType, setSwapCardType] = useState(false);
+    const [searchText, setSearchText] = useState('');
 
 
     const navigate = useNavigate();
@@ -166,7 +167,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
 
 
     return (
-        <Dialog onClose={() => { setDialogOpen(false) }} open={dialogOpen} fullWidth maxWidth='xl'  >
+        <Dialog onClose={() => { setDialogOpen(false) }} open={dialogOpen} fullWidth maxWidth='xl' sx={{}}  >
             <IconButton
                 aria-label="close"
                 onClick={() => { setDialogOpen(false) }} //don't save changes
@@ -180,26 +181,25 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                 <CloseIcon />
             </IconButton>
 
-            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, py: 8, }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
-                    <Box sx={{ pt: 8, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
-                        <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} setSavedDecksDialogOpen={setSavedDecksDialogOpen} isLarge={true} size={150}
-                            savedDecksDialogOpen={savedDecksDialogOpen} DeckButtons={DeckButtons} handleLoadDeck={handleLoadDeck} decks={decks} setDecks={setDecks}
-                            swapCardType={swapCardType} setSwapCardType={setSwapCardType} />
-                    </Box>
+            <Box sx={{ display: 'flex', py: 8, justifyContent: 'center', height: 680 }}>
+                <Box sx={{ pt: 8, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '100%' }} >
+                    <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} setSavedDecksDialogOpen={setSavedDecksDialogOpen} isLarge={true} size={150}
+                        savedDecksDialogOpen={savedDecksDialogOpen} DeckButtons={DeckButtons} handleLoadDeck={handleLoadDeck} decks={decks} setDecks={setDecks}
+                        swapCardType={swapCardType} setSwapCardType={setSwapCardType} />
                 </Box>
-                <Box sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column',}}>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '80%', pb: 2, }}>
+                <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column', }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '80%', pb: 2, alignItems: 'center' }}>
+                        <TextField size='small' placeholder='Search...' value={searchText} onChange={(event) => { setSearchText(event.target.value); }} sx={{ mx: 2, p: 0, my: 0, width: '70%' }} />
                         <IconButton style={{ borderRadius: '5%' }} onClick={() => { setSortDirection(!sortDirection); }}>
                             <Typography variant='h5' sx={{ pr: 1 }}>Sort</Typography>
                             {sortDirection ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />}
                         </IconButton>
                     </Box>
-                    <CardList handleSelect={handleSelect} cards={cards} filterCards={filterCards} sortDirection={sortDirection} />
+                    <CardList handleSelect={handleSelect} cards={cards} filterCards={filterCards} sortDirection={sortDirection} searchText={searchText} />
                 </Box>
             </Box>
             <DialogActions sx={{ pb: 0, m: 0 }}>
-                <Button size='large' variant='contained' disableElevation={true} sx={{m:2 }} onClick={() => { handleCloseDialog() }}>Save</Button>
+                <Button size='large' variant='contained' disableElevation={true} sx={{ m: 2 }} onClick={() => { handleCloseDialog() }}>Save</Button>
             </DialogActions>
             {savedDecksDialogOpen && decks.length > 0 &&
                 <Dialog onClose={() => { setSavedDecksDialogOpen(false) }} open={savedDecksDialogOpen} fullWidth maxWidth='md'>
@@ -237,7 +237,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                         <Typography>You currently have no saved decks</Typography>
                         <GeneralButton focusRipple
                             onClick={() => {
-                                navigate('/decks', );
+                                navigate('/decks',);
                             }}>
                             <Typography
                                 component="span"
@@ -257,7 +257,8 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                                 Add Decks
                             </Typography>
                         </GeneralButton>
-                    </Card></Dialog>
+                    </Card>
+                </Dialog>
             }
         </Dialog>
     );
