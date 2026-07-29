@@ -78,7 +78,7 @@ function AvailableCards({ slotArray, align = 'left' }) {
                     </Box>
                     <Stack direction="row" spacing={1}
                         useFlexGap
-                        sx={{ flexWrap: 'wrap', pb: 3, display: 'flex', justifyContent: align === 'left' ? 'flex-start' : 'flex-end',pl: align === 'left' ? 1 : 0, pr: align === 'right' ? 1 : 0  }}
+                        sx={{ flexWrap: 'wrap', pb: 3, display: 'flex', justifyContent: align === 'left' ? 'flex-start' : 'flex-end', pl: align === 'left' ? 1 : 0, pr: align === 'right' ? 1 : 0 }}
                     >
                         {
                             filtered.sort((a, b) => b.rarity - a.rarity).map((c, i) => {
@@ -88,20 +88,6 @@ function AvailableCards({ slotArray, align = 'left' }) {
                             })
                         }
                     </Stack>
-
-                    {/* <div style={{
-                    justifyContent: 'center', alignItems: 'center', alignContent: 'center', 
-                    textAlign: align === 'left' ? 'left' : 'right', paddingRight: 5, paddingLeft: 5,
-                }}>
-                    {
-                        filtered.sort((a, b) => b.rarity - a.rarity).map((c, i) => {
-                            return (<div style={{ display: 'inline-block', marginLeft: 2, marginRight: 2 }}>
-                                <img src={c.img} alt={c.id} key={`av-cards-${align}-${i}`} style={{ height: 42, }}></img>
-                            </div>
-                            );
-                        })
-                    }
-                </div> */}
                 </Box>
             );
         })}

@@ -164,8 +164,8 @@ function Decks() {
                 <Box elevation={1} sx={{ width: '90%', display: 'flex', justifyContent: 'center', p: 8 }}>
                     {decks && decks.length > 0 && currentDeck && currentDeck.length > 0 ?
                         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
-                            <Card elevation={0} sx={{ border: 1, borderBottom: 1, py: 4, mb: 3, width: '35%' }}>
-                                <Typography align='center' variant='h3' sx={{ fontWeight: 400 }}>My Decks</Typography>
+                            <Card elevation={0} sx={{ border: 1, borderBottom: 1, py: 4, mb: 3, width: '25%' }}>
+                                <Typography align='center' variant='h3' sx={{ fontWeight: 600 }}>My Decks</Typography>
                             </Card>
                             <Box sx={{ display: 'flex', width: '80%', height: '70%', justifyContent: 'center', }}>
                                 <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>

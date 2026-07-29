@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
 import { styled } from '@mui/material/styles';
-import { Box, Typography, Grid, Dialog, Tooltip, IconButton, Card, Button, ButtonBase, Divider, } from '@mui/material';
+import { Box, Typography, Grid, Dialog, Tooltip, IconButton, Card, Button, Divider, } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
@@ -16,7 +16,6 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotA
     const handleClear = (index) => {
         setSlotArray(slotArray.filter((a, i) => { return i !== index }));
     };
-
 
 
     return (

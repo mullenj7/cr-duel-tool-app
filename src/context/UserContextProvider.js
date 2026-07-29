@@ -15,6 +15,8 @@ function UsersProvider(props) {
     const [userSignedIn, setUserSignedIn] = useState(false);
 
     const handleSignInChange = async () => {
+        setLoading(true);
+
         if (userSignedIn === true) {
             await fetchUserDetails();
         }
@@ -68,7 +70,6 @@ function UsersProvider(props) {
     const updateUserAttributes = async (attributes) => {
         try {
             const response = await updateUser(attributes);
-            console.log(response);
             if (response.errorMessage) {
                 throw new Error(response.errorMessage);
             }

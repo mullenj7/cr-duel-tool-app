@@ -159,9 +159,9 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
     const DeckButtons = () => {
         return <Box sx={{ width: '100%', mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
             {loadDeck &&
-                <Tooltip title={'Load Deck'}><IconButton size={'medium'} color='primary' sx={{ border: 2 }} onClick={() => { setSavedDecksDialogOpen(true); }}><FolderIcon /></IconButton></Tooltip>
+                <Tooltip title={'Load Deck'}><IconButton size={'medium'} color='secondary' sx={{ border: 2 }} onClick={() => { setSavedDecksDialogOpen(true); }}><FolderIcon /></IconButton></Tooltip>
             }
-            <Tooltip title={'Clear'}><IconButton size={'medium'} color='error' sx={{ border: 2, ml: 2 }} onClick={() => { handleClearDeck() }}><DeleteIcon /></IconButton></Tooltip>
+            <Tooltip title={'Clear'}><IconButton size={'medium'} sx={{ border: 2, ml: 2, color: theme.palette.error.main }} onClick={() => { handleClearDeck() }}><DeleteIcon /></IconButton></Tooltip>
         </Box>
     }
 

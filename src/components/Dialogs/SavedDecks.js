@@ -20,18 +20,6 @@ function SavedDecks({ isDialog, decks, setDecks, currentDeck, setCurrentDeck, se
     };
 
 
-    const DeckButtons = () => {
-        if (!isDialog) {
-            return <Box sx={{ width: '100%', mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
-                <Tooltip title={'Load Deck'}><IconButton size={'small'} sx={{ border: 2, color: 'blue' }} onClick={() => { }}><FolderIcon /></IconButton></Tooltip>
-                <Tooltip title={'Clear'}><IconButton size={'small'} color='error' sx={{ border: 2, ml: 2 }} onClick={() => { }}><DeleteIcon /></IconButton></Tooltip>
-            </Box>
-        }
-        else {
-            return null;
-        }
-    }
-
     return (
 
         <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 350, width: '100%', flexGrow: 1, py: 0, }}>
@@ -55,7 +43,7 @@ function SavedDecks({ isDialog, decks, setDecks, currentDeck, setCurrentDeck, se
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '70%', flexGrow: 1, }}>
                 <Box sx={{ pt: 0, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
                     <Button onClick={()=>{handleSelectLoadDeck()}}>
-                    <DeckComponent isLarge={false} size={125} slots={currentDeck} setSlots={setCurrentDeck} isInteractive={false} DeckButtons={DeckButtons} isClickable={false} />
+                    <DeckComponent isLarge={false} size={125} slots={currentDeck} setSlots={setCurrentDeck} isInteractive={false} isClickable={false} />
                     </Button>
                 </Box>
             </Box>

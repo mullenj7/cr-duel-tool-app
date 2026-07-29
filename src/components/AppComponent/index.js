@@ -64,7 +64,6 @@ function AppLayout({ children, signOut, user }) {
 
 	const handleSignIn = () => {
 		setAnchorEl(false);
-
 		navigate('/login');
 	}
 	const handleSignOut = () => {
@@ -77,7 +76,7 @@ function AppLayout({ children, signOut, user }) {
 
 	return (
 		<Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', }}>
-			<AppBar position='static' elevation={3} sx={{ py: 1, backgroundImage: `url(${template})`, backgroundSize: 'content', }}>
+			<AppBar position='static' elevation={0} sx={{ py: 1, backgroundImage: `url(${template})`, backgroundSize: 'content', }}>
 				<Toolbar>
 					<IconButton onClick={() => { navigate('/home') }} sx={{}} ><BoltIcon sx={{ color: 'gold', fontSize: 48 }} /></IconButton>
 					<Typography variant="h3" color='primary' sx={{ flexGrow: 1, pl: 5, color: 'white' }} >

@@ -26,7 +26,7 @@ const theme = {
     "fontWeightLight": 200,
     "fontWeightMedium": 400,
     "fontWeightBold": 600,
-    "fontWeightRegular": 400,
+    "fontWeightRegular": 600,
     "fontSize": 15,
     fontFamily: 'Sofia Sans',
 
@@ -45,7 +45,7 @@ const theme = {
   },
   "palette": {
     "primary": {
-      "main": "#8f6a0a"
+      "main": "#836311" // need to update in index.css amplify too whenever changing
     },
     "background": {
       "default": "#faf9f4",
@@ -61,7 +61,10 @@ const theme = {
     "text": {
       "secondary": "#00000099",
       "gray":"#b8b8b899",
-    }
+    },
+    "border":{
+      "main":"#b0b0b099",
+    },
   },
   "shape": {
     "borderRadius": 12.5
