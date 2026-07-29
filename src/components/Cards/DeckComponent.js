@@ -74,7 +74,7 @@ function DeckComponent({ slots, setSlots, isInteractive, isClickable, DeckButton
                         <CardSlot value={slots[7]} handleDropCard={handleDropCard} handleRemoveCard={handleRemoveCard} index={7} isInteractive={isInteractive} isLarge={isLarge} size={size}></CardSlot>
                     </Grid>
                 </Grid>
-                {(isInteractive || !isClickable) &&
+                {isInteractive &&
                     <DeckButtons />
                 }
             </Box>
