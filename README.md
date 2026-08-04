@@ -1,74 +1,30 @@
-# Getting Started with Create React App
+# Clash Royale Duel Tool App
 
-TODO: cardlist search// move deck buttons to separate component// 
-// navigate to last path after sign in // clean up getUser id tokens usage with fetchauthsession //
-add snackbars // fix api authorizer // turn on authorization caching aws
+This Repo contains the code for the Clash Royale Duel Tool app found at www.test.com.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Clash Royale Duel Tool is a tool for Clash Royale players to help 
 
-## Available Scripts
+## How To Run
 
-In the project directory, you can run:
+After cloning the repository, the app can be installed and run locally using:
+
+### `npm i`
+
+`and`
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The app will run normally out of the box. However, in order to use the login functionality, you will need to create a `.env.development` file in the project root,
+and have an AWS Cognito pool for the required credentials.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This file would need to take the format of:
 
-### `npm test`
+```
+REACT_APP_STAGE=dev
+REACT_APP_API_STAGE=dev
+REACT_APP_REGION={your AWS region}
+REACT_APP_USERPOOL_ID={your user pool id}
+REACT_APP_CLIENT_ID={your app client id}
+REACT_APP_MAIN_APP=http://localhost:8000
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
