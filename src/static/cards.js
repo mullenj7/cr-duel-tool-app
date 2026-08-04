@@ -19,7 +19,7 @@ export const cards = [ // rarity: common: 0, rare: 1, epic: 2, legendary: 3, cha
     { id: 17, img: 'Images/battle-healer.png', rarity: 1 },
     { id: 18, img: 'Images/battle-ram-ev1.png', evo: true },
     { id: 19, img: 'Images/battle-ram.png', winCon: true, hasEvo: true, rarity: 1 },
-    { id: 20, img: 'Images/berserker.png', rarity: 0 },
+    { id: 20, img: 'Images/berserker.png', hasHero: true, rarity: 0 },
     { id: 21, img: 'Images/bomb-tower.png', building: true, rarity: 1 },
     { id: 22, img: 'Images/bomber-ev1.png', evo: true },
     { id: 23, img: 'Images/bomber.png', hasEvo: true, rarity: 0 },
@@ -42,7 +42,7 @@ export const cards = [ // rarity: common: 0, rare: 1, epic: 2, legendary: 3, cha
     { id: 40, img: 'Images/electro-giant.png', winCon: true, rarity: 2 },
     { id: 41, img: 'Images/electro-spirit.png', rarity: 0 },
     { id: 42, img: 'Images/electro-wizard.png', rarity: 3 },
-    { id: 43, img: 'Images/elite-barbarians.png', rarity: 0 },
+    { id: 43, img: 'Images/elite-barbarians.png', hasEvo: true, rarity: 0 },
     { id: 44, img: 'Images/elixir-collector.png', building: true, rarity: 1 },
     { id: 45, img: 'Images/elixir-golem.png', winCon: true, rarity: 1 },
     { id: 46, img: 'Images/executioner-ev1.png', evo: true },
@@ -167,7 +167,7 @@ export const cards = [ // rarity: common: 0, rare: 1, epic: 2, legendary: 3, cha
     { id: 165, img: 'Images/tornado.png', spell: true, rarity: 2 },
     // { id: 166, img: 'Images/tower-princess.png' },
     { id: 167, img: 'Images/valkyrie-ev1.png', evo: true },
-    { id: 168, img: 'Images/valkyrie.png', hasEvo: true, rarity: 1 },
+    { id: 168, img: 'Images/valkyrie.png', hasEvo: true, hasHero: true, rarity: 1 },
     { id: 169, img: 'Images/vines.png', spell: true, rarity: 2 },
     { id: 170, img: 'Images/wall-breakers-ev1.png', evo: true },
     { id: 171, img: 'Images/wall-breakers.png', winCon: true, hasEvo: true, rarity: 2 },
@@ -182,6 +182,10 @@ export const cards = [ // rarity: common: 0, rare: 1, epic: 2, legendary: 3, cha
     { id: 180, img: 'Images/zappies.png', rarity: 1 },
     { id: 181, img: 'Images/void.png', rarity: 2 },
     { id: 182, img: 'Images/ronin.png', rarity: 3 },
+    { id: 183, img: 'Images/valkyrie-hero.png', hero: true },
+    { id: 184, img: 'Images/berserker-hero.png', hero: true },
+    { id: 185, img: 'Images/elite-barbarians-ev1.png', evo: true },
+
 
 
 ];
