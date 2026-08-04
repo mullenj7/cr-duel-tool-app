@@ -126,7 +126,7 @@ export const cards = [ // rarity: common: 0, rare: 1, epic: 2, legendary: 3, cha
     { id: 124, img: 'Images/pekka-ev1.png', evo: true },
     { id: 125, img: 'Images/pekka.png', hasEvo: true, rarity: 2 },
     { id: 126, img: 'Images/phoenix.png', rarity: 3 },
-    // { id: 127, img: 'Images/placeholder.png' },
+    // { id: 127, img: 'Images/empty-slot.png' },
     { id: 128, img: 'Images/poison.png', spell: true, rarity: 2 },
     { id: 129, img: 'Images/prince.png', rarity: 2 },
     { id: 130, img: 'Images/princess-ev1.png', evo: true },

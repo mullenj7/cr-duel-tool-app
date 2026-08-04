@@ -1,6 +1,3 @@
-import { green } from "@mui/material/colors";
-import SofiaSans from '../../static/fonts/Sofia_Sans/SofiaSans-VariableFont_wght.ttf'
-import SofiaSansItalic from '../../static/fonts/Sofia_Sans/static/SofiaSans-BoldItalic.ttf'
 import '../../index.css'
 
 const theme = {

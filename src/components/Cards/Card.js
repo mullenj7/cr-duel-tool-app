@@ -10,7 +10,7 @@ export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCa
             const newImg = `${split[0]}-${type}.${split[1]}`
             return newImg;
         }
-        catch (e) { return 'Images/Placeholder.png'; }
+        catch (e) { return 'Images/empty-slot.png'; }
     }
 
     const getIMG = () => {
@@ -45,7 +45,7 @@ export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCa
         }
         catch (e) {
             console.debug(e);
-            return 'Images/Placeholder.png';
+            return 'Images/empty-slot.png';
         }
     }
 
@@ -65,6 +65,6 @@ export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCa
     }), [value, handleDropCard])
     const opacity = isInteractive ? (isDragging ? 0.4 : 1) : 1
     return (
-        <img ref={drag} style={{ opacity, height: size }} data-testid={`box`} src={value.img ? getIMG() : 'Images/Placeholder.png'} alt={value.id ? value.id : ''}></img>
+        <img ref={drag} style={{ opacity, height: size }} data-testid={`box`} src={value.img ? getIMG() : 'Images/empty-slot.png'} alt={value.id ? value.id : ''}></img>
     )
 }
