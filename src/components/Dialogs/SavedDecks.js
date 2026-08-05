@@ -23,13 +23,13 @@ function SavedDecks({ isDialog, decks, setDecks, currentDeck, setCurrentDeck, se
                     {decks.map((d, i) => {
                         return <ListItem component="div" disablePadding key={`deck-item-${i}`}>
                             <ListItemButton onClick={() => handleListItemClick(i, d)} selected={selectedIndex === i}>
-                                <ListItemText align='center' primary={`Deck ${i + 1}`} />
+                                <ListItemText disableTypography align='center' primary={`Deck ${i + 1}`} sx={{ fontWeight: 400 }} />
                             </ListItemButton>
                         </ListItem>
                     })} {[...Array(10 - decks.length)].map((d, i) => { // fill rest of list with empty decks
                         return <Tooltip title={'No Deck In This Slot'} key={`deck-item-${i + decks.length}`}><ListItem component="div" disablePadding >
                             <ListItemButton disabled>
-                                <ListItemText align='center' primary={`Deck ${i + 1 + decks.length}`} />
+                                <ListItemText align='center' primary={`Deck ${i + 1 + decks.length}`} sx={{ fontWeight: 400 }} />
                             </ListItemButton>
                         </ListItem></Tooltip>
                     })}
@@ -37,7 +37,7 @@ function SavedDecks({ isDialog, decks, setDecks, currentDeck, setCurrentDeck, se
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '70%', flexGrow: 1, }}>
                 <Box sx={{ pt: 0, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
-                    <Button onClick={() => { handleSelectLoadDeck() }}>
+                    <Button onClick={() => { handleSelectLoadDeck() }} sx={{ p: 0, m: 0 }}>
                         <DeckComponent isLarge={false} size={125} slots={currentDeck} setSlots={setCurrentDeck} isInteractive={false} isClickable={false} />
                     </Button>
                 </Box>

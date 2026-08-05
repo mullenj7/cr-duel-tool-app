@@ -64,32 +64,34 @@ function AvailableCards({ slotArray, align = 'left' }) {
 
     useEffect(() => {
         filterCards();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [slotArray]);
 
 
 
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', width: '100%', ml: align === 'left' ? 0 : 2, mr: align === 'right' ? 0 : 2 }}>{filteredCards.map((filtered, index) => {
-            return (
-                <Box key={`category-${align}-${index}`} sx={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', }}>
-                    <Box sx={{ pb: 2 }}>
-                        <Divider orientation="horizontal" variant="middle"><Typography sx={{}} > {categories[index]}</Typography></Divider>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', width: '100%', ml: align === 'left' ? 0 : 2, mr: align === 'right' ? 0 : 2 }}>
+            {filteredCards.map((filtered, index) => {
+                return (
+                    <Box key={`category-${align}-${index}`} sx={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', }}>
+                        <Box sx={{ pb: 2 }}>
+                            <Divider orientation="horizontal" variant="middle"><Typography sx={{}} > {categories[index]}</Typography></Divider>
+                        </Box>
+                        <Stack direction="row" spacing={1}
+                            useFlexGap
+                            sx={{ flexWrap: 'wrap', pb: 3, display: 'flex', justifyContent: align === 'left' ? 'flex-start' : 'flex-end', pl: align === 'left' ? 1 : 0, pr: align === 'right' ? 1 : 0 }}
+                        >
+                            {
+                                filtered.sort((a, b) => b.rarity - a.rarity).map((c, i) => {
+                                    return (
+                                        <img src={c.img} alt={c.id} key={`av-cards-${align}-${i}`} style={{ height: 42, }}></img>
+                                    );
+                                })
+                            }
+                        </Stack>
                     </Box>
-                    <Stack direction="row" spacing={1}
-                        useFlexGap
-                        sx={{ flexWrap: 'wrap', pb: 3, display: 'flex', justifyContent: align === 'left' ? 'flex-start' : 'flex-end', pl: align === 'left' ? 1 : 0, pr: align === 'right' ? 1 : 0 }}
-                    >
-                        {
-                            filtered.sort((a, b) => b.rarity - a.rarity).map((c, i) => {
-                                return (
-                                    <img src={c.img} alt={c.id} key={`av-cards-${align}-${i}`} style={{ height: 42, }}></img>
-                                );
-                            })
-                        }
-                    </Stack>
-                </Box>
-            );
-        })}
+                );
+            })}
         </Box>
     );
 };

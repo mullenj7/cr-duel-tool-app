@@ -62,7 +62,7 @@ function Decks() {
             setCurrentDeck(decks[value]);
         }
         //else setValue(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [decks]);
 
     const handleSaveDeck = async (userDecks) => {
@@ -167,7 +167,7 @@ function Decks() {
                             </Card>
                             <Box sx={{ display: 'flex', width: '80%', height: '70%', justifyContent: 'center', }}>
                                 <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                                    <Paper elevation={0} sx={{ border: 1, py: 1, borderRight: 0 }}>
+                                    <Paper elevation={0} sx={{ border: 1, py: 1, }}>
                                         <Tabs value={value} onChange={(event, val) => { handleChange(val) }} orientation="vertical" indicatorColor='secondary' sx={{}}>
                                             {decks.map((d, i) => {
                                                 return <Tab label={'Deck ' + (i + 1)} key={`saved-deck-tab-${i}`} sx={{ width: '100%', mr: 2, my: 0.4 }} />
@@ -179,7 +179,7 @@ function Decks() {
                                         </Tabs>
                                     </Paper>
                                 </Box>
-                                <Card sx={{ width: '65%', height: '95%', display: 'flex', flexDirection: 'column', border: 1, }} elevation={0}>
+                                <Card sx={{ width: '65%', height: '95%', display: 'flex', flexDirection: 'column', border: 1, borderLeft: 0, }} elevation={0}>
                                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0.5, pr: 0.5 }}>
                                         <IconButton size='medium' sx={{}}
                                             onClick={(event) => setAnchorEl(event.currentTarget)}
@@ -191,7 +191,7 @@ function Decks() {
                                     <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', p: 0, m: 0, height: '100%', }}>
                                         {decks.map((d, i) => {
                                             return <Box value={value} index={i} hidden={value !== i} key={`saved-deck-${i}`} sx={{}}>
-                                                <Button onClick={() => { setDialogOpen(true); }}>
+                                                <Button onClick={() => { setDialogOpen(true); }} sx={{ p: 0, m: 0 }}>
                                                     <Card elevation={0}>
                                                         <DeckComponent slots={currentDeck} setSlots={setCurrentDeck} isInteractive={false} DeckButtons={DeckButtons} isClickable={true} isLarge={true} size={150} />
                                                     </Card>

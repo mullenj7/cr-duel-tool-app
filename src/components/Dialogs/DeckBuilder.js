@@ -70,14 +70,15 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
         for (let i = 0; i < arr.length; i++) {
             if (Object.keys(arr[i]).length < 1) {
                 if (card.rarity === 4) { // if champion and there is a free slot in deck swap 2nd or 3rd card -- champions can only be in 2nd or 3rd slot
-                    const second = arr[1];
                     if (arr[1].rarity !== 4) {
+                        const temp = arr[1];
                         arr[1] = card;
-                        arr[i] = second; // swap card in second slot with champion
+                        arr[i] = temp; // swap card in second slot with champion
                     }
                     else if (arr[2].rarity !== 4) {
+                        const temp = arr[2];
                         arr[2] = card;
-                        arr[i] = second; // swap card in third slot with champion
+                        arr[i] = temp; // swap card in third slot with champion
                     }
                 }
                 else {
