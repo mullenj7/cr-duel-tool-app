@@ -1,5 +1,4 @@
 import { useDrag } from 'react-dnd'
-import { Box, Button, Grid, Card } from '@mui/material';
 
 
 export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCardType, isInteractive = false, isLarge, size }) {

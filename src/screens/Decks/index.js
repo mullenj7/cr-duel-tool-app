@@ -1,9 +1,7 @@
 import React, { useEffect, useContext } from 'react';
-import { emphasize, useTheme } from '@mui/material/styles';
 import { useState } from 'react';
-import { styled } from '@mui/material/styles';
 import {
-    Box, Typography, Card, Dialog, CardActions, Button, Tab, Tabs, IconButton, Tooltip, Paper, Link, CardContent, CardHeader,
+    Box, Typography, Card, CardActions, Button, Tab, Tabs, IconButton, Tooltip, Paper, Link, CardContent,
     Menu, MenuItem
 } from '@mui/material';
 import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
@@ -33,8 +31,8 @@ function Decks() {
     const [anchorEl, setAnchorEl] = useState(null);
     const deckDropdownOpen = Boolean(anchorEl);
 
-    const { userDetails, fetchUserDetails, updateUserAttributes, userSignedIn } = useContext(UserContext);
-    const { loading, setLoading } = useContext(AppContext);
+    const { userDetails, updateUserAttributes, userSignedIn } = useContext(UserContext);
+    const { loading } = useContext(AppContext);
 
 
 
@@ -64,17 +62,17 @@ function Decks() {
             setCurrentDeck(decks[value]);
         }
         //else setValue(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [decks]);
 
     const handleSaveDeck = async (userDecks) => {
-        const response = await updateUserAttributes({ decks: userDecks });
+        await updateUserAttributes({ decks: userDecks });
     }
 
     const handleDeleteDeck = async () => {
         var arr = [...decks];
         arr = arr.filter((d, index) => { return index !== value })
-        const response = await updateUserAttributes({ decks: arr });
-        //setDecks(arr);
+        await updateUserAttributes({ decks: arr });
 
         if (arr.length <= 0) { // no more decks
             setValue(false);

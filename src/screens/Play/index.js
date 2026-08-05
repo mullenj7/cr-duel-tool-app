@@ -1,9 +1,6 @@
 import React, { useEffect, useContext } from 'react';
-import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
-import { styled } from '@mui/material/styles';
 import { Box, Typography,Paper } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 
 
 import GameDecks from '../../components/Dialogs/GameDecks';
@@ -14,7 +11,6 @@ import DeckBuilder from '../../components/Dialogs/DeckBuilder';
 function Play() {
 
   const [userDecks, setUserDecks] = useState([]);
-  const theme = useTheme();
   const [slotArrayRed, setSlotArrayRed] = useState([]);
   const [slotArrayBlue, setSlotArrayBlue] = useState([]);
 

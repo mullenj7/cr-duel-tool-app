@@ -1,16 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useAuthenticator } from '@aws-amplify/ui-react';
 import PropTypes from 'prop-types';
 import {
     fetchAuthSession,
-    getCurrentUser
 } from 'aws-amplify/auth'; import { UserContext } from './UserContext';
 import { AppContext } from './AppContext';
 import { getUser, updateUser } from '../utils/api/users'
-import { SliderTrack } from '@mui/material';
 
 function UsersProvider(props) {
-    const { loading, setLoading } = useContext(AppContext);
+    const { setLoading } = useContext(AppContext);
     const [userDetails, setUserDetails] = useState({});
     const [userSignedIn, setUserSignedIn] = useState(false);
 
@@ -28,11 +25,13 @@ function UsersProvider(props) {
     useEffect(() => {
         setLoading(true);
         checkUserDetails();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 
     useEffect(() => {
         handleSignInChange();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userSignedIn]);
 
     const checkUserDetails = async () => {

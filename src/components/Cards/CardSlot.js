@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { useDrop } from 'react-dnd'
-import { Box, Typography, Grid, Card, IconButton, CardActions } from '@mui/material';
+import { Card, IconButton } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
-import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import SwapHorizRoundedIcon from '@mui/icons-material/SwapHorizRounded';
 
 import { CardDrag } from './Card';
@@ -20,6 +19,7 @@ export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handl
             canDrop: monitor.canDrop(),
         }),
     }))
+    // eslint-disable-next-line no-unused-vars
     const isActive = canDrop && isOver
 
     const InteractiveSlot = <div ref={drop} style={{ position: 'relative' }} data-testid="dustbin">

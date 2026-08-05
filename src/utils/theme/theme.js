@@ -3,20 +3,7 @@ import '../../index.css'
 const theme = {
   components: {
     MuiCssBaseline: {
-      // styleOverrides: `
-      //   @font-face {
-      //     font-family: 'SofiaSans';
-      //     font-style: normal;
-      //     font-display: swap;
-      //     src: local('SofiaSans'), local('SofiaSans-Regular'), url(${SofiaSans}) format('woff2');
-      //   },
-      //  @font-face {
-      //     font-family: 'SofiaSansItalic';
-      //     font-style: normal;
-      //     font-display: swap;
-      //     src: local('SofiaSansItalic'), local('SofiaSans-BoldItalic'), url(${SofiaSansItalic}) format('woff2');
-      //   }
-      // `,
+   
     },
   },
   "typography": {

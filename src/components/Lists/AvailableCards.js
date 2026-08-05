@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import { useTheme } from '@mui/material/styles';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Divider, Box, Stack, Paper, Button, Typography, Grid } from '@mui/material';
-import ImageIcon from '@mui/icons-material/Image';
+import { Divider, Box, Stack, Typography } from '@mui/material';
+
 
 import { cards } from '../../static/cards';
 

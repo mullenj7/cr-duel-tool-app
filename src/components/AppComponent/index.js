@@ -1,18 +1,16 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { BrowserRouter } from "react-router-dom";
 import {
 	AppBar, Box, Toolbar, IconButton, Button,
-	Typography, MenuItem, Menu, Divider, Link, ButtonBase
+	Typography, MenuItem, Menu, Divider, Link,
 
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import BoltIcon from '@mui/icons-material/Bolt';
-import Home from '@mui/icons-material/Home';
 import { UserContext } from '../../context/UserContext';
-import { AppContext } from '../../context/AppContext';
-import { setUpTOTP } from '@aws-amplify/auth';
+
 
 
 
@@ -58,9 +56,7 @@ function AppLayout({ children, signOut, user }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const dropdownOpen = Boolean(anchorEl);
 
-	const { setLoading, } = useContext(AppContext);
 	const { setUserSignedIn } = useContext(UserContext);
-	const theme = useTheme();
 
 	const handleSignIn = () => {
 		setAnchorEl(false);

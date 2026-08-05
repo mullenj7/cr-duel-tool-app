@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-import { CircularProgress, Grid, Paper, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react';
 import '../../index.css'
 
@@ -27,7 +27,7 @@ function Login() {
                     flexGrow: 1,
                     display: 'flex', justifyContent: 'center', alignItems: 'center'
                 }}>
-                    <Authenticator hideSignUp={false} initialState={'signIn'} style={{color:'red'}}/>
+                    <Authenticator hideSignUp={false} initialState={'signIn'} style={{ color: 'red' }} />
                 </Box>
                 :
                 <Navigate replace to='/home' />

@@ -5,7 +5,6 @@ import routes from './routes';
 import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import UsersProvider from './context/UserContextProvider';
-import { CircularProgress, Grid, Paper, Box } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 

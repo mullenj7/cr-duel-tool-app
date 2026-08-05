@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
-import { useTheme } from '@mui/material/styles';
-import { useState } from 'react';
-import { Box, Typography, Grid, } from '@mui/material';
+import React from 'react';
+import { Box, Grid, } from '@mui/material';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
@@ -10,9 +8,6 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { CardSlot } from '../../components/Cards/CardSlot';
 
 function DeckComponent({ slots, setSlots, isInteractive, isClickable, DeckButtons, isLarge = false, size = 150, swapCardType, setSwapCardType }) {
-
-    const theme = useTheme();
-
 
     const handleDropCard = (fromIndex, toIndex) => {
         if ((Object.keys(slots[fromIndex]).length >= 1 && slots[fromIndex].rarity === 4) || (Object.keys(slots[toIndex]).length >= 1 && slots[toIndex].rarity === 4)) { // champion can only be moved between 2nd and 3rd slot
