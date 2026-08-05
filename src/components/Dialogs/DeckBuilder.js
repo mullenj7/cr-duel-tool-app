@@ -40,6 +40,7 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                 setSwapCardType(arr[2].swapCardType);
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [slotArray]);
 
 
@@ -159,9 +160,13 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
     const DeckButtons = () => {
         return <Box sx={{ width: '100%', mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
             {loadDeck &&
-                <Tooltip title={'Load Deck'}><IconButton size={'medium'} color='secondary' sx={{ border: 2 }} onClick={() => { setSavedDecksDialogOpen(true); }}><FolderIcon /></IconButton></Tooltip>
+                <Tooltip title={'Load Deck'}>
+                    <IconButton size={'medium'} color='secondary' sx={{ border: 2 }} onClick={() => { setSavedDecksDialogOpen(true); }}><FolderIcon /></IconButton>
+                </Tooltip>
             }
-            <Tooltip title={'Clear'}><IconButton size={'medium'} sx={{ border: 2, ml: 2, color: theme.palette.error.main }} onClick={() => { handleClearDeck() }}><DeleteIcon /></IconButton></Tooltip>
+            <Tooltip title={'Clear'}>
+                <IconButton size={'medium'} sx={{ border: 2, ml: 2, color: theme.palette.error.main }} onClick={() => { handleClearDeck() }}><DeleteIcon /></IconButton>
+            </Tooltip>
         </Box>
     }
 
@@ -175,23 +180,22 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                     position: 'absolute',
                     right: 8,
                     top: 8,
-                    // color: theme.palette.grey[500],
                 })}
             >
                 <CloseIcon />
             </IconButton>
 
-            <Box sx={{ display: 'flex', py: 8, justifyContent: 'center', height: 680 }}>
+            <Box sx={{ display: 'flex', py: {lg:8,xl:8}, justifyContent: 'center', height: { lg: 600, xl: 680 } }}>
                 <Box sx={{ pt: 8, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '100%' }} >
                     <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} setSavedDecksDialogOpen={setSavedDecksDialogOpen} isLarge={true} size={150}
                         savedDecksDialogOpen={savedDecksDialogOpen} DeckButtons={DeckButtons} handleLoadDeck={handleLoadDeck} decks={decks} setDecks={setDecks}
                         swapCardType={swapCardType} setSwapCardType={setSwapCardType} />
                 </Box>
                 <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column', }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '80%', pb: 2, alignItems: 'center' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '80%', pb: 2, alignItems: 'center', }}>
                         <TextField size='small' placeholder='Search...' value={searchText} onChange={(event) => { setSearchText(event.target.value); }} sx={{ mx: 2, p: 0, my: 0, width: '70%' }} />
                         <IconButton style={{ borderRadius: '5%' }} onClick={() => { setSortDirection(!sortDirection); }}>
-                            <Typography variant='h5' sx={{ pr: 1 }}>Sort</Typography>
+                            <Typography variant='h5' sx={{ pr: 1, typography: { lg: 'h6', xl: 'h5' } }}>Sort</Typography>
                             {sortDirection ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />}
                         </IconButton>
                     </Box>

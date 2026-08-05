@@ -2,12 +2,14 @@ import React, { useEffect, useContext } from 'react';
 import { useState } from 'react';
 import {
     Box, Typography, Card, CardActions, Button, Tab, Tabs, IconButton, Tooltip, Paper, Link, CardContent,
-    Menu, MenuItem
+    Menu, MenuItem,
+
 } from '@mui/material';
 import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+
 
 
 import ConfirmationDialog from '../../components/Dialogs/ConfirmationDialog';
@@ -21,7 +23,6 @@ import { AppContext } from '../../context/AppContext';
 
 function Decks() {
     const EMPTY_DECK = [{}, {}, {}, {}, {}, {}, {}, {}];
-
     const [decks, setDecks] = useState([]);
     const [currentDeck, setCurrentDeck] = useState(EMPTY_DECK);
     const [copiedDeck, setCopiedDeck] = useState();
@@ -156,21 +157,25 @@ function Decks() {
         </Menu>
     }
 
+
+
     return (
         <Box sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', pt: 0, flexGrow: 1, }}>
             {userSignedIn && !loading ? <>
-                <Box elevation={1} sx={{ width: '90%', display: 'flex', justifyContent: 'center', p: 8 }}>
+                <Box elevation={1} sx={{ width: '90%', display: 'flex', justifyContent: 'center', p: 0, alignItems: 'center' }}>
                     {decks && decks.length > 0 && currentDeck && currentDeck.length > 0 ?
                         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
-                            <Card elevation={0} sx={{ border: 1, borderBottom: 1, py: 4, mb: 3, width: '25%' }}>
-                                <Typography align='center' variant='h3' sx={{ fontWeight: 600 }}>My Decks</Typography>
+                            <Card elevation={0} sx={{ border: 1, borderBottom: 1, mb: 3, width: '25%' }}>
+                                <Typography align='center' variant='h3' sx={{ fontWeight: 600, py: 4, }}>My Decks</Typography>
                             </Card>
                             <Box sx={{ display: 'flex', width: '80%', height: '70%', justifyContent: 'center', }}>
-                                <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                                    <Paper elevation={0} sx={{ border: 1, py: 1, }}>
-                                        <Tabs value={value} onChange={(event, val) => { handleChange(val) }} orientation="vertical" indicatorColor='secondary' sx={{}}>
+                                <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', }}>
+                                    <Paper elevation={0} sx={{ py: { lg: 1, xl: 1 }, border: 1, borderRight: 0 }}>
+                                        <Tabs value={value} onChange={(event, val) => { handleChange(val) }} orientation="vertical" indicatorColor='secondary'
+                                        >
                                             {decks.map((d, i) => {
-                                                return <Tab label={'Deck ' + (i + 1)} key={`saved-deck-tab-${i}`} sx={{ width: '100%', mr: 2, my: 0.4 }} />
+                                                return <Tab label={<Typography variant='h8' sx={{}}>{'Deck ' + (i + 1)}</Typography>}
+                                                    key={`saved-deck-tab-${i}`} sx={{ width: '100%', mr: 2, my: { lg: 0, xl: 0.4 } }} />
                                             })}
                                             {
                                                 decks.length < 10 && // max 10 decks
@@ -179,7 +184,7 @@ function Decks() {
                                         </Tabs>
                                     </Paper>
                                 </Box>
-                                <Card sx={{ width: '65%', height: '95%', display: 'flex', flexDirection: 'column', border: 1, borderLeft: 0, }} elevation={0}>
+                                <Card sx={{ width: { lg: '65%', xl: '55%' }, display: 'flex', flexDirection: 'column', border: 1, justifyContent: 'center' }} elevation={0}>
                                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0.5, pr: 0.5 }}>
                                         <IconButton size='medium' sx={{}}
                                             onClick={(event) => setAnchorEl(event.currentTarget)}
@@ -193,7 +198,7 @@ function Decks() {
                                             return <Box value={value} index={i} hidden={value !== i} key={`saved-deck-${i}`} sx={{}}>
                                                 <Button onClick={() => { setDialogOpen(true); }} sx={{ p: 0, m: 0 }}>
                                                     <Card elevation={0}>
-                                                        <DeckComponent slots={currentDeck} setSlots={setCurrentDeck} isInteractive={false} DeckButtons={DeckButtons} isClickable={true} isLarge={true} size={150} />
+                                                        <DeckComponent slots={currentDeck} setSlots={setCurrentDeck} isInteractive={false} DeckButtons={DeckButtons} isClickable={true} isLarge={true} size={140} />
                                                     </Card>
                                                 </Button>
                                             </Box>
@@ -212,7 +217,7 @@ function Decks() {
                             </Box>
                         </Box>
                         :
-                        <Card sx={{ mt: 7, height: 400, width: '40%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                        <Card sx={{ height: 400, width: '60%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                             <Typography variant='h4' align='center'>You currently have no saved decks</Typography>
                             <GeneralButton focusRipple
                                 onClick={() => { handleChange(0) }}>

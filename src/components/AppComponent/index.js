@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { BrowserRouter } from "react-router-dom";
 import {
-	AppBar, Box, Toolbar, IconButton, Button,
+	AppBar, Box, Toolbar, IconButton,
 	Typography, MenuItem, Menu, Divider, Link,
 
 } from '@mui/material';
@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import BoltIcon from '@mui/icons-material/Bolt';
 import { UserContext } from '../../context/UserContext';
-
 
 
 
@@ -35,7 +34,7 @@ function AppComponent({ children, signOut, user, }) {
 						<Link target="_blank" href="https://supercell.com/en/fan-content-policy/"> Supercell's Fan Content Policy.
 						</Link>
 					</Typography>
-					<Box sx={{ }}>
+					<Box sx={{}}>
 						<Typography variant='subtitle2' sx={{ color: 'white' }}>
 							{`Contact: `}
 						</Typography>
@@ -74,8 +73,8 @@ function AppLayout({ children, signOut, user }) {
 		<Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', }}>
 			<AppBar position='static' elevation={0} sx={{ py: 1, backgroundImage: `url(${template})`, backgroundSize: 'content', }}>
 				<Toolbar>
-					<IconButton onClick={() => { navigate('/home') }} sx={{}} ><BoltIcon sx={{ color: 'gold', fontSize: 48 }} /></IconButton>
-					<Typography variant="h3" color='primary' sx={{ flexGrow: 1, pl: 5, color: 'white' }} >
+					<IconButton onClick={() => { navigate('/home') }} sx={{ p: 0, m: 0 }} ><BoltIcon sx={{ color: 'gold', fontSize: 48 }} /></IconButton>
+					<Typography variant="h3" color='primary' sx={{ flexGrow: 1, pl: 5, color: 'white', typography: { lg: 'h3', xl: 'h3' } }} >
 						Clash Royale Duel Tool
 					</Typography>
 					<IconButton
@@ -98,42 +97,21 @@ function AppLayout({ children, signOut, user }) {
 								<Typography align="left" sx={{ p: 2 }}>{user.signInDetails.loginId}</Typography>
 								<Divider variant="middle" />
 								<MenuItem
-								>
-									<Button
-										sx={{
-											width: 200,
-											display: 'flex',
-											justifyContent: 'space-between',
-											p: 0,
-											m: 0,
-											textTransform: 'none',
-										}}
 										onClick={() => {
 											navigate('/decks', { replace: true }); setAnchorEl(false);
 										}}>
-										<Typography align="left">
+										<Typography align="left" color='primary'>
 											My Decks
 										</Typography>
-									</Button>
+								
 								</MenuItem>
 							</>
 						}
 						<MenuItem
-						>
-							<Button
-								sx={{
-									width: 200,
-									display: 'flex',
-									justifyContent: 'space-between',
-									p: 0,
-									m: 0,
-									textTransform: 'none',
-								}}
 								onClick={user ? handleSignOut : handleSignIn}>
-								<Typography align="left">
+								<Typography align="left" color='primary'>
 									{user ? 'Log Out' : 'Log In'}
 								</Typography>
-							</Button>
 						</MenuItem>
 					</Menu>
 				</Toolbar>

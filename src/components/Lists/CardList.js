@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Button } from '@mui/material';
+import { Stack, Button, Box } from '@mui/material';
 
 
 
@@ -17,7 +17,7 @@ function CardList({ handleSelect, cards, filterCards, sortDirection, searchText 
                     (b.rarity - a.rarity) : (a.rarity - b.rarity)).map((c, i) => {
                         return (
                             <Button onClick={() => handleSelect(c, i)} key={`card-list-item-${i}`} sx={{ m: 0.2, backgroundColor: cardColors[c.rarity], borderRadius: '5%' }}>
-                                <img src={c.img} alt={c.id} style={{ height: 60 }}></img>
+                                <Box sx={{ height: { lg: 52, xl: 60 } }}><img src={c.img} alt={c.id} style={{ width: '100%', height: '100%', objectFit: 'contain' }}></img></Box>
                             </Button>
                         );
                     })

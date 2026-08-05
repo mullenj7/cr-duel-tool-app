@@ -19,9 +19,18 @@ const theme = {
       fontWeight: 800,
       fontFamily: 'Sofia Sans',
     },
+    h6: {
+      fontWeight: 600,
+    },
 
     h1:{
       fontSize: 90,
+      fontWeight: 1000,
+      fontStyle: 'italic',
+      fontFamily: 'Sofia Sans',
+    },
+    h2:{
+      fontSize: 70,
       fontWeight: 1000,
       fontStyle: 'italic',
       fontFamily: 'Sofia Sans',

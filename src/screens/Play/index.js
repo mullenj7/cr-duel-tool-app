@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { useState } from 'react';
-import { Box, Typography,Paper } from '@mui/material';
+import { Box, Typography, Paper } from '@mui/material';
 
 
 import GameDecks from '../../components/Dialogs/GameDecks';
@@ -31,25 +31,25 @@ function Play() {
 
 
   return (
-    <Paper elevation={0} sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'space-evenly', pb: 20, pt: 2, borderRadius:'0%'  }}>
+    <Paper elevation={0} sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'space-evenly', pb: 20, pt: 2, borderRadius: '0%' }}>
       <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', }}>
-        <Typography variant='h4' align='center' sx={{ py: 2, }}>You</Typography>
+        <Typography variant='h4' align='center' sx={{ py: 2, typography: { lg: 'h5', xl: 'h4' } }}>You</Typography>
         <GameDecks slotArray={slotArrayRed} setSlotArray={setSlotArrayRed} slotIndex={slotIndexRed} setSlotIndex={setSlotIndexRed} setDialogOpen={setDialogOpenRed}
         />
       </Box>
       <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-        <Typography variant='h4' align='center' sx={{ py: 2 }}>Available Cards</Typography>
-        <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex' }}>
-          <Box sx={{ width: '50%', height: '100%', bgcolor: 'white', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Typography variant='h4' align='center' sx={{ py: 2, typography: { lg: 'h5', xl: 'h4' } }}>Available Cards</Typography>
+        <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex',}}>
+          <Box sx={{ width: '50%', height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <AvailableCards slotArray={slotArrayRed} />
           </Box>
-          <Box sx={{ width: '50%', height: '100%', bgcolor: 'white', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Box sx={{ width: '50%', height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <AvailableCards slotArray={slotArrayBlue} align={'right'} />
           </Box>
         </Box>
       </Box>
       <Box sx={{ width: '100%', height: '100%', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <Typography variant='h4' align='center' sx={{ py: 2 }}>Opponent</Typography>
+        <Typography variant='h4' align='center' sx={{ py: 2, typography: { lg: 'h5', xl: 'h4' } }}>Opponent</Typography>
         <GameDecks slotArray={slotArrayBlue} setSlotArray={setSlotArrayBlue} slotIndex={slotIndexBlue} setSlotIndex={setSlotIndexBlue} setDialogOpen={setDialogOpenBlue} align={'right'}
         />
       </Box>

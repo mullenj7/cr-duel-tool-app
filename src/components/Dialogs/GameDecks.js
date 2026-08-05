@@ -22,7 +22,10 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotA
             {
                 slotArray.map((slot, i) => {
                     return (
-                        <Box key={`slotArray=${i}`} sx={{ pt: 3, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1, }}>
+                        <Box key={`slotArray=${i}`} sx={{
+                            pt: { lg: 1, xl: 3 }, pb: 0, display: 'flex', flexDirection: 'column',
+                            justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', flexGrow: 1,
+                        }}>
                             <Card elevation={0} sx={{}}>
                                 <Tooltip leaveDelay={100} slotProps={{
                                     tooltip: {
@@ -53,7 +56,7 @@ function GameDecks({ slotArray, slotIndex, setSlotIndex, setDialogOpen, setSlotA
 
             }
             {slotArray.length < 10 && // max of 9 decks can be added per side
-                <Box sx={{ pt: 4, pb: 5, width: '60%', height: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
+                <Box sx={{ pt: { lg: 3, xl: 4 }, pb: 5, width: '60%', height: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
                     <Box sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: 2, borderRadius: '16px' }}>
                         <GeneralButton focusRipple
                             onClick={() => { setDialogOpen(true); setSlotIndex(slotArray.length) }}>
