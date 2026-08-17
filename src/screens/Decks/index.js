@@ -256,7 +256,7 @@ function Decks() {
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <img src='Blue Crown Animated 2.gif' alt='Blue Crown Animated 2.gif' style={{ height: 150 }}></img></Box>
                 : <Box sx={{ p: 4, minHeight: 400, display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
                     <Typography variant='h4'>
-                        You must be <Link href="http://localhost:3000/login">signed in</Link> to save decks
+                        You must be <Link href={`${process.env.REACT_APP_MAIN_APP}/login`}>signed in</Link> to save decks
                     </Typography>
                 </Box>}</>}
         </Box>
