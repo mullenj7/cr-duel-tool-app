@@ -8,8 +8,7 @@ Clash Royale Duel Tool is a tool for Clash Royale players to help pick and count
 In Clash Royale, players create decks of 8 cards and play against each other in 1v1 matches. 
 The most popular competitive format in Clash Royale is the Duel Format, where players are only allowed to use each card once, typically in a best of 5 or 7.
 <br />
-This tool is intended to be used during Duel Format matches.
-The tool helps visualize what cards players and their opponents have already used, and helps them use this information to create their decks for the next match.
+This tool is intended to be used during Duel Format matches, to help visualize what cards players and their opponents have already used, and help them use this information to create their decks for the next match.
 
 <br />
 <img width="1920" height="1080" alt="Screenshot (842)" src="https://github.com/user-attachments/assets/e2224acc-27b5-4e18-8fe2-2dff54191e82" />
