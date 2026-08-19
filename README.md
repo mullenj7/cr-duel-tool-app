@@ -1,12 +1,13 @@
 # Clash Royale Duel Tool App
 
-This Repo contains the code for the Clash Royale Duel Tool App found at www.test.com. -- fix login redirect in app
+This Repo contains the code for the Clash Royale Duel Tool App found [here](https://prod.d1o5e1k1hnydhm.amplifyapp.com
+) (official domain pending from AWS).
 
 ## What is Clash Royale Duel Tool
 Clash Royale Duel Tool is a tool for Clash Royale players to help pick and counter-pick decks based on what cards have been played in previous matches.
 <br />
 In Clash Royale, players create decks of 8 cards and play against each other in 1v1 matches. 
-The most popular competitive format in Clash Royale is the Duel Format, where players are only allowed to use each card once, typically in a best of 5 or 7.
+The most popular competitive format in Clash Royale is the Duel Format, where players are only allowed to use each card once, typically in a best of 3 or 5.
 <br />
 This tool is intended to be used during Duel Format matches, to help visualize what cards players and their opponents have already used, and help them use this information to create their decks for the next match.
 
