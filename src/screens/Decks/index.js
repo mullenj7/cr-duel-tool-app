@@ -160,13 +160,13 @@ function Decks() {
 
 
     return (
-        <Box sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', pt: 0, flexGrow: 1, }}>
+        <Box sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', pt: 0, flexGrow: 1, my: 2 }}>
             {userSignedIn && !loading ? <>
                 <Box elevation={1} sx={{ width: '90%', display: 'flex', justifyContent: 'center', p: 0, alignItems: 'center' }}>
                     {decks && decks.length > 0 && currentDeck && currentDeck.length > 0 ?
                         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
                             <Card elevation={0} sx={{ border: 1, borderBottom: 1, mb: 3, width: '25%' }}>
-                                <Typography align='center' variant='h3' sx={{ fontWeight: 600, py: 4, }}>My Decks</Typography>
+                                <Typography align='center' variant='h3' sx={{ fontWeight: 600, py: 3, }}>My Decks</Typography>
                             </Card>
                             <Box sx={{ display: 'flex', width: '80%', height: '70%', justifyContent: 'center', }}>
                                 <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', }}>

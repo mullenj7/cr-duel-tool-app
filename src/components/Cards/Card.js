@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 
 
 
-export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCardType, isInteractive = false, isLarge, size }) {
+export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCardType, isInteractive = false, isLarge, size, offset = 14 }) {
 
     const getNewIMGString = (type) => {
         try {
@@ -66,7 +66,7 @@ export const CardDrag = function CardDrag({ value, handleDropCard, index, swapCa
     }), [value, handleDropCard])
     const opacity = isInteractive ? (isDragging ? 0.4 : 1) : 1
     return (
-        <Box sx={{ height: { lg: size - (14), xl: size } }}>
+        <Box sx={{ height: { lg: size - (offset), xl: size } }}>
             <img ref={drag} style={{ opacity, width: '100%', height: '100%', objectFit: 'contain' }} data-testid={`box`}
                 src={value.img ? getIMG() : 'Images/empty-slot.png'} alt={value.id ? value.id : ''}></img>
         </Box>

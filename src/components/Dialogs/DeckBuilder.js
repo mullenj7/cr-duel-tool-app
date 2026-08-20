@@ -185,9 +185,9 @@ function DeckBuilder({ slotArray, setSlotArray, slotIndex, dialogOpen, setDialog
                 <CloseIcon />
             </IconButton>
 
-            <Box sx={{ display: 'flex', py: {lg:8,xl:8}, justifyContent: 'center', height: { lg: 600, xl: 680 } }}>
+            <Box sx={{ display: 'flex', py: { lg: 8, xl: 8 }, justifyContent: 'center', height: { lg: 500, xl: 680 } }}>
                 <Box sx={{ pt: 8, pb: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '100%' }} >
-                    <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} setSavedDecksDialogOpen={setSavedDecksDialogOpen} isLarge={true} size={150}
+                    <DeckComponent slots={slots} setSlots={setSlots} isInteractive={true} setSavedDecksDialogOpen={setSavedDecksDialogOpen} isLarge={true} size={150} offset={30}
                         savedDecksDialogOpen={savedDecksDialogOpen} DeckButtons={DeckButtons} handleLoadDeck={handleLoadDeck} decks={decks} setDecks={setDecks}
                         swapCardType={swapCardType} setSwapCardType={setSwapCardType} />
                 </Box>

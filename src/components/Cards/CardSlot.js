@@ -8,9 +8,8 @@ import SwapHorizRoundedIcon from '@mui/icons-material/SwapHorizRounded';
 import { CardDrag } from './Card';
 
 
-export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handleSwitchType, swapCardType, isInteractive = false, isLarge, size }) => {
+export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handleSwitchType, swapCardType, isInteractive = false, isLarge, size, offset }) => {
     const [showButton, setShowButton] = useState(false);
-
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
         accept: 'card',
         drop: () => ({ index: index, }),
@@ -56,13 +55,13 @@ export const CardSlot = ({ value, handleDropCard, index, handleRemoveCard, handl
                 }}>
                 <CancelIcon />
             </IconButton> : <></>}
-            <CardDrag value={value} handleDropCard={handleDropCard} index={index} swapCardType={swapCardType} isInteractive={isInteractive} isLarge={isLarge} size={size} />
+            <CardDrag value={value} handleDropCard={handleDropCard} index={index} swapCardType={swapCardType} isInteractive={isInteractive} isLarge={isLarge} size={size} offset={offset} />
         </Card>
     </div>;
 
     const NonInteractiveSlot = <div style={{ position: 'relative' }}>
         <Card elevation={0}>
-            <CardDrag value={value} index={index} swapCardType={swapCardType} isInteractive={isInteractive} isLarge={isLarge} size={size} />
+            <CardDrag value={value} index={index} swapCardType={swapCardType} isInteractive={isInteractive} isLarge={isLarge} size={size} offset={offset} />
         </Card>
     </div>;
 

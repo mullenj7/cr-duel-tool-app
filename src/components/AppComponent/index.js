@@ -66,7 +66,6 @@ function AppLayout({ children, signOut, user }) {
 		signOut();
 		setAnchorEl(false);
 		navigate('/home', { replace: true });
-
 	}
 
 	return (
@@ -97,21 +96,21 @@ function AppLayout({ children, signOut, user }) {
 								<Typography align="left" sx={{ p: 2 }}>{user.signInDetails.loginId}</Typography>
 								<Divider variant="middle" />
 								<MenuItem
-										onClick={() => {
-											navigate('/decks', { replace: true }); setAnchorEl(false);
-										}}>
-										<Typography align="left" color='primary'>
-											My Decks
-										</Typography>
-								
+									onClick={() => {
+										navigate('/decks', { replace: true }); setAnchorEl(false);
+									}}>
+									<Typography align="left" color='primary'>
+										My Decks
+									</Typography>
+
 								</MenuItem>
 							</>
 						}
 						<MenuItem
-								onClick={user ? handleSignOut : handleSignIn}>
-								<Typography align="left" color='primary'>
-									{user ? 'Log Out' : 'Log In'}
-								</Typography>
+							onClick={user ? handleSignOut : handleSignIn}>
+							<Typography align="left" color='primary'>
+								{user ? 'Log Out' : 'Log In'}
+							</Typography>
 						</MenuItem>
 					</Menu>
 				</Toolbar>
