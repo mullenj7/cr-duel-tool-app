@@ -84,8 +84,8 @@ function AvailableCards({ slotArray, align = 'left' }) {
                             {
                                 filtered.sort((a, b) => b.rarity - a.rarity).map((c, i) => {
                                     return (
-                                        <Box sx={{ height: { lg: 37, xl: 42 } }}>
-                                            <img src={c.img} alt={c.id} key={`av-cards-${align}-${i}`} style={{ width: '100%', height: '100%', objectFit: 'contain' }}></img>
+                                        <Box sx={{ height: { lg: 37, xl: 42 } }} key={`av-cards-${align}-${i}`} >
+                                            <img src={c.img} alt={c.id} style={{ width: '100%', height: '100%', objectFit: 'contain' }}></img>
                                         </Box>
                                     );
                                 })

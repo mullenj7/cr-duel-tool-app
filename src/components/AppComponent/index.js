@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { BrowserRouter } from "react-router-dom";
 import {
-	AppBar, Box, Toolbar, IconButton,
+	AppBar, Box, Toolbar, IconButton, ButtonBase,
 	Typography, MenuItem, Menu, Divider, Link,
 
 } from '@mui/material';
@@ -71,11 +71,11 @@ function AppLayout({ children, signOut, user }) {
 	return (
 		<Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', }}>
 			<AppBar position='static' elevation={0} sx={{ py: 1, backgroundImage: `url(${template})`, backgroundSize: 'content', }}>
-				<Toolbar>
-					<IconButton onClick={() => { navigate('/home') }} sx={{ p: 0, m: 0 }} ><BoltIcon sx={{ color: 'gold', fontSize: 48 }} /></IconButton>
-					<Typography variant="h3" color='primary' sx={{ flexGrow: 1, pl: 5, color: 'white', typography: { lg: 'h3', xl: 'h3' } }} >
-						Clash Royale Duel Tool
-					</Typography>
+				<Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+					<Box><IconButton onClick={() => { navigate('/home') }} sx={{ p: 0, m: 0 }} ><BoltIcon sx={{ color: 'gold', fontSize: 48 }} /></IconButton>
+						<ButtonBase sx={{ ml: 5 }} onClick={() => { navigate('/home') }}><Typography variant="h3" color='primary' sx={{ color: 'white', typography: { lg: 'h3', xl: 'h3' } }} >
+							Clash Royale Duel Tool
+						</Typography></ButtonBase></Box>
 					<IconButton
 						onClick={(event) => setAnchorEl(event.currentTarget)}
 					>
