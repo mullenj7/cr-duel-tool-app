@@ -1,7 +1,6 @@
 # Clash Royale Duel Tool App
 
-This Repo contains the code for the Clash Royale Duel Tool App found [here](https://prod.d1o5e1k1hnydhm.amplifyapp.com
-) (official domain pending from AWS).
+This Repo contains the code for the Clash Royale Duel Tool App found at [dueltool.com](https://dueltool.com).
 
 ## What is Clash Royale Duel Tool
 Clash Royale Duel Tool is a tool for Clash Royale players to help pick and counter-pick decks based on what cards have been played in previous matches.
